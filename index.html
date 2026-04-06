@@ -1,413 +1,1009 @@
-<!DOCTYPE html>
 
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Análisis Rival J28 — C.D. Cabecense</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-* { margin:0; padding:0; box-sizing:border-box; }
-:root {
-    --bg: #0a0a0f;
-    --surface: #13131a;
-    --surface2: #1a1a24;
-    --border: #2a2a3a;
-    --text: #e8e8f0;
-    --text2: #8888a0;
-    --accent: #e63946;
-    --green: #22c55e;
-    --yellow: #eab308;
-    --red: #ef4444;
-    --blue: #3b82f6;
-}
-body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; }
-.app { display:flex; min-height:100vh; }
 
-/* Sidebar */
-.sidebar { width:220px; background:var(–surface); border-right:1px solid var(–border); position:fixed; height:100vh; overflow-y:auto; z-index:10; }
-.sidebar-header { padding:24px 20px; border-bottom:1px solid var(–border); }
-.sidebar-header h2 { font-family:‘Space Grotesk’,sans-serif; font-size:13px; text-transform:uppercase; letter-spacing:2px; color:var(–accent); }
-.sidebar-header p { font-size:11px; color:var(–text2); margin-top:4px; }
-.nav-item { display:block; padding:12px 20px; font-size:13px; color:var(–text2); cursor:pointer; border-left:3px solid transparent; text-decoration:none; transition:all .2s; }
-.nav-item:hover, .nav-item.active { color:var(–text); background:var(–surface2); border-left-color:var(–accent); }
 
-/* Main */
-.main { margin-left:220px; flex:1; padding:32px; max-width:1000px; }
-.section { display:none; animation:fadeIn .3s; }
-.section.active { display:block; }
-@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 
-h1 { font-family:‘Space Grotesk’,sans-serif; font-size:28px; font-weight:700; margin-bottom:8px; }
-h3 { font-family:‘Space Grotesk’,sans-serif; font-size:16px; color:var(–accent); margin:24px 0 12px; text-transform:uppercase; letter-spacing:1px; }
-.subtitle { color:var(–text2); font-size:14px; margin-bottom:24px; }
+JORNADA 28
+C.D. Cabecense
+Análisis previo · 12/04/2026
+00
+Portada
+01
+Previa
+02
+Formación
+03
+Plantilla
+04
+Análisis táctico
+05
+Datos
+06
+Árbitro
+07
+Plan de partido
+Racing Club Portuense
+Temporada 2025/2026
 
-/* Cards grid */
-.stats-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(120px,1fr)); gap:12px; margin:16px 0; }
-.stat-card { background:var(–surface); border:1px solid var(–border); border-radius:8px; padding:16px; text-align:center; }
-.stat-card .num { font-family:‘Space Grotesk’,sans-serif; font-size:28px; font-weight:700; }
-.stat-card .label { font-size:11px; color:var(–text2); text-transform:uppercase; margin-top:4px; }
-.stat-card.green .num { color:var(–green); }
-.stat-card.yellow .num { color:var(–yellow); }
-.stat-card.red .num { color:var(–red); }
-.stat-card.blue .num { color:var(–blue); }
+￼
+C.D. Cabecense
+ANÁLISIS RIVAL · JORNADA 28
+📅 12 Abril 2026 🏟️ Estadio Carlos Marchena ⚽ División de Honor · Grupo 1 🎙️ Guillermo San Gil Martín
+01 · PREVIA
+Clasificación y contexto
+#
+EQUIPO
+PJ
+V
+E
+D
+GF
+GC
+DG
+PTS
+1
+Real Betis C
+26
+23
+1
+2
+77
+25
++52
+70
+2
+Montilla CF
+27
+17
+5
+5
+50
+25
++25
+56
+3
+Racing C. Portuense ←
+27
+16
+7
+4
+47
+19
++28
+55
+4
+Egabrense CD
+26
+16
+4
+6
+57
+32
++25
+52
+5
+Atco. Palma del Río
+26
+14
+5
+7
+39
+30
++9
+47
+6
+UB Lebrijana
+27
+12
+6
+9
+49
+30
++19
+42
+7
+La Palma CF
+27
+12
+7
+8
+54
+38
++16
+43
+8
+CD Cabecense ⬅
+26
+10
+5
+11
+34
+42
+-8
+35
+9
+Atlético Espeleño
+26
+8
+10
+8
+35
+37
+-2
+34
+10
+UP Viso
+27
+9
+7
+11
+38
+37
++1
+34
+11
+CD Inter Sevilla
+27
+7
+10
+10
+44
+47
+-3
+31
+12
+CD Moguer
+27
+9
+2
+16
+36
+56
+-20
+29
+13
+AD Cartaya
+26
+6
+5
+15
+36
+52
+-16
+23
+14
+Cádiz CF C
+27
+6
+3
+18
+27
+48
+-21
+21
+15
+UD Los Barrios
+26
+4
+1
+21
+20
+63
+-43
+13
+16
+CD Rociana
+26
+1
+4
+21
+17
+76
+-59
+7
+Racha últimos 5 partidos
+D
+0–4
+FBetis C
+J23
+V
+3–2
+CInter Sevilla
+J24
+D
+0–2
+FPalma Río
+J25
+V
+3–2
+CLa Palma
+J26
+D
+0–3
+FMontilla
+J27
+0
+PARTIDOS
+0
+1.31/partido
+GOLES A FAVOR
+0
+1.62/partido
+GOLES EN CONTRA
+0
++ 8 rojas
+TARJETAS AMARILLAS
+Goleadores
+Somtochukwu Iwezu
 
-/* Form badges */
-.form-row { display:flex; gap:6px; margin:12px 0; }
-.form-badge { width:32px; height:32px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#fff; }
+7
+Francisco Sánchez
 
-/* Match rows */
-.match-row { display:flex; align-items:center; gap:8px; padding:6px 0; font-size:13px; border-bottom:1px solid var(–border); }
-.j-num { width:32px; color:var(–text2); font-size:11px; }
-.cond { width:16px; font-weight:700; font-size:11px; }
-.rival { flex:1; }
-.score { font-family:‘Space Grotesk’,sans-serif; font-weight:700; }
+5
+Miguel Moreno
 
-/* Scorer rows */
-.scorer-row, .card-row, .tit-row { display:flex; align-items:center; gap:8px; padding:6px 0; font-size:13px; }
-.scorer-name, .card-name, .tit-name { width:180px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.scorer-bar, .tit-bar { flex:1; height:8px; background:var(–surface2); border-radius:4px; overflow:hidden; }
-.bar-fill { height:100%; background:var(–accent); border-radius:4px; transition:width .5s; }
-.scorer-count { width:24px; text-align:right; font-weight:700; color:var(–accent); }
-.card-count { font-size:12px; }
-.tit-nums { width:40px; font-size:12px; color:var(–text2); text-align:center; }
+4
+Manuel Puerto
 
-/* Intervals */
-.interval-row { display:flex; align-items:center; gap:8px; padding:4px 0; }
-.iv-label { width:50px; font-size:12px; color:var(–text2); text-align:right; }
-.iv-bars { flex:1; display:flex; flex-direction:column; gap:2px; }
-.iv-bar { height:18px; border-radius:3px; display:flex; align-items:center; padding-left:6px; font-size:11px; font-weight:600; min-width:20px; transition:width .5s; }
-.iv-bar.gf { background:var(–green); color:#000; }
-.iv-bar.gc { background:var(–red); color:#fff; }
+3
+Manuel Resumi
 
-/* Lineup cards */
-.lineup-card { background:var(–surface); border:1px solid var(–border); border-radius:8px; margin:12px 0; overflow:hidden; }
-.lineup-header { display:flex; align-items:center; gap:12px; padding:10px 16px; background:var(–surface2); }
-.lineup-j { font-weight:700; font-size:13px; }
-.lineup-rival { flex:1; font-size:13px; color:var(–text2); }
-.lineup-score { font-family:‘Space Grotesk’,sans-serif; font-weight:700; font-size:15px; }
-.lineup-players { padding:12px 16px; display:flex; flex-wrap:wrap; gap:4px 16px; }
-.lineup-player { font-size:12px; white-space:nowrap; }
+2
+Devin López
 
-/* Bajas */
-.baja-card { background:var(–surface); border:1px solid var(–red); border-radius:8px; padding:12px 16px; margin:6px 0; display:flex; align-items:center; gap:12px; }
-.baja-card .icon { font-size:20px; }
-.baja-card .info { flex:1; }
-.baja-card .name { font-weight:700; }
-.baja-card .reason { font-size:12px; color:var(–text2); }
+2
+Jesús López
 
-/* Patterns */
-.pattern-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.pattern-card { background:var(–surface); border:1px solid var(–border); border-radius:8px; padding:16px; }
-.pattern-card .title { font-size:12px; color:var(–text2); text-transform:uppercase; margin-bottom:8px; }
-.pattern-card .big { font-family:‘Space Grotesk’,sans-serif; font-size:32px; font-weight:700; }
-.pattern-card .detail { font-size:12px; color:var(–text2); margin-top:4px; }
+2
+Justo Fernández
 
-/* Key insights */
-.insight { background:var(–surface); border-left:3px solid var(–accent); padding:12px 16px; margin:8px 0; font-size:13px; border-radius:0 8px 8px 0; }
-.insight.green { border-left-color:var(–green); }
-.insight.red { border-left-color:var(–red); }
-.insight.yellow { border-left-color:var(–yellow); }
+2
+Eladio Reyes
 
-/* Mobile top nav */
-.mobile-nav { display:none; position:sticky; top:0; z-index:20; background:var(–surface); border-bottom:1px solid var(–border); overflow-x:auto; white-space:nowrap; -webkit-overflow-scrolling:touch; }
-.mobile-nav a { display:inline-block; padding:12px 16px; font-size:13px; color:var(–text2); text-decoration:none; border-bottom:2px solid transparent; font-family:‘DM Sans’,sans-serif; }
-.mobile-nav a.active { color:var(–text); border-bottom-color:var(–accent); }
+2
+Luis Domínguez
 
-/* Responsive */
-@media (max-width:1024px) {
-.sidebar { display:none; }
-.mobile-nav { display:block; }
-.main { margin-left:0; padding:16px; }
-.stats-grid { grid-template-columns:repeat(3,1fr); }
-.pattern-grid { grid-template-columns:1fr; }
-}
-</style>
+2
+Tarjetas · Jugadores en riesgo
+JUGADOR
+🟨
+DOB
+🟥
+Manuel Puerto
+9
+1
+1
+Miguel Moreno
+9
+–
+–
+Juan Galán
+8
+–
+–
+Francisco Sánchez
+8
+–
+–
+Balduino Castro
+7
+–
+–
+Antonio Soria
+7
+–
+–
+Aymane Ghaout
+5
+–
+–
+Eladio Reyes
+5
+–
+–
+Somtochukwu Iwezu
+4
+1
+1
+Luis Domínguez
+4
+–
+1
+02 · FORMACIÓN
+Alineaciones y sistema
+J26 · Casa vs La Palma · 3–2 ✅
+2
+11
+19
+9
+21
+8
+3
+6
+5
+17
+1
+Sistema: 1·4·2·3·1
+📋
+J20 · Casa vs Espeleño
+Alineación pendiente.
+Se actualizará el jueves.
+PRÓXIMAMENTE
+Últimas 5 convocatorias
+D
+J23 · F · 0–4 · Betis C
+1
+Casas López, Iván
+4
+Ramos Guillén, Ó.
 
-</head>
-<body>
-<div class="app">
+46′
+5
+Debe de la Rosa, M.J.
+6
+Reyes Madrid, Eladio
+8
+Soria Domínguez, A.J.
+9
+Moreno Jiménez, M.
 
-<!-- Mobile navigation (visible on iPad/phone) -->
+63′
+11
+Román Orozco, Diego
 
-<div class="mobile-nav" id="mobileNav">
-    <a class="active" onclick="showSection('portada',this)">Portada</a>
-    <a onclick="showSection('previa',this)">Previa</a>
-    <a onclick="showSection('formacion',this)">Formación</a>
-    <a onclick="showSection('datos',this)">Datos</a>
-    <a onclick="showSection('plan',this)">Plan</a>
-</div>
+70′
+15
+López García, Devin
 
-<!-- Desktop sidebar -->
+46′
+17
+Castro Torres, Balduino
+18
+Galván Valladares, J.J.
+19
+Fernández Alonso, Justo
 
-<nav class="sidebar">
-    <div class="sidebar-header">
-        <h2>Racing C.P.</h2>
-        <p>Análisis Rival J28</p>
-    </div>
-    <a class="nav-item active" onclick="showSection('portada',this)">Portada</a>
-    <a class="nav-item" onclick="showSection('previa',this)">Previa</a>
-    <a class="nav-item" onclick="showSection('formacion',this)">Formación</a>
-    <a class="nav-item" onclick="showSection('datos',this)">Datos</a>
-    <a class="nav-item" onclick="showSection('plan',this)">Plan de partido</a>
-</nav>
+78′
+SUPLENTES
+2
+Iwezu S.F.
 
-<div class="main">
+46′
+10
+Puerto Bereginal, M.
 
-<!-- PORTADA -->
+46′
+13
+Gutiérrez López, A.J.
 
-<div id="portada" class="section active">
-    <div style="text-align:center;padding:60px 0">
-        <p style="font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:3px">Jornada 28 · Fuera</p>
-        <h1 style="font-size:42px;margin:16px 0">C.D. CABECENSE</h1>
-        <p style="font-size:18px;color:var(--text2)">Análisis rival</p>
-        <div style="margin-top:32px;display:flex;justify-content:center;gap:32px">
-            <div><span style="font-size:11px;color:var(--text2)">Posición</span><br><span style="font-family:'Space Grotesk';font-size:36px;font-weight:700">8º</span></div>
-            <div><span style="font-size:11px;color:var(--text2)">Puntos</span><br><span style="font-family:'Space Grotesk';font-size:36px;font-weight:700;color:var(--yellow)">38</span></div>
-            <div><span style="font-size:11px;color:var(--text2)">Diferencia</span><br><span style="font-family:'Space Grotesk';font-size:36px;font-weight:700;color:var(--red)">-7</span></div>
-        </div>
-        <div style="margin-top:24px">
-            <span style="font-size:12px;color:var(--text2)">Forma reciente</span>
-            <div class="form-row" style="justify-content:center;margin-top:8px"><span class="form-badge" style="background:#22c55e">V</span><span class="form-badge" style="background:#ef4444">D</span><span class="form-badge" style="background:#22c55e">V</span><span class="form-badge" style="background:#ef4444">D</span><span class="form-badge" style="background:#22c55e">V</span></div>
-        </div>
-    </div>
-</div>
+70′
+20
+Román Cárdenas, F.J.
+21
+Resumi León, Manuel
 
-<!-- PREVIA -->
+63′
+22
+López González, Jesús
 
-<div id="previa" class="section">
-    <h1>Previa</h1>
-    <p class="subtitle">Estadísticas de temporada — 27 partidos disputados (J20 incluida)</p>
+78′
+3
+Sánchez Valencia, F.
+V
+J24 · C · 3–2 · Inter
+2
+Iwezu S.F.
+5
+Debe de la Rosa, M.J.
+6
+Reyes Madrid, Eladio
+8
+Soria Domínguez, A.J.
+9
+Moreno Jiménez, M.
 
-```
-<h3>Temporada global</h3>
-<div class="stats-grid">
-    <div class="stat-card"><div class="num">27</div><div class="label">PJ</div></div>
-    <div class="stat-card green"><div class="num">11</div><div class="label">Victorias</div></div>
-    <div class="stat-card yellow"><div class="num">6</div><div class="label">Empates</div></div>
-    <div class="stat-card red"><div class="num">10</div><div class="label">Derrotas</div></div>
-    <div class="stat-card blue"><div class="num">35</div><div class="label">GF</div></div>
-    <div class="stat-card"><div class="num">42</div><div class="label">GC</div></div>
-</div>
+68′
+13
+Gutiérrez López, A.J.
+15
+López García, Devin
 
-<h3>Como local</h3>
-<div class="stats-grid">
-    <div class="stat-card"><div class="num">13</div><div class="label">PJ</div></div>
-    <div class="stat-card green"><div class="num">9</div><div class="label">V</div></div>
-    <div class="stat-card yellow"><div class="num">1</div><div class="label">E</div></div>
-    <div class="stat-card red"><div class="num">3</div><div class="label">D</div></div>
-    <div class="stat-card blue"><div class="num">24</div><div class="label">GF</div></div>
-    <div class="stat-card"><div class="num">17</div><div class="label">GC</div></div>
-</div>
+80′
+17
+Castro Torres, Balduino
+18
+Galván Valladares, J.J.
 
-<h3>Como visitante</h3>
-<div class="stats-grid">
-    <div class="stat-card"><div class="num">14</div><div class="label">PJ</div></div>
-    <div class="stat-card green"><div class="num">2</div><div class="label">V</div></div>
-    <div class="stat-card yellow"><div class="num">5</div><div class="label">E</div></div>
-    <div class="stat-card red"><div class="num">7</div><div class="label">D</div></div>
-    <div class="stat-card blue"><div class="num">11</div><div class="label">GF</div></div>
-    <div class="stat-card"><div class="num">25</div><div class="label">GC</div></div>
-</div>
+75′
+19
+Fernández Alonso, Justo
 
-<h3>Resultados</h3>
-<div style="max-height:400px;overflow-y:auto"><div class="match-row"><span class="j-num">J1</span><span class="cond" style="color:#ef4444">L</span><span class="rival">UNION BALOMPEDICA LEBRIJANA</span><span class="score" style="color:#ef4444">0-2</span></div><div class="match-row"><span class="j-num">J2</span><span class="cond" style="color:#ef4444">V</span><span class="rival">LOS BARRIOS</span><span class="score" style="color:#ef4444">0-1</span></div><div class="match-row"><span class="j-num">J3</span><span class="cond" style="color:#ef4444">L</span><span class="rival">VISO</span><span class="score" style="color:#ef4444">0-4</span></div><div class="match-row"><span class="j-num">J4</span><span class="cond" style="color:#eab308">V</span><span class="rival">CARTAYA</span><span class="score" style="color:#eab308">2-2</span></div><div class="match-row"><span class="j-num">J5</span><span class="cond" style="color:#eab308">V</span><span class="rival">ATLETICO ESPELEÑO</span><span class="score" style="color:#eab308">0-0</span></div><div class="match-row"><span class="j-num">J6</span><span class="cond" style="color:#eab308">L</span><span class="rival">EGABRENSE</span><span class="score" style="color:#eab308">0-0</span></div><div class="match-row"><span class="j-num">J7</span><span class="cond" style="color:#22c55e">V</span><span class="rival">CADIZ ,</span><span class="score" style="color:#22c55e">3-1</span></div><div class="match-row"><span class="j-num">J8</span><span class="cond" style="color:#ef4444">L</span><span class="rival">REAL BETIS BALOMPIE</span><span class="score" style="color:#ef4444">2-3</span></div><div class="match-row"><span class="j-num">J9</span><span class="cond" style="color:#eab308">V</span><span class="rival">INTERNACIONAL DE SEVILLA</span><span class="score" style="color:#eab308">0-0</span></div><div class="match-row"><span class="j-num">J10</span><span class="cond" style="color:#22c55e">L</span><span class="rival">PALMA DEL RIO ATLETICO</span><span class="score" style="color:#22c55e">2-1</span></div><div class="match-row"><span class="j-num">J11</span><span class="cond" style="color:#ef4444">V</span><span class="rival">LA PALMA</span><span class="score" style="color:#ef4444">2-6</span></div><div class="match-row"><span class="j-num">J12</span><span class="cond" style="color:#22c55e">L</span><span class="rival">MONTILLA</span><span class="score" style="color:#22c55e">4-1</span></div><div class="match-row"><span class="j-num">J13</span><span class="cond" style="color:#ef4444">V</span><span class="rival">RACING CLUB PORTUENSE</span><span class="score" style="color:#ef4444">0-2</span></div><div class="match-row"><span class="j-num">J14</span><span class="cond" style="color:#22c55e">L</span><span class="rival">MOGUER</span><span class="score" style="color:#22c55e">1-0</span></div><div class="match-row"><span class="j-num">J15</span><span class="cond" style="color:#22c55e">V</span><span class="rival">ROCIANA</span><span class="score" style="color:#22c55e">2-1</span></div><div class="match-row"><span class="j-num">J16</span><span class="cond" style="color:#eab308">V</span><span class="rival">UNION BALOMPEDICA LEBRIJANA</span><span class="score" style="color:#eab308">0-0</span></div><div class="match-row"><span class="j-num">J17</span><span class="cond" style="color:#22c55e">L</span><span class="rival">LOS BARRIOS</span><span class="score" style="color:#22c55e">3-0</span></div><div class="match-row"><span class="j-num">J18</span><span class="cond" style="color:#eab308">V</span><span class="rival">VISO</span><span class="score" style="color:#eab308">1-1</span></div><div class="match-row"><span class="j-num">J19</span><span class="cond" style="color:#22c55e">L</span><span class="rival">CARTAYA</span><span class="score" style="color:#22c55e">4-2</span></div><div class="match-row"><span class="j-num">J20</span><span class="cond" style="color:#22c55e">L</span><span class="rival">ATLETICO ESPELEÑO</span><span class="score" style="color:#22c55e">1-0</span></div><div class="match-row"><span class="j-num">J21</span><span class="cond" style="color:#ef4444">V</span><span class="rival">EGABRENSE</span><span class="score" style="color:#ef4444">1-2</span></div><div class="match-row"><span class="j-num">J22</span><span class="cond" style="color:#22c55e">L</span><span class="rival">CADIZ ,</span><span class="score" style="color:#22c55e">1-0</span></div><div class="match-row"><span class="j-num">J23</span><span class="cond" style="color:#ef4444">V</span><span class="rival">REAL BETIS BALOMPIE</span><span class="score" style="color:#ef4444">0-4</span></div><div class="match-row"><span class="j-num">J24</span><span class="cond" style="color:#22c55e">L</span><span class="rival">INTERNACIONAL DE SEVILLA</span><span class="score" style="color:#22c55e">3-2</span></div><div class="match-row"><span class="j-num">J25</span><span class="cond" style="color:#ef4444">V</span><span class="rival">PALMA DEL RIO ATLETICO</span><span class="score" style="color:#ef4444">0-2</span></div><div class="match-row"><span class="j-num">J26</span><span class="cond" style="color:#22c55e">L</span><span class="rival">LA PALMA</span><span class="score" style="color:#22c55e">3-2</span></div><div class="match-row"><span class="j-num">J27</span><span class="cond" style="color:#ef4444">V</span><span class="rival">MONTILLA</span><span class="score" style="color:#ef4444">0-3</span></div></div>
+60′
+24
+Resumi León, Manuel
 
-<h3>Goleadores</h3>
-<div class="scorer-row"><span class="scorer-name">IWEZU</span><div class="scorer-bar"><div class="bar-fill" style="width:20.588235294117645%"></div></div><span class="scorer-count">7</span></div><div class="scorer-row"><span class="scorer-name">SANCHEZ VALENCIA</span><div class="scorer-bar"><div class="bar-fill" style="width:14.705882352941178%"></div></div><span class="scorer-count">5</span></div><div class="scorer-row"><span class="scorer-name">MORENO JIMENEZ</span><div class="scorer-bar"><div class="bar-fill" style="width:11.76470588235294%"></div></div><span class="scorer-count">4</span></div><div class="scorer-row"><span class="scorer-name">PUERTO BEREGINAL</span><div class="scorer-bar"><div class="bar-fill" style="width:8.823529411764707%"></div></div><span class="scorer-count">3</span></div><div class="scorer-row"><span class="scorer-name">DOMINGUEZ VERGARA</span><div class="scorer-bar"><div class="bar-fill" style="width:5.88235294117647%"></div></div><span class="scorer-count">2</span></div><div class="scorer-row"><span class="scorer-name">RESUMI LEON</span><div class="scorer-bar"><div class="bar-fill" style="width:5.88235294117647%"></div></div><span class="scorer-count">2</span></div><div class="scorer-row"><span class="scorer-name">LOPEZ GARCIA</span><div class="scorer-bar"><div class="bar-fill" style="width:5.88235294117647%"></div></div><span class="scorer-count">2</span></div><div class="scorer-row"><span class="scorer-name">LOPEZ GONZALEZ</span><div class="scorer-bar"><div class="bar-fill" style="width:5.88235294117647%"></div></div><span class="scorer-count">2</span></div><div class="scorer-row"><span class="scorer-name">REYES MADRID</span><div class="scorer-bar"><div class="bar-fill" style="width:5.88235294117647%"></div></div><span class="scorer-count">2</span></div><div class="scorer-row"><span class="scorer-name">FERNANDEZ ALONSO</span><div class="scorer-bar"><div class="bar-fill" style="width:5.88235294117647%"></div></div><span class="scorer-count">2</span></div>
+55′
+SUPLENTES
+1
+Casas López, Iván
+4
+Ramos Guillén, Ó.
+7
+Castro Torres, Tomás
+10
+Puerto Bereginal, M.
 
-<h3>Tarjetas amarillas</h3>
-<div class="card-row"><span class="card-name">PUERTO BEREGINAL</span><span class="card-count">🟨🟨🟨🟨🟨🟨🟨🟨🟨🟨 10</span></div><div class="card-row"><span class="card-name">MORENO JIMENEZ</span><span class="card-count">🟨🟨🟨🟨🟨🟨🟨🟨🟨 9</span></div><div class="card-row"><span class="card-name">SANCHEZ VALENCIA</span><span class="card-count">🟨🟨🟨🟨🟨🟨🟨🟨🟨 9</span></div><div class="card-row"><span class="card-name">GALVAN VALLADARES</span><span class="card-count">🟨🟨🟨🟨🟨🟨🟨🟨 8</span></div><div class="card-row"><span class="card-name">SORIA DOMINGUEZ</span><span class="card-count">🟨🟨🟨🟨🟨🟨🟨🟨 8</span></div><div class="card-row"><span class="card-name">CASTRO TORRES</span><span class="card-count">🟨🟨🟨🟨🟨🟨🟨 7</span></div><div class="card-row"><span class="card-name">GHAOUT</span><span class="card-count">🟨🟨🟨🟨🟨 5</span></div><div class="card-row"><span class="card-name">REYES MADRID</span><span class="card-count">🟨🟨🟨🟨🟨 5</span></div><div class="card-row"><span class="card-name">IWEZU</span><span class="card-count">🟨🟨🟨🟨 4</span></div><div class="card-row"><span class="card-name">DOMINGUEZ VERGARA</span><span class="card-count">🟨🟨🟨🟨 4</span></div>
+55′
+20
+García Luque, Juan
 
-<h3>Tarjetas rojas</h3>
-<div class="card-row"><span class="card-name">RESUMI LEON</span><span class="card-count">🟥 J15</span></div><div class="card-row"><span class="card-name">GALAN TEJEA</span><span class="card-count">🟥 J19</span></div><div class="card-row"><span class="card-name">DOMINGUEZ VERGARA</span><span class="card-count">🟥 J21</span></div><div class="card-row"><span class="card-name">ROMAN OROZCO</span><span class="card-count">🟥 J23</span></div><div class="card-row"><span class="card-name">PUERTO BEREGINAL</span><span class="card-count">🟥 J6</span></div><div class="card-row"><span class="card-name">IWEZU</span><span class="card-count">🟥 J13</span></div><div class="card-row"><span class="card-name">DEBE DE LA ROSA</span><span class="card-count">🟥 J27</span></div>
+60′
+21
+Román Cárdenas, F.J.
 
-<h3>Titularidades</h3>
-<div class="tit-row"><span class="tit-name">SORIA DOMINGUEZ</span><span class="tit-nums">26/26</span><div class="tit-bar"><div class="bar-fill" style="width:100.0%"></div></div></div><div class="tit-row"><span class="tit-name">CASTRO TORRES</span><span class="tit-nums">26/26</span><div class="tit-bar"><div class="bar-fill" style="width:100.0%"></div></div></div><div class="tit-row"><span class="tit-name">CASAS LOPEZ</span><span class="tit-nums">23/27</span><div class="tit-bar"><div class="bar-fill" style="width:88.46153846153845%"></div></div></div><div class="tit-row"><span class="tit-name">DEBE DE LA ROSA</span><span class="tit-nums">21/26</span><div class="tit-bar"><div class="bar-fill" style="width:80.76923076923077%"></div></div></div><div class="tit-row"><span class="tit-name">MORENO JIMENEZ</span><span class="tit-nums">22/25</span><div class="tit-bar"><div class="bar-fill" style="width:88.0%"></div></div></div><div class="tit-row"><span class="tit-name">REYES MADRID</span><span class="tit-nums">21/25</span><div class="tit-bar"><div class="bar-fill" style="width:84.0%"></div></div></div><div class="tit-row"><span class="tit-name">IWEZU</span><span class="tit-nums">19/24</span><div class="tit-bar"><div class="bar-fill" style="width:79.16666666666666%"></div></div></div><div class="tit-row"><span class="tit-name">GALVAN VALLADARES</span><span class="tit-nums">17/25</span><div class="tit-bar"><div class="bar-fill" style="width:68.0%"></div></div></div><div class="tit-row"><span class="tit-name">SANCHEZ VALENCIA</span><span class="tit-nums">17/19</span><div class="tit-bar"><div class="bar-fill" style="width:89.47368421052632%"></div></div></div><div class="tit-row"><span class="tit-name">ROMAN OROZCO</span><span class="tit-nums">12/19</span><div class="tit-bar"><div class="bar-fill" style="width:66.66666666666666%"></div></div></div><div class="tit-row"><span class="tit-name">GHAOUT</span><span class="tit-nums">12/15</span><div class="tit-bar"><div class="bar-fill" style="width:80.0%"></div></div></div><div class="tit-row"><span class="tit-name">PUERTO BEREGINAL</span><span class="tit-nums">13/22</span><div class="tit-bar"><div class="bar-fill" style="width:59.09090909090909%"></div></div></div><div class="tit-row"><span class="tit-name">FERNANDEZ ALONSO</span><span class="tit-nums">12/20</span><div class="tit-bar"><div class="bar-fill" style="width:60.0%"></div></div></div><div class="tit-row"><span class="tit-name">ROMAN CARDENAS</span><span class="tit-nums">11/24</span><div class="tit-bar"><div class="bar-fill" style="width:45.83333333333333%"></div></div></div><div class="tit-row"><span class="tit-name">RESUMI LEON</span><span class="tit-nums">10/25</span><div class="tit-bar"><div class="bar-fill" style="width:40.0%"></div></div></div><div class="tit-row"><span class="tit-name">GARCIA LUQUE</span><span class="tit-nums">9/20</span><div class="tit-bar"><div class="bar-fill" style="width:47.368421052631575%"></div></div></div><div class="tit-row"><span class="tit-name">LOPEZ GARCIA</span><span class="tit-nums">6/19</span><div class="tit-bar"><div class="bar-fill" style="width:33.33333333333333%"></div></div></div><div class="tit-row"><span class="tit-name">BUCARAT TORRES</span><span class="tit-nums">5/9</span><div class="tit-bar"><div class="bar-fill" style="width:55.55555555555556%"></div></div></div>
-```
+68′
+22
+López González, Jesús
 
-</div>
+75′
+·
++1 no utilizado
+D
+J25 · F · 0–2 · Palma Río
+1
+Casas López, Iván
+2
+Iwezu S.F.
+5
+Debe de la Rosa, M.J.
+6
+Reyes Madrid, Eladio
+8
+Soria Domínguez, A.J.
+9
+Moreno Jiménez, M.
 
-<!-- FORMACIÓN -->
+72′
+15
+López García, Devin
 
-<div id="formacion" class="section">
-    <h1>Formación</h1>
-    <p class="subtitle">Alineaciones y bajas</p>
+60′
+17
+Castro Torres, Balduino
+19
+Fernández Alonso, Justo
 
-```
-<h3>Bajas por sanción J28</h3>
-<div class="insight green">Sin bajas por sanción. Debe de la Rosa (roja J27) y Reyes Madrid (5ª amarilla J27) cumplieron suspensión en J20 (disputada tras J27).</div>
+82′
+21
+Román Cárdenas, F.J.
 
-<h3>Últimas 5 alineaciones (orden cronológico)</h3>
-<div class="lineup-card">
-    <div class="lineup-header" style="border-left:3px solid #22c55e">
-        <span class="lineup-j">J24 🏠</span>
-        <span class="lineup-rival">INTERNACIONAL DE SEVILLA</span>
-        <span class="lineup-score" style="color:#22c55e">3-2</span>
-    </div>
-    <div class="lineup-players"><span class="lineup-player">2 · IWEZU, SOMTOCHUKWU FRANCIS</span><span class="lineup-player">5 · DEBE DE LA ROSA, MANUEL JESUS</span><span class="lineup-player">6 · REYES MADRID, ELADIO</span><span class="lineup-player">8 · SORIA DOMINGUEZ, ANTONIO JESUS</span><span class="lineup-player">9 · MORENO JIMENEZ, MIGUEL</span><span class="lineup-player">13 · GUTIERREZ LOPEZ, ANDRES JESUS</span><span class="lineup-player">15 · LOPEZ GARCIA, DEVIN</span><span class="lineup-player">17 · CASTRO TORRES, BALDUINO</span><span class="lineup-player">18 · GALVAN VALLADARES, JUAN JESUS</span><span class="lineup-player">19 · FERNANDEZ ALONSO, JUSTO DANIEL</span><span class="lineup-player">24 · RESUMI LEON, MANUEL</span></div>
-</div>
-<div class="lineup-card">
-    <div class="lineup-header" style="border-left:3px solid #ef4444">
-        <span class="lineup-j">J25 ✈️</span>
-        <span class="lineup-rival">PALMA DEL RIO ATLETICO</span>
-        <span class="lineup-score" style="color:#ef4444">0-2</span>
-    </div>
-    <div class="lineup-players"><span class="lineup-player">1 · CASAS LOPEZ, IVAN</span><span class="lineup-player">2 · IWEZU, SOMTOCHUKWU FRANCIS</span><span class="lineup-player">5 · DEBE DE LA ROSA, MANUEL JESUS</span><span class="lineup-player">6 · REYES MADRID, ELADIO</span><span class="lineup-player">8 · SORIA DOMINGUEZ, ANTONIO JESUS</span><span class="lineup-player">9 · MORENO JIMENEZ, MIGUEL</span><span class="lineup-player">15 · LOPEZ GARCIA, DEVIN</span><span class="lineup-player">17 · CASTRO TORRES, BALDUINO</span><span class="lineup-player">19 · FERNANDEZ ALONSO, JUSTO DANIEL</span><span class="lineup-player">21 · ROMAN CARDENAS, FRANCISCO JAVIER</span><span class="lineup-player">24 · RESUMI LEON, MANUEL</span></div>
-</div>
-<div class="lineup-card">
-    <div class="lineup-header" style="border-left:3px solid #22c55e">
-        <span class="lineup-j">J26 🏠</span>
-        <span class="lineup-rival">LA PALMA</span>
-        <span class="lineup-score" style="color:#22c55e">3-2</span>
-    </div>
-    <div class="lineup-players"><span class="lineup-player">1 · CASAS LOPEZ, IVAN</span><span class="lineup-player">2 · IWEZU, SOMTOCHUKWU FRANCIS</span><span class="lineup-player">3 · SANCHEZ VALENCIA, FRANCISCO</span><span class="lineup-player">5 · DEBE DE LA ROSA, MANUEL JESUS</span><span class="lineup-player">6 · REYES MADRID, ELADIO</span><span class="lineup-player">8 · SORIA DOMINGUEZ, ANTONIO JESUS</span><span class="lineup-player">9 · MORENO JIMENEZ, MIGUEL</span><span class="lineup-player">11 · ROMAN OROZCO, DIEGO</span><span class="lineup-player">17 · CASTRO TORRES, BALDUINO</span><span class="lineup-player">19 · FERNANDEZ ALONSO, JUSTO DANIEL</span><span class="lineup-player">21 · ROMAN CARDENAS, FRANCISCO JAVIER</span></div>
-</div>
-<div class="lineup-card">
-    <div class="lineup-header" style="border-left:3px solid #ef4444">
-        <span class="lineup-j">J27 ✈️</span>
-        <span class="lineup-rival">MONTILLA</span>
-        <span class="lineup-score" style="color:#ef4444">0-3</span>
-    </div>
-    <div class="lineup-players"><span class="lineup-player">1 · CASAS LOPEZ, IVAN</span><span class="lineup-player">3 · SANCHEZ VALENCIA, FRANCISCO</span><span class="lineup-player">5 · DEBE DE LA ROSA, MANUEL JESUS</span><span class="lineup-player">6 · REYES MADRID, ELADIO</span><span class="lineup-player">8 · SORIA DOMINGUEZ, ANTONIO JESUS</span><span class="lineup-player">9 · MORENO JIMENEZ, MIGUEL</span><span class="lineup-player">10 · PUERTO BEREGINAL, MANUEL</span><span class="lineup-player">11 · ROMAN OROZCO, DIEGO</span><span class="lineup-player">17 · CASTRO TORRES, BALDUINO</span><span class="lineup-player">21 · ROMAN CARDENAS, FRANCISCO JAVIER</span><span class="lineup-player">24 · RESUMI LEON, MANUEL</span></div>
-</div>
-<div class="lineup-card">
-    <div class="lineup-header" style="border-left:3px solid #22c55e">
-        <span class="lineup-j">J20 🏠</span>
-        <span class="lineup-rival">ATLETICO ESPELEÑO</span>
-        <span class="lineup-score" style="color:#22c55e">1-0</span>
-    </div>
-    <div class="lineup-players"><span class="lineup-player">2 · IWEZU, SOMTOCHUKWU FRANCIS</span><span class="lineup-player">3 · SANCHEZ VALENCIA, FRANCISCO</span><span class="lineup-player">4 · RAMOS GUILLEN, OSCAR</span><span class="lineup-player">8 · SORIA DOMINGUEZ, ANTONIO JESUS</span><span class="lineup-player">9 · MORENO JIMENEZ, MIGUEL</span><span class="lineup-player">10 · PUERTO BEREGINAL, MANUEL</span><span class="lineup-player">13 · GUTIERREZ LOPEZ, ANDRES JESUS</span><span class="lineup-player">17 · CASTRO TORRES, BALDUINO</span><span class="lineup-player">18 · GALVAN VALLADARES, JUAN JESUS</span><span class="lineup-player">21 · ROMAN CARDENAS, FRANCISCO JAVIER</span><span class="lineup-player">24 · RESUMI LEON, MANUEL</span></div>
-</div></div>
-```
+46′
+24
+Resumi León, Manuel
 
-<!-- DATOS -->
+56′
+SUPLENTES
+4
+Ramos Guillén, Ó.
 
-<div id="datos" class="section">
-    <h1>Datos</h1>
-    <p class="subtitle">Patrones estadísticos</p>
+46′
+10
+Puerto Bereginal, M.
+11
+Román Orozco, Diego
 
-```
-<h3>Goles por tramo</h3>
-<div style="display:flex;gap:8px;margin-bottom:8px"><span style="font-size:11px;color:var(--green)">● GF</span><span style="font-size:11px;color:var(--red)">● GC</span></div>
-<div class="interval-row">
-    <span class="iv-label">0-15'</span>
-    <div class="iv-bars">
-        <div class="iv-bar gf" style="width:16.666666666666664%"><span>2</span></div>
-        <div class="iv-bar gc" style="width:33.33333333333333%"><span>4</span></div>
-    </div>
-</div><div class="interval-row">
-    <span class="iv-label">15-30'</span>
-    <div class="iv-bars">
-        <div class="iv-bar gf" style="width:66.66666666666666%"><span>8</span></div>
-        <div class="iv-bar gc" style="width:50.0%"><span>6</span></div>
-    </div>
-</div><div class="interval-row">
-    <span class="iv-label">30-45'</span>
-    <div class="iv-bars">
-        <div class="iv-bar gf" style="width:75.0%"><span>9</span></div>
-        <div class="iv-bar gc" style="width:25.0%"><span>3</span></div>
-    </div>
-</div><div class="interval-row">
-    <span class="iv-label">45-60'</span>
-    <div class="iv-bars">
-        <div class="iv-bar gf" style="width:16.666666666666664%"><span>2</span></div>
-        <div class="iv-bar gc" style="width:100.0%"><span>12</span></div>
-    </div>
-</div><div class="interval-row">
-    <span class="iv-label">60-75'</span>
-    <div class="iv-bars">
-        <div class="iv-bar gf" style="width:33.33333333333333%"><span>4</span></div>
-        <div class="iv-bar gc" style="width:50.0%"><span>6</span></div>
-    </div>
-</div><div class="interval-row">
-    <span class="iv-label">75-90'</span>
-    <div class="iv-bars">
-        <div class="iv-bar gf" style="width:83.33333333333334%"><span>10</span></div>
-        <div class="iv-bar gc" style="width:91.66666666666666%"><span>11</span></div>
-    </div>
-</div>
+56′
+13
+Gutiérrez López, A.J.
+18
+Galván Valladares, J.J.
 
-<h3>Patrones situacionales</h3>
-<div class="pattern-grid">
-    <div class="pattern-card">
-        <div class="title">Cuando marca primero</div>
-        <div class="big" style="color:var(--green)">13</div>
-        <div class="detail">V:9 · E:2 · D:2</div>
-        <div class="detail">69% de victorias</div>
-    </div>
-    <div class="pattern-card">
-        <div class="title">Cuando encaja primero</div>
-        <div class="big" style="color:var(--red)">10</div>
-        <div class="detail">V:2 · E:0 · D:8</div>
-        <div class="detail">80% de derrotas</div>
-    </div>
-    <div class="pattern-card">
-        <div class="title">Empates a 0</div>
-        <div class="big">4</div>
-        <div class="detail">de 27 partidos</div>
-    </div>
-    <div class="pattern-card">
-        <div class="title">Rendimiento local vs visitante</div>
-        <div class="big" style="color:var(--green)">9V</div>
-        <div class="detail">en casa vs 2V fuera</div>
-    </div>
-</div>
+60′
+20
+García Luque, Juan
 
-<h3>Claves tácticas</h3>
-<div class="insight green">Muy fuerte en casa (9V de 13) pero muy débil fuera (2V de 14). Racing juega fuera.</div>
-<div class="insight red">Vulnerable al inicio de 2ª parte: 12 goles encajados entre min 45-60, su peor tramo.</div>
-<div class="insight red">Cuando encaja primero, pierde el 80% de las veces. Nula capacidad de remontada fuera.</div>
-<div class="insight green">Peligroso en los últimos minutos (10 GF en 75-90), no bajar la guardia al final.</div>
-<div class="insight yellow">Recuperan a Debe de la Rosa y Reyes Madrid tras cumplir sanción en J20.</div>
-```
+72′
+22
+López González, Jesús
 
-</div>
+82′
+V
+J26 · C · 3–2 · La Palma
+1
+Casas López, Iván
+2
+Iwezu S.F.
+3
+Sánchez Valencia, F.
+5
+Debe de la Rosa, M.J.
+6
+Reyes Madrid, Eladio
+8
+Soria Domínguez, A.J.
+9
+Moreno Jiménez, M.
 
-<!-- PLAN DE PARTIDO -->
+75′
+11
+Román Orozco, Diego
 
-<div id="plan" class="section">
-    <h1>Plan de partido</h1>
-    <p class="subtitle">Líneas estratégicas vs C.D. Cabecense (fuera)</p>
+60′
+17
+Castro Torres, Balduino
+19
+Fernández Alonso, Justo
 
-```
-<h3>Fortalezas del rival</h3>
-<div class="insight red">Equipo correoso en casa: 9 victorias de 13 como local, difícil de batir en su campo.</div>
-<div class="insight red">Iwezu (7 goles) y Sánchez Valencia (5) son los principales referentes ofensivos.</div>
-<div class="insight red">Peligrosos en los minutos finales (10 goles en 75-90'), pueden empatar partidos perdidos.</div>
-<div class="insight red">Bloque defensivo sólido en primera parte como local (solo 3 GC en 30-45').</div>
+68′
+21
+Román Cárdenas, F.J.
 
-<h3>Debilidades del rival</h3>
-<div class="insight yellow">Debe de la Rosa y Reyes Madrid recuperados tras cumplir sanción en J20. Plantilla completa.</div>
-<div class="insight green">Desastre en inicio de 2ª parte: 12 goles encajados en 45-60', momento para apretar.</div>
-<div class="insight green">Sin capacidad de reacción: 80% de derrotas cuando encajan primero.</div>
-<div class="insight green">Muy indisciplinados: Puerto Bereginal con 10 amarillas + 1 roja, Moreno y Sánchez Valencia con 9 cada uno. 7 rojas en temporada.</div>
-<div class="insight green">Malos resultados recientes fuera: goleados 0-4 por Betis C y 0-3 por Montilla.</div>
+85′
+SUPLENTES
+4
+Ramos Guillén, Ó.
+10
+Puerto Bereginal, M.
+13
+Gutiérrez López, A.J.
+15
+López García, Devin
 
-<h3>Plan por fases</h3>
-<div class="insight blue" style="border-left-color:var(--blue)"><strong>Inicio (0-30'):</strong> Presión alta para forzar errores en una defensa mermada. Buscar el gol temprano — si encajan primero, se derrumban (80% derrotas).</div>
-<div class="insight blue" style="border-left-color:var(--blue)"><strong>Final 1ª parte (30-45'):</strong> Su mejor momento defensivo en casa. Mantener intensidad sin riesgo innecesario, llegar al descanso con ventaja.</div>
-<div class="insight blue" style="border-left-color:var(--blue)"><strong>Inicio 2ª parte (45-60'):</strong> Momento clave. Cabecense encaja 12 goles en este tramo — máxima agresividad al salir del vestuario. Cambios tácticos para aprovechar su bajón.</div>
-<div class="insight blue" style="border-left-color:var(--blue)"><strong>Tramo final (75-90'):</strong> Ojo con sus 10 goles en este tramo. Si vamos ganando, gestionar el partido con posesión y cambios defensivos. No dar balones aéreos innecesarios.</div>
-```
+60′
+18
+Galván Valladares, J.J.
 
-</div>
+68′
+20
+García Luque, Juan
 
-</div>
-</div>
+75′
+24
+Resumi León, Manuel
 
-<script>
-function showSection(id, el) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.querySelectorAll('.nav-item, .mobile-nav a').forEach(n => n.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-    if (el) el.classList.add('active');
-    // Sync both navs
-    document.querySelectorAll('.nav-item').forEach(n => { if(n.textContent.toLowerCase().includes(id.substring(0,4))) n.classList.add('active'); });
-    document.querySelectorAll('.mobile-nav a').forEach(n => { if(n.textContent.toLowerCase().includes(id.substring(0,4))) n.classList.add('active'); });
-    window.scrollTo(0,0);
-}
-</script>
+85′
+D
+J27 · F · 0–3 · Montilla
+1
+Casas López, Iván
+3
+Sánchez Valencia, F.
+5
+Debe de la Rosa, M.J.
+6
+Reyes Madrid, Eladio
+8
+Soria Domínguez, A.J.
+9
+Moreno Jiménez, M.
 
-</body>
-</html>
+55′
+10
+Puerto Bereginal, M.
+
+70′
+11
+Román Orozco, Diego
+
+62′
+17
+Castro Torres, Balduino
+21
+Román Cárdenas, F.J.
+
+46′
+24
+Resumi León, Manuel
+
+79′
+SUPLENTES
+7
+Domínguez Vergara, L.G.
+
+46′
+13
+Gutiérrez López, A.J.
+15
+López García, Devin
+
+55′
+18
+Galván Valladares, J.J.
+19
+Fernández Alonso, Justo
+
+62′
+20
+García Luque, Juan
+
+70′
+22
+López González, Jesús
+
+79′
+03 · PLANTILLA
+Plantilla
+🧠
+ENTRENADOR
+Álvaro Infante
+Sistema habitual: 1·4·2·3·1 · Ritmo pausado · Vertical en transición
+PORTEROS
+2 jugadores
+TITULAR
+–
+Iván Casas
+Iván Casas López
+Portero
+35 años 2070′ (34) GC
+13
+Andrés
+Andrés Jesús Gutiérrez López
+Portero · Reserva
+29 años 270′
+DEFENSAS
+8 jugadores
+HABITUAL
+5
+Manu
+Manuel Jesús Debe de la Rosa
+Central
+26 años 1887′
+HABITUAL
+6
+Eladio
+Eladio Reyes Madrid
+Central
+28 años 1827′ 2 goles ⚠️ 5 TA
+HABITUAL
+3
+Francis
+Francisco Sánchez Valencia
+Lateral Izquierdo
+35 años 1500′ 5 goles ⚠️ 8 TA
+4
+Bucarat
+José Manuel Bucarat Torres
+Central
+31 años 355′
+20
+Otero
+Agustín Otero Benítez
+Lateral Derecho
+23 años 219′
+–
+Gonzaga
+Luis Gonzaga Domínguez Vergara
+Defensa
+26 años 452′
+–
+Óscar
+Óscar Ramos Guillén
+Lateral Izquierdo
+83′
+–
+Juan Galán
+Juan Galán Tejea
+Defensa
+55′ ⚠️ 8 TA
+CENTROCAMPISTAS
+10 jugadores
+HABITUAL
+8
+Antonio
+Antonio Jesús Soria Domínguez
+Centrocampista
+24 años 2125′ ⚠️ 7 TA
+HABITUAL
+17
+Baldu
+Balduino Castro Torres
+Extremo Derecho
+24 años 2220′ 1 gol ⚠️ 7 TA
+21
+Javi Román
+Francisco Javier Román Cárdenas
+Centrocampista
+31 años 1076′ 4 TA
+–
+Juanje
+Juan Jesús Galván Valladares
+Medio Centro
+24 años 1434′
+–
+Diego
+Diego Román Orozco
+Centrocampista
+26 años 1115′ 1 gol 3 TA
+–
+Manuel Resumi
+Manuel Resumi León
+Centrocampista
+23 años 832′ 2 goles
+–
+Juan
+Juan García Luque
+Centrocampista
+23 años 788′
+–
+Javi Jiménez
+Javier Jiménez Rodríguez
+Pivote Defensivo
+4′
+–
+Awuley
+Awuley Abdul Rahman
+Centrocampista
+23 años
+–
+Borja
+Borja Pacheco Cordero
+Centrocampista
+18′
+DELANTEROS
+8 jugadores
+⭐ TOP GOLEADOR
+–
+Somto
+Somtochukwu Francis Iwezu
+Delantero Centro
+23 años 1586′ ⚽ 7 goles ⚠️ 4 TA 🟥 1 R
+HABITUAL
+9
+Miguel Moreno
+Miguel Moreno Jiménez
+Delantero Centro
+20 años 1604′ ⚽ 4 goles ⚠️ 9 TA
+10
+Manu Puerto
+Manuel Puerto Bereginal
+Delantero
+21 años 950′ ⚽ 3 goles ⚠️ 9 TA 🟥 1 R
+–
+Justo
+Justo Daniel Fernández Alonso
+Delantero
+20 años 969′ ⚽ 2 goles
+–
+Devin
+Devin López García
+Delantero
+18 años 689′ ⚽ 2 goles
+–
+Jesús López
+Jesús López González
+Delantero
+18 años 244′ ⚽ 2 goles
+–
+Kuki
+José Manuel Soria Domínguez
+Delantero
+22 años 33′
+–
+Tomás
+Tomás Castro Torres
+Centrocampista/Delantero
+~0′
+04 · ANÁLISIS TÁCTICO
+Momentos del juego
+Salida de balón
+	•	Combinan salida corta y larga según presión. Si hay presión alta, juegan en largo buscando duelo aéreo.
+	•	En salida corta acumulan jugadores cerca del área (5v4). Les cuesta filtrar por carril central → desplazan a banda.
+	•	Jesús Revuelta / Bucarat suelen dar salida al balón desde el central derecho.
+REFERENCIAS EN VÍDEO
+
+FASE OFENSIVA
+
+Salida corta bajo presión
+
+TRANSICIÓN
+
+Transición larga campo propio
+Presión rival
+	•	Presionan con dos puntas (Somto + Moreno Jiménez). Presión perseguidora, no agresiva.
+	•	Intentan ser ordenados pero pierden rigor con los minutos → se generan espacios entre líneas.
+	•	Sin patrón definido de presión tras pérdida: activación individual, no colectiva.
+REFERENCIAS EN VÍDEO
+
+PRESSING
+
+Presión tras pérdida sin organización
+
+TRANSICIÓN
+
+Activación individual sin pressing real
+Fase ofensiva
+	•	1-4-2-3-1 con ritmo pausado. Circulación horizontal que no progresa con claridad.
+	•	Extremos no explosivos, punta sin referencia física. Producción ofensiva limitada fuera de casa.
+	•	Buscan bandas para centros o disparo desde interior. Les falta finalización de calidad.
+REFERENCIAS EN VÍDEO
+
+ATAQUE POSICIONAL
+
+Circulación horizontal sin progresión
+
+BANDA DERECHA
+
+Ataque por bandas y centro
+
+FINALIZACIÓN
+
+Disparo desde segunda línea
+Fase defensiva
+	•	Repliegan en línea de 5. Desorden en transiciones: abandonan posiciones y coberturas.
+	•	Sin Guisado, pareja de centrales Bucarat + Manu, ambos de perfil similar.
+	•	Laterales sufren ante jugadores rápidos. Montilla cambió de banda para anular a Amara en J27.
+REFERENCIAS EN VÍDEO
+
+TRANSICIÓN
+
+Desorden en transición defensiva
+
+DEFENSA
+
+Centrales saliendo de posición
+
+ESPACIO
+
+Espacio entre líneas para explotar
+
+VELOCIDAD
+
+Lateral desbordarado en velocidad
+05 · DATOS
+Goles por tramos y patrones
+GOLES TOTALES TEMPORADA
+0′-15
+2
+4
+16′-30
+8
+6
+31′-45
+8
+3
+46′-60
+2
+12
+61′-75
+4
+6
+76′-90′+
+10
+11
+34 GF
+42 GC
+GOLES EN CASA
+0′-15
+2
+2
+16′-30
+6
+31′-45
+4
+1
+46′-60
+2
+6
+61′-75
+3
+3
+76′-90′+
+6
+5
+23 GF
+17 GC
+
+A favor
+
+En contra
+Patrones situacionales
+Cabecense 0-0 al descanso en casa
+0V 1E 2D
+NUNCA han ganado en casa con 0-0 al descanso.
+Racing ganando al descanso fuera
+5V 0E 0D
+SIEMPRE gana fuera con ventaja al descanso. 100%.
+Cabecense tras derrota en casa
+5V 0E 1D
+Vienen de perder 0-3. Reaccionan bien en casa.
+Racha Cabecense en casa
+5V seguidas
+5 victorias consecutivas como local (J17–J26).
+Tramo maldito Racing: 31-45′
+1 GF · 5 GC
+Solo 1 gol y 5 encajados fuera en este tramo.
+Tramo débil Cabecense: 46-60′
+2 GF · 6 GC
+Encajan el triple de lo que marcan en casa.
+Racing fuera tras el 75′
+4 GF · 0 GC
+No encaja NUNCA en el tramo final fuera.
+Cabecense en casa tras el 75′
+5V/5 con gol
+Si marcan después del 75′ ganan. Pero Racing no encaja ahí…
+06 · ÁRBITRO
+Árbitro designado
+ÁRBITRO PRINCIPAL
+Guillermo San Gil Martín
+🟡 Asistente 1: María del Rosario Morillo Alcaide
+🟡 Asistente 2: Sergio Granero Guzmán
+Colegio de árbitros de Sevilla
+ESTADÍSTICAS GENERALES
+📋
+Partidos arbitrados
+2
+🟡
+Amarillas (jugadores)
+9
+🟥
+Rojas
+0
+🟨🟨
+Dobles amarillas
+0
+⚠️
+Media sanciones/partido
+4.5
+⚽
+Goles totales
+8
+📊
+Media goles/partido
+4.0
+TARJETAS JUGADORES (9)
+LOCAL
+5 (56%)
+
+VISITANTE
+4 (44%)
+
+VICTORIAS
+LOCAL
+2 (100%)
+
+EMPATE
+0
+
+VISITANTE
+0
+
+TARJETAS CUERPO TÉCNICO (0)
+LOCAL
+0
+
+VISITANTE
+0
+
+GOLES
+LOCAL
+6 (75%)
+
+VISITANTE
+2 (25%)
+
+📝 NOTAS SOBRE EL TRÍO ARBITRAL
+Trío arbitral no ha coincidido en más partidos esta temporada. Árbitro habitual de categorías inferiores (infantil, cadete y juvenil). Primera experiencia relevante en División de Honor. María del Rosario Morillo Alcaide ha sido asistente en: Montilla–Racing, Cartaya–Racing y Racing–Rociana. En sus 2 partidos, el local ha ganado siempre (100%). Favorable para Cabecense. Media de 4.5 tarjetas/partido → árbitro relativamente permisivo. Cuidado con la acumulación de nuestros jugadores con amarillas.
+07 · PLAN DE PARTIDO
+Fortalezas, debilidades y plan por tramos
+Fortalezas de ellos
+	•	Equipo que quiere jugar y se asocia dentro de sus limitaciones.
+	•	Necesitan ganar para no meterse en descenso → motivación extra.
+	•	Ritmo lento que puede contagiar al rival.
+	•	Jugadores ofensivos con calidad técnica. Impredecibles en transiciones.
+Debilidades de ellos
+	•	Transiciones defensivas: dejan espacios y jugadores libres de marca.
+	•	Centrales salen de posición generando huecos entre carriles.
+	•	Racha negativa, bajas, posiciones cubiertas por necesidad.
+	•	0 penaltis en toda la temporada. No saben remontar (9/13 se hundieron).
+Plan por tramos
+0-15′ · INTENSIDAD SIN CONCEDER
+Reconocer el terreno. Ni nosotros ni ellos marcan mucho aquí. No regalar nada.
+16-30′ · CUIDADO MÁXIMO
+Su mejor tramo en casa (6 GF, 0 GC). Nuestro mejor tramo fuera (6 GF). El que gane aquí probablemente gane el partido.
+31-45′ · PROTEGER RESULTADO
+Nuestro peor tramo fuera (1 GF, 5 GC). No conceder antes del descanso. Si ganamos al descanso: 100% victorias fuera.
+46-60′ · APRETAR AL MÁXIMO
+Su tramo más débil (6 GC en casa). Nosotros rendimos bien (3 GF). Cambios tempranos: ellos no mueven hasta tarde.
+61-75′ · MANTENER PRESIÓN
+Buen tramo nuestro fuera (4 GF, 2 GC). Ellos acusan el desgaste. Moreno Jiménez suele salir sustituido aquí.
+76-90′ · SENTENCIAR
+Nosotros: 4 GF, 0 GC fuera. Ellos: 5 GC en casa. En la ida ganamos exactamente así (goles min 78 y 84).
