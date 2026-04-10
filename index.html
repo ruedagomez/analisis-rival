@@ -26,7 +26,6 @@
   --font-head: 'Barlow Condensed', sans-serif;
   --font-num:  'Bebas Neue', cursive;
   --shadow-sm: 0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.05);
-  --shadow-md: 0 4px 16px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.05);
   --shadow-lg: 0 8px 32px rgba(0,0,0,.12), 0 2px 8px rgba(0,0,0,.06);
 }
 
@@ -47,7 +46,7 @@ body {
   background: linear-gradient(150deg, #1a1a22 0%, #23111a 60%, #1a0d10 100%);
   position: relative;
   overflow: hidden;
-  padding: 48px 40px 40px;
+  padding: 44px 40px 38px;
 }
 .header::before {
   content:'';
@@ -67,15 +66,22 @@ body {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 28px;
 }
 .header-escudo {
-  width: 72px; height: 72px;
-  border-radius: 12px;
+  width: 80px;
+  height: 80px;
+  border-radius: 18px;
   object-fit: contain;
-  box-shadow: 0 0 32px rgba(208,16,32,0.3), 0 8px 24px rgba(0,0,0,0.6);
+  background: rgba(255,255,255,0.06);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.10),
+    0 0 40px rgba(208,16,32,0.25),
+    0 10px 32px rgba(0,0,0,0.65);
   flex-shrink: 0;
+  padding: 6px;
 }
+.header-text { flex: 1; min-width: 0; }
 .header-badge {
   display: inline-flex; align-items:center; gap:8px;
   margin-bottom: 8px;
@@ -98,23 +104,23 @@ body {
 }
 .header-title {
   font-family: var(--font-head);
-  font-size: clamp(28px, 4vw, 48px);
+  font-size: clamp(30px, 4vw, 50px);
   font-weight: 900;
   color: #fff;
   letter-spacing: .5px;
   line-height: 1;
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 .header-sub {
   font-size: 12px;
-  color: rgba(255,255,255,.4);
+  color: rgba(255,255,255,.38);
   letter-spacing: .5px;
 }
 .header-season {
   margin-left: auto;
   font-family: var(--font-num);
   font-size: 13px;
-  color: rgba(255,255,255,.2);
+  color: rgba(255,255,255,.18);
   letter-spacing: 2px;
   text-transform: uppercase;
   flex-shrink: 0;
@@ -152,14 +158,13 @@ body {
   margin-bottom: 40px;
   box-shadow: var(--shadow-sm);
 }
-.cal-header {
+.cal-head {
   padding: 12px 20px;
   background: var(--card2);
   border-bottom: 1px solid var(--border);
   font-family: var(--font-head);
   font-size: 10px; font-weight:800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  letter-spacing: 2px; text-transform: uppercase;
   color: var(--muted);
 }
 .cal-item {
@@ -174,13 +179,11 @@ body {
 .cal-item:hover { background: var(--bg); }
 .cal-item.activa { background: rgba(208,16,32,0.03); }
 .cal-item.activa .cal-j { color: var(--red); }
-
 .cal-j {
   font-family: var(--font-num);
   font-size: 22px;
   color: var(--border2);
-  width: 36px;
-  flex-shrink: 0;
+  width: 36px; flex-shrink: 0;
   line-height: 1;
 }
 .cal-info { flex: 1; min-width: 0; }
@@ -188,8 +191,7 @@ body {
   font-family: var(--font-head);
   font-size: 17px; font-weight:800;
   color: var(--text);
-  letter-spacing: .3px;
-  line-height: 1.1;
+  letter-spacing: .3px; line-height: 1.1;
 }
 .cal-meta {
   display: flex; gap: 8px; align-items: center;
@@ -198,21 +200,17 @@ body {
 .cal-fecha { font-size: 11px; color: var(--muted); }
 .cal-tag {
   display: inline-flex; align-items:center;
-  padding: 1px 7px;
-  border-radius: 3px;
+  padding: 1px 7px; border-radius: 3px;
   font-size: 9px; font-weight:700;
   text-transform: uppercase; letter-spacing:.5px;
 }
 .cal-tag.local  { background:var(--blue-dim); color:var(--blue); }
 .cal-tag.visita { background:var(--red-dim); color:var(--red); }
-
 .cal-action { flex-shrink: 0; }
 .cal-btn {
   display: inline-flex; align-items:center; gap:6px;
-  padding: 7px 14px;
-  border-radius: 7px;
-  background: var(--red);
-  color: #fff;
+  padding: 7px 14px; border-radius: 7px;
+  background: var(--red); color: #fff;
   text-decoration: none;
   font-size: 11px; font-weight:700;
   text-transform: uppercase; letter-spacing:.5px;
@@ -221,15 +219,13 @@ body {
 .cal-btn:hover { opacity:.88; transform:translateY(-1px); }
 .cal-pendiente {
   display: inline-flex; align-items:center; gap:5px;
-  padding: 6px 12px;
-  border-radius: 7px;
-  background: var(--border);
-  color: var(--muted);
+  padding: 6px 12px; border-radius: 7px;
+  background: var(--border); color: var(--muted);
   font-size: 10px; font-weight:600;
   text-transform: uppercase; letter-spacing:.5px;
 }
 
-/* ── GRID DE INFORMES ── */
+/* ── GRID INFORMES ── */
 .informes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -244,8 +240,7 @@ body {
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  display: flex;
-  flex-direction: column;
+  display: flex; flex-direction: column;
   box-shadow: var(--shadow-sm);
   transition: transform .18s, box-shadow .18s, border-color .18s;
 }
@@ -257,8 +252,7 @@ body {
 .ic-header {
   background: linear-gradient(135deg, #1a1a22 0%, #23111a 100%);
   padding: 18px 20px 16px;
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
 .ic-header::after {
   content:'';
@@ -270,33 +264,26 @@ body {
   font-size: 10px; font-weight:700;
   letter-spacing: 2px; text-transform: uppercase;
   color: var(--red);
-  position: relative; z-index:1;
-  margin-bottom: 3px;
+  position: relative; z-index:1; margin-bottom: 3px;
 }
 .ic-rival {
   font-family: var(--font-head);
   font-size: 22px; font-weight:900;
   color: #fff;
-  position: relative; z-index:1;
-  line-height: 1.1;
+  position: relative; z-index:1; line-height: 1.1;
 }
 .ic-fecha {
-  font-size: 10px;
-  color: rgba(255,255,255,.35);
-  position: relative; z-index:1;
-  margin-top: 4px;
+  font-size: 10px; color: rgba(255,255,255,.35);
+  position: relative; z-index:1; margin-top: 4px;
 }
 .ic-body {
   padding: 13px 16px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  display: flex; align-items: center; gap: 8px;
   flex: 1;
 }
 .ic-tag {
   display: inline-flex; align-items:center;
-  padding: 2px 8px;
-  border-radius: 4px;
+  padding: 2px 8px; border-radius: 4px;
   font-size: 9px; font-weight:700;
   text-transform: uppercase; letter-spacing:.5px;
 }
@@ -305,23 +292,19 @@ body {
 .ic-footer {
   padding: 10px 16px;
   border-top: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between;
 }
 .ic-ver {
   font-size: 11px; font-weight:600;
   color: var(--red);
   text-transform: uppercase; letter-spacing:.5px;
   display: flex; align-items:center; gap:4px;
+  transition: gap .18s;
 }
-.ic-ver svg { width:12px; height:12px; transition: transform .18s; }
-.informe-card:hover .ic-ver svg { transform: translateX(3px); }
+.informe-card:hover .ic-ver { gap: 8px; }
 .ic-num {
   font-family: var(--font-num);
-  font-size: 30px;
-  color: var(--border2);
-  line-height: 1;
+  font-size: 30px; color: var(--border2); line-height: 1;
 }
 
 /* ── PRÓXIMA CARD ── */
@@ -330,12 +313,9 @@ body {
   border: 2px dashed var(--border2);
   border-radius: 14px;
   padding: 32px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  text-align: center;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px; text-align: center;
   min-height: 160px;
 }
 .proxima-icon { font-size: 26px; opacity:.3; }
@@ -350,7 +330,7 @@ body {
 /* ── RESPONSIVE ── */
 @media (max-width: 700px) {
   .header { padding: 28px 20px 24px; }
-  .header-escudo { width:52px; height:52px; }
+  .header-escudo { width:58px; height:58px; border-radius:14px; padding:4px; }
   .header-season { display:none; }
   .main { padding: 20px 16px 60px; }
   .informes-grid { grid-template-columns: 1fr; gap:12px; }
@@ -368,7 +348,7 @@ body {
     <img class="header-escudo"
          src="https://www.dropbox.com/scl/fi/in770en2r9uat9ltzp2oq/racing.jpg?rlkey=f0fpbd7xwgcsdcbf0eclzzk7z&st=bm6w4xew&raw=1"
          alt="Racing Club Portuense">
-    <div>
+    <div class="header-text">
       <div class="header-badge">
         <div class="header-badge-dot"></div>
         <span>División de Honor · Grupo 1</span>
@@ -382,10 +362,10 @@ body {
 
 <main class="main">
 
-  <!-- CALENDARIO RESTANTE -->
+  <!-- CALENDARIO -->
   <div class="sec-label">Calendario restante</div>
   <div class="calendario">
-    <div class="cal-header">Jornadas pendientes</div>
+    <div class="cal-head">Jornadas pendientes</div>
 
     <div class="cal-item activa">
       <div class="cal-j">28</div>
@@ -431,7 +411,7 @@ body {
 
   </div>
 
-  <!-- INFORMES PUBLICADOS -->
+  <!-- INFORMES -->
   <div class="sec-label">Informes publicados</div>
   <div class="informes-grid">
 
@@ -454,6 +434,12 @@ body {
       <div class="proxima-icon">📋</div>
       <div class="proxima-label">J29 · Egabrense</div>
       <div class="proxima-sub">Informe disponible esta semana</div>
+    </div>
+
+    <div class="proxima-card">
+      <div class="proxima-icon">📋</div>
+      <div class="proxima-label">J30 · Cádiz CF C</div>
+      <div class="proxima-sub">Informe disponible próximamente</div>
     </div>
 
   </div>
