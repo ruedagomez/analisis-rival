@@ -1,0 +1,2590 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0a0d13">
+<title>Análisis Rival · C.D. Egabrense · J29</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* ── Light theme palette ── */
+  --bg:        #f4f4f2;
+  --bg2:       #ebebе8;
+  --card:      #ffffff;
+  --card2:     #f9f8f6;
+  --border:    #e4e2de;
+  --border2:   #d0cec9;
+  --red:       #d01020;
+  --red-dim:   rgba(208,16,32,0.08);
+  --red-mid:   rgba(208,16,32,0.22);
+  --blue:      #1452cc;
+  --blue-dim:  rgba(20,82,204,0.08);
+  --green:     #0a8a55;
+  --green-dim: rgba(10,138,85,0.09);
+  --amber:     #c47b00;
+  --amber-dim: rgba(196,123,0,0.10);
+  --text:      #111118;
+  --muted:     #7a7872;
+  --muted2:    #4a4845;
+  --sidebar:   230px;
+  --font:      'Outfit', sans-serif;
+  --font-head: 'Barlow Condensed', sans-serif;
+  --font-num:  'Bebas Neue', cursive;
+  /* shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.05);
+}
+
+*, *::before, *::after { margin:0; padding:0; -webkit-box-sizing:border-box; box-sizing:border-box; }
+html { overflow-x:hidden; max-width:100%; }
+body { overflow-x:hidden; max-width:100%; position:relative; }
+img, svg, iframe, video { max-width:100%; height:auto; }
+
+::-webkit-scrollbar { width:5px; }
+::-webkit-scrollbar-track { background:var(--bg2); }
+::-webkit-scrollbar-thumb { background:var(--border2); border-radius:3px; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 13.5px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── SIDEBAR ──────────────────────────────────── */
+.sidebar {
+  position: fixed; left:0; top:0; bottom:0;
+  width: var(--sidebar);
+  background: #1a1a22;
+  border-right: 1px solid rgba(0,0,0,.15);
+  z-index: 100;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.sb-header {
+  padding: 20px 16px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.sb-badge {
+  display: inline-flex; align-items:center; gap:8px;
+  margin-bottom: 12px;
+}
+.sb-badge-dot {
+  width: 8px; height: 8px; border-radius:50%;
+  background: var(--red);
+  box-shadow: 0 0 8px var(--red);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity:1; transform:scale(1); }
+  50% { opacity:0.6; transform:scale(0.8); }
+}
+.sb-badge span {
+  font-family: var(--font-head);
+  font-size: 11px; letter-spacing:1.5px;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.sb-title {
+  font-family: var(--font-head);
+  font-size: 17px; font-weight:700;
+  color: #f0ede8;
+  line-height: 1.2;
+}
+.sb-sub {
+  font-size: 11px; color: var(--muted2);
+  margin-top: 3px;
+}
+.sb-nav { flex:1; padding: 12px 0; overflow-y:auto; -webkit-overflow-scrolling:touch; }
+.sb-nav a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: rgba(255,255,255,0.45);
+  font-size: 12px; font-weight:500;
+  transition: all .18s;
+  border-left: 2px solid transparent;
+  position: relative;
+}
+.sb-nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+.sb-nav a.active {
+  color: #fff;
+  background: rgba(208,16,32,0.15);
+  border-left-color: var(--red);
+}
+.sb-num {
+  font-family: var(--font-head);
+  font-size: 10px; font-weight:700;
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.4);
+  padding: 2px 6px; border-radius: 3px;
+  min-width: 22px; text-align:center;
+}
+.sb-nav a.active .sb-num {
+  background: rgba(208,16,32,0.2);
+  color: #ff6070;
+}
+.sb-footer {
+  padding: 14px 16px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items:center; gap:10px;
+}
+.sb-footer-logo {
+  width: 32px; height:32px; border-radius:6px;
+  object-fit: contain;
+  filter: brightness(0.8);
+}
+.sb-footer-text { font-size:10px; color:rgba(255,255,255,0.35); line-height:1.3; }
+.sb-footer-text strong { color:rgba(255,255,255,0.7); display:block; font-size:11px; }
+
+/* ─── MAIN ──────────────────────────────────── */
+.main { margin-left: var(--sidebar); min-height:100vh; -webkit-overflow-scrolling:touch; }
+
+/* ─── COVER ──────────────────────────────────── */
+.cover {
+  min-height: 48vh;
+  background: linear-gradient(150deg, #1a1a22 0%, #23111a 60%, #1a0d10 100%);
+  position: relative;
+  display: flex; align-items: center; justify-content:center;
+  flex-direction: column;
+  gap: 14px;
+  text-align: center;
+  overflow: hidden;
+}
+.cover::before {
+  content:'';
+  position:absolute; inset:0;
+  background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(232,25,44,0.12) 0%, transparent 70%);
+}
+.cover-grid {
+  position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity:.6;
+}
+.cover img {
+  width: clamp(64px, 18vw, 90px);
+  height: clamp(64px, 18vw, 90px);
+  border-radius: 12px;
+  position: relative; z-index:1;
+  box-shadow: 0 0 40px rgba(232,25,44,0.25), 0 8px 32px rgba(0,0,0,0.6);
+}
+.cover h1 {
+  font-family: var(--font-head);
+  font-size: 42px; font-weight:900;
+  letter-spacing: 1px;
+  position: relative; z-index:1;
+  color: #ffffff;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.5);
+}
+.cover-subtitle {
+  font-family: var(--font-head);
+  font-size: 14px; letter-spacing:4px;
+  text-transform: uppercase;
+  color: #ff5566;
+  position: relative; z-index:1;
+}
+.cover-meta {
+  display: flex; gap: 12px; flex-wrap:wrap; justify-content:center;
+  font-size: 12px; color: var(--muted2);
+  position: relative; z-index:1;
+  max-width: 700px;
+}
+.cover-meta span {
+  display: flex; align-items:center; gap: 6px;
+  padding: 6px 12px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 6px;
+  color: rgba(255,255,255,0.85);
+  font-size: 12px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.cover-corner {
+  position:absolute; top:20px; right:24px;
+  font-family: var(--font-head);
+  font-size: 11px; letter-spacing:2px;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase;
+  z-index:1;
+}
+
+/* ─── SECTIONS ──────────────────────────────────── */
+.section {
+  padding: 32px 40px;
+  border-bottom: 1px solid var(--border);
+  animation: fadeUp .4s ease both;
+  overflow: hidden;
+  max-width: 100%;
+}
+.section:nth-child(even) { background: var(--card); }
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(12px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.sec-label {
+  font-family: var(--font-head);
+  font-size: 13.5px; font-weight:800;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 6px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sec-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--border2) 0%, transparent 100%);
+  max-width: 200px;
+}
+.sec-title {
+  font-family: var(--font-head);
+  font-size: 30px; font-weight:900;
+  color: var(--text);
+  margin-bottom: 22px;
+  letter-spacing: .3px;
+  line-height: 1.1;
+}
+.subsection-title {
+  font-family: var(--font-head);
+  font-size: 17px; font-weight:800;
+  color: var(--text);
+  margin-bottom: 14px;
+  margin-top: 6px;
+  display: flex; align-items:center; gap:8px;
+  letter-spacing: .3px;
+}
+.subsection-title::before {
+  content:'';
+  display:block; width:3px; height:18px;
+  background: var(--red);
+  border-radius:2px;
+  flex-shrink:0;
+}
+
+/* ─── CARDS ──────────────────────────────────── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  min-width: 0;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.card:hover { border-color: var(--border2); }
+.g2 { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.g3 { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+.g4 { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+
+/* ─── STAT CARDS ──────────────────────────────────── */
+.stat-card { text-align:center; padding:16px 12px; }
+.stat-val {
+  font-family: var(--font-num);
+  font-size: 38px;
+  line-height:1;
+  color: var(--text);
+  letter-spacing:-.5px;
+}
+.stat-val.red { color: var(--red); }
+.stat-val.green { color: var(--green); }
+.stat-val.amber { color: var(--amber); }
+.stat-sub { font-size:10px; color:var(--muted2); margin-top:2px; }
+.stat-label {
+  font-size: 10px; color: var(--muted);
+  font-weight:600; text-transform:uppercase;
+  letter-spacing:.5px; margin-top:5px;
+}
+
+/* ─── TABLE ──────────────────────────────────── */
+.tbl { width:100%; border-collapse:collapse; font-size:12px; }
+.tbl th { text-align:left; padding:9px 12px; font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.9px; color:var(--muted); border-bottom:2px solid var(--border); background:var(--card2); }
+.tbl td { padding:9px 12px; border-bottom:1px solid var(--border); }
+.tbl tr:last-child td { border-bottom:none; }
+.tbl tbody tr:hover td { background:var(--bg); }
+
+/* standings: natural width, horizontal scroll wrapper handles overflow */
+.tbl.standings { white-space:nowrap; }
+.tbl.standings th, .tbl.standings td { padding:8px 12px; }
+.tbl.standings th:nth-child(2), .tbl.standings td:nth-child(2) { white-space:normal; min-width:120px; }
+
+/* cards table */
+.tbl.cards-tbl th:nth-child(n+2), .tbl.cards-tbl td:nth-child(n+2) { text-align:center; }
+.tbl th {
+  text-align:left; padding:8px 10px;
+  font-size:9.5px; font-weight:700;
+  text-transform:uppercase; letter-spacing:.8px;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border2);
+}
+.tbl td {
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(29,37,53,0.5);
+}
+.tbl tr:last-child td { border-bottom:none; }
+.tbl tr.hl-rac td { background: rgba(20,82,204,0.06); }
+.tbl tr.hl-rac td:first-child { border-left: 3px solid var(--blue); }
+.tbl tr.hl-cab td { background: rgba(208,16,32,0.05); }
+.tbl tr.hl-cab td:first-child { border-left: 3px solid var(--red); }
+.tbl tr:hover td { background: rgba(255,255,255,0.02); }
+.pts { font-family: var(--font-head); font-size:14px; font-weight:700; color:var(--text); }
+.pos-badge {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:22px; height:22px; border-radius:5px;
+  font-family: var(--font-head); font-size:11px; font-weight:700;
+  background: var(--bg);
+  color: var(--muted2);
+  border:1px solid var(--border);
+}
+.pos-badge.top { background:rgba(10,138,85,0.1); color:var(--green); border-color:rgba(10,138,85,0.25); }
+.am { color: var(--amber); font-weight:600; }
+.ro { color: var(--red); font-weight:700; }
+.gr { color: var(--green); }
+
+/* ─── FORM / RACHA ──────────────────────────────────── */
+.form-row { display:flex; gap:8px; flex-wrap:wrap; }
+.form-match {
+  flex:1; min-width:0; max-width:100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 10px;
+  text-align:center;
+  transition: transform .15s, box-shadow .15s;
+  overflow:hidden;
+  word-break:break-word;
+  box-shadow: var(--shadow-sm);
+}
+.form-match:hover { box-shadow: var(--shadow-md); }
+.form-match:hover { transform:translateY(-2px); }
+.form-badge {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:28px; height:28px; border-radius:50%;
+  font-family: var(--font-head); font-size:14px; font-weight:800;
+  color:#fff; margin-bottom:6px;
+}
+.form-W { background: var(--green); box-shadow: 0 0 12px rgba(15,214,138,0.4); }
+.form-D { background: var(--amber); box-shadow: 0 0 12px rgba(245,166,35,0.4); }
+.form-L { background: var(--red); box-shadow: 0 0 12px rgba(232,25,44,0.4); }
+.form-score {
+  font-family: var(--font-head); font-size:20px; font-weight:700;
+}
+.form-vs { font-size:11px; color:var(--muted2); margin-top:2px; }
+.form-loc {
+  display:inline-block;
+  padding: 1px 6px; border-radius:3px;
+  font-size:9px; font-weight:700;
+  text-transform:uppercase; letter-spacing:.5px;
+  margin-right:3px;
+}
+.loc-H { background:var(--blue-dim); color:var(--blue); }
+.loc-A { background:var(--red-dim); color:var(--red); }
+.form-j { font-size:9px; color:var(--muted); margin-top:3px; }
+
+/* ─── SCORERS ──────────────────────────────────── */
+/* removed duplicate */
+/* removed duplicate */
+/* removed duplicate */
+/* removed duplicate */
+/* removed duplicate */
+.scorer-fill.anim { }
+/* removed duplicate */
+
+/* ─── TRAMOS ──────────────────────────────────── */
+.tramo-wrap { display:flex; gap:28px; }
+.tramo-col { flex:1; }
+.tramo-head {
+  font-size:11px; font-weight:700;
+  text-transform:uppercase; letter-spacing:.5px;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+.tramo-row { display:flex; align-items:center; gap:6px; margin-bottom:6px; }
+.tramo-time {
+  width:clamp(40px, 10vw, 52px);
+  font-size:clamp(9px, 2.4vw, 10.5px); font-weight:600;
+  text-align:right; color:var(--muted2); flex-shrink:0;
+}
+.tramo-bars { flex:1; display:flex; gap:3px; height:22px; min-width:0; overflow:hidden; }
+.tbar {
+  border-radius:3px; display:flex; align-items:center; justify-content:center;
+  min-width:0; width: 0%;
+  -webkit-transform:translateZ(0);
+}
+.tbar.run {
+  -webkit-animation: growBar var(--dur,1.2s) cubic-bezier(0.23,1,0.32,1) forwards;
+  animation: growBar var(--dur,1.2s) cubic-bezier(0.23,1,0.32,1) forwards;
+}
+.tbar span { font-size:10px; font-weight:700; color:#fff; padding:0 5px; white-space:nowrap; overflow:hidden; }
+.tbar[data-w="0"] { min-width:0 !important; }
+.tbar[data-w="0"] span { display:none; }
+.tbar.gf { background: linear-gradient(135deg, var(--green), #0aa86b); }
+.tbar.gc { background: linear-gradient(135deg, var(--red), #c20d1f); }
+.tramo-totals { display:flex; gap:14px; margin-top:8px; font-size:11.5px; font-weight:600; }
+.gf-l { color:var(--green); }
+.gc-l { color:var(--red); }
+.tramo-legend {
+  display:flex; gap:14px; margin-top:8px; font-size:10.5px;
+  justify-content:center; color:var(--muted2);
+}
+.tramo-legend span { display:flex; align-items:center; gap:5px; }
+.tramo-legend i {
+  display:inline-block; width:10px; height:10px; border-radius:2px;
+}
+.leg-gf { background:var(--green); }
+.leg-gc { background:var(--red); }
+
+/* ─── PATTERNS ──────────────────────────────────── */
+.pattern {
+  border-radius: 8px;
+  padding: 14px 16px;
+  border: 1px solid;
+  min-width:0; overflow:hidden;
+}
+.pattern.gr { background:rgba(10,138,85,0.06); border-color:rgba(10,138,85,0.2); }
+.pattern.rd { background:rgba(208,16,32,0.05); border-color:rgba(208,16,32,0.18); }
+.pattern.am { background:rgba(196,123,0,0.06); border-color:rgba(196,123,0,0.22); }
+.pattern.bl { background:rgba(20,82,204,0.06); border-color:rgba(20,82,204,0.2); }
+.p-title { font-size:10.5px; font-weight:700; margin-bottom:3px; }
+.pattern.gr .p-title { color:var(--green); }
+.pattern.rd .p-title { color:var(--red); }
+.pattern.am .p-title { color:var(--amber); }
+.pattern.bl .p-title { color:var(--blue); }
+.p-stat {
+  font-family: var(--font-head); font-size:22px; font-weight:700;
+  line-height:1.1;
+}
+.p-desc { font-size:10px; color:var(--muted2); margin-top:4px; line-height:1.4; }
+
+/* ─── PITCH ──────────────────────────────────── */
+.pitch-wrap { display:flex; gap:20px; margin-bottom:20px; }
+.pitch-card { flex:1; text-align:center; min-width:0; }
+.pitch-label { font-size:12px; font-weight:600; margin-bottom:8px; color:var(--muted2); }
+.pitch-svg { width:100%; max-width:min(260px, 45vw); height:auto; }
+.pitch-formation {
+  font-family: var(--font-head); font-size:13px; font-weight:700;
+  color:var(--muted2); margin-top:6px; letter-spacing:.5px;
+}
+
+/* ─── LINEUP CARDS ──────────────────────────────────── */
+.lu-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:10px; padding:12px 13px;
+  font-size:11px; min-width:0; overflow:hidden;
+  box-shadow:var(--shadow-sm);
+}
+.lu-header {
+  display:flex; align-items:center; gap:8px;
+  margin-bottom:8px; padding-bottom:8px;
+  border-bottom:1px solid var(--border);
+}
+.lu-badge {
+  width:22px; height:22px; border-radius:50%;
+  color:#fff; font-weight:800; font-size:10px;
+  line-height:22px; text-align:center; flex-shrink:0;
+}
+.lu-title { font-size:11px; font-weight:600; }
+.lu-player { padding:2px 0; color:var(--muted2); }
+.lu-player.titl { color:var(--text); font-weight:500; }
+.lu-dorsal {
+  display:inline-block; width:22px;
+  font-family:var(--font-head); font-size:12px; font-weight:700;
+  color:var(--red);
+}
+.lu-sep {
+  font-size:9px; font-weight:700; text-transform:uppercase;
+  letter-spacing:.5px; color:var(--muted);
+  margin:5px 0 3px;
+}
+
+/* ─── PLAN ──────────────────────────────────── */
+.plan-item {
+  padding:13px 15px; border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--card);
+  box-shadow:var(--shadow-sm);
+}
+.plan-item.danger { background:rgba(208,16,32,0.04); border-color:rgba(208,16,32,0.2); }
+.plan-item.chance { background:rgba(10,138,85,0.04); border-color:rgba(10,138,85,0.2); }
+.plan-time {
+  font-family:var(--font-head); font-size:11px; font-weight:700;
+  text-transform:uppercase; margin-bottom:4px;
+  color:var(--muted2);
+}
+.plan-item.danger .plan-time { color:var(--red); }
+.plan-item.chance .plan-time { color:var(--green); }
+.plan-text { font-size:11.5px; color:var(--muted2); line-height:1.4; }
+
+/* ─── SQUAD SECTION ──────────────────────────────────── */
+.squad-coach {
+  display:flex; align-items:center; gap:16px;
+  padding: 18px 22px;
+  background: linear-gradient(135deg, rgba(208,16,32,0.05), rgba(20,82,204,0.04));
+  border: 1px solid rgba(208,16,32,0.18);
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+.squad-coach-icon {
+  width:52px; height:52px; border-radius:50%;
+  background: rgba(208,16,32,0.07);
+  display:flex; align-items:center; justify-content:center;
+  font-size:22px;
+  border: 2px solid rgba(208,16,32,0.2);
+  flex-shrink:0;
+}
+.squad-coach-info { flex:1; }
+.squad-coach-role {
+  font-size:10px; font-weight:700; text-transform:uppercase;
+  letter-spacing:1.5px; color:var(--red);
+  margin-bottom:2px;
+}
+.squad-coach-name {
+  font-family:var(--font-head); font-size:22px; font-weight:800;
+  letter-spacing:.5px;
+}
+.squad-coach-detail { font-size:11px; color:var(--muted2); margin-top:2px; }
+.squad-pos-group { margin-bottom:24px; }
+.squad-pos-header {
+  display:flex; align-items:center; gap:10px;
+  margin-bottom:12px;
+}
+.squad-pos-label {
+  font-family:var(--font-head); font-size:14px; font-weight:800;
+  text-transform:uppercase; letter-spacing:1px;
+}
+.squad-pos-count {
+  font-size:10px; color:var(--muted2);
+  background:var(--border); border-radius:10px;
+  padding:2px 8px;
+}
+.squad-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+  gap: 10px;
+}
+.squad-player {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex; flex-direction:column; gap:4px;
+  transition: box-shadow .15s, border-color .15s;
+  position:relative;
+  overflow:hidden;
+  min-width:0;
+  box-shadow: var(--shadow-sm);
+}
+.squad-player:hover { box-shadow: var(--shadow-md); border-color:var(--border2); }
+.squad-player::before {
+  content:''; position:absolute; left:0; top:0; bottom:0;
+  width:3px; background:var(--muted);
+}
+.squad-player.POR::before { background:#8b5cf6; }
+.squad-player.DEF::before { background:var(--blue); }
+.squad-player.MED::before { background:var(--green); }
+.squad-player.DEL::before { background:var(--red); }
+.squad-player:hover { border-color:var(--border2); transform:translateY(-1px); }
+.squad-player.titular { background:linear-gradient(135deg, #fafaf8, #f4f3f0); }
+.squad-p-top { display:flex; align-items:center; gap:8px; }
+.squad-dorsal {
+  font-family:var(--font-head); font-size:18px; font-weight:700;
+  color:var(--muted);
+  width:22px; text-align:center;
+}
+.squad-player.POR .squad-dorsal { color:#8b5cf6; }
+.squad-player.DEF .squad-dorsal { color:var(--blue); }
+.squad-player.MED .squad-dorsal { color:var(--green); }
+.squad-player.DEL .squad-dorsal { color:var(--red); }
+.squad-pname {
+  font-size:13px; font-weight:700; color:var(--text);
+  line-height:1.1;
+}
+.squad-pfull { font-size:10px; color:var(--muted); }
+.squad-ppos { font-size:10px; color:var(--muted2); }
+.squad-pbottom {
+  display:flex; align-items:center; gap:4px; margin-top:4px;
+  flex-wrap:wrap; min-width:0;
+}
+.squad-stat {
+  display:inline-flex; align-items:center; gap:3px;
+  padding: 2px 6px; border-radius:3px;
+  font-size:10px; font-weight:600;
+}
+.squad-stat.age { background:var(--border); color:var(--muted2); }
+.squad-stat.goles { background:rgba(232,25,44,0.15); color:var(--red); }
+.squad-stat.ama { background:var(--amber-dim); color:var(--amber); }
+.squad-stat.roja { background:var(--red-dim); color:var(--red); }
+.squad-stat.min { background:var(--green-dim); color:var(--green); }
+.squad-stat.peligro {
+  background:rgba(245,166,35,0.25); color:var(--amber);
+  border:1px solid rgba(245,166,35,0.4);
+  font-weight:700;
+}
+.squad-titular-badge {
+  position:absolute; top:8px; right:8px;
+  font-size:8px; font-weight:700; text-transform:uppercase; letter-spacing:.5px;
+  padding:2px 5px; border-radius:3px;
+  background:rgba(15,214,138,0.15); color:var(--green);
+  border:1px solid rgba(15,214,138,0.3);
+}
+.squad-pitch-section {
+  display:flex; gap:20px; margin-bottom:24px;
+  align-items:flex-start;
+}
+.squad-pitch-container {
+  flex-shrink:0;
+  width:240px;
+}
+.squad-pitch-title {
+  font-size:11px; font-weight:600; color:var(--muted2);
+  text-align:center; margin-bottom:8px;
+}
+.squad-pitch-svg { width:100%; height:auto; }
+.squad-pitch-legend {
+  margin-top:8px;
+}
+.squad-pitch-legend-row {
+  display:flex; align-items:center; gap:6px;
+  margin-bottom:4px;
+}
+.squad-pitch-legend-dot {
+  width:8px; height:8px; border-radius:50%; flex-shrink:0;
+}
+
+/* ─── TBC PLACEHOLDER ──────────────────────────────────── */
+.placeholder {
+  background: var(--card);
+  border: 1px dashed var(--border2);
+  border-radius:10px; padding:40px;
+  text-align:center; color:var(--muted);
+}
+.placeholder h3 {
+  font-family:var(--font-head); font-size:22px; font-weight:700;
+  color:var(--muted2); margin-bottom:6px;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   LINEUP OUTER GRID (replaces inline style)
+   ═══════════════════════════════════════════════════════ */
+.lineup-outer-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   BOTTOM NAV (mobile only)
+   ═══════════════════════════════════════════════════════ */
+.bottom-nav {
+  display:none;
+  position:fixed; bottom:0; left:0; right:0; z-index:200;
+  background:rgba(255,255,255,0.96);
+  border-top:1px solid var(--border);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  box-shadow: 0 -1px 16px rgba(0,0,0,.08);
+}
+.bottom-nav-inner {
+  display:flex; overflow-x:auto; gap:0;
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+.bottom-nav-inner::-webkit-scrollbar { display:none; }
+.bnav-item {
+  flex:0 0 auto;
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+  padding:9px 12px 7px;
+  text-decoration:none; color:var(--muted2);
+  font-size:9px; font-weight:600;
+  text-transform:uppercase; letter-spacing:.5px;
+  transition:.15s; border-top:2px solid transparent;
+  white-space:nowrap;
+}
+.bnav-item.active { color:var(--red); border-top-color:var(--red); }
+.bnav-item svg { width:18px; height:18px; fill:currentColor; flex-shrink:0; }
+
+/* ── Hamburger ── */
+.ham-btn {
+  display:none;
+  position:fixed; top:14px; right:14px; z-index:300;
+  width:42px; height:42px; border-radius:10px;
+  background:#fff; border:1px solid var(--border);
+  flex-direction:column; align-items:center; justify-content:center; gap:5px;
+  cursor:pointer; box-shadow:0 2px 12px rgba(0,0,0,.12);
+}
+.ham-btn span {
+  display:block; width:20px; height:2px;
+  background:var(--text); border-radius:2px; transition:.25s;
+  flex-shrink:0;
+}
+.ham-btn.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.ham-btn.open span:nth-child(2) { opacity:0; }
+.ham-btn.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+/* ── Overlay ── */
+.sidebar-overlay {
+  display:none; position:fixed; inset:0; z-index:150;
+  background:rgba(0,0,0,.4);
+  -webkit-backdrop-filter:blur(4px); backdrop-filter:blur(4px);
+}
+.sidebar-overlay.show { display:block; }
+
+/* ═══════════════════════════════════════════════════════
+   TABLET  901px – 1199px
+   ═══════════════════════════════════════════════════════ */
+@media (max-width:1199px) {
+  .lineup-outer-grid { grid-template-columns:repeat(3, minmax(0,1fr)); }
+  .squad-grid { grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); }
+}
+
+/* ═══════════════════════════════════════════════════════
+   DRAWER  ≤ 900px
+   ═══════════════════════════════════════════════════════ */
+@media (max-width:900px) {
+  .sidebar {
+    transform:translateX(-100%);
+    transition:transform .25s cubic-bezier(.4,0,.2,1);
+    z-index:200; width:260px;
+   max-width:90vw; }
+  .sidebar.open { transform:translateX(0); }
+  .ham-btn { display:flex; }
+  .main { margin-left:0; }
+  .section { padding:24px 20px; }
+
+  .g3 { grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .g4 { grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .cover-corner { display:none; }
+  .cover-meta { flex-wrap:wrap; gap:8px; justify-content:center; }
+  .form-match { min-width:110px; }
+  .pitch-wrap { gap:12px; }
+  .tramo-wrap { flex-direction:column; gap:20px; }
+  .ref-stats-grid { grid-template-columns:minmax(0,1fr); }
+  .ref-charts { grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .video-grid.v3 { grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .lineup-outer-grid { grid-template-columns:repeat(3, minmax(0,1fr)); }
+}
+
+/* ═══════════════════════════════════════════════════════
+   MOBILE  ≤ 600px
+   ═══════════════════════════════════════════════════════ */
+@media (max-width:600px) {
+  :root { --sidebar:0px; }
+
+  /* Sidebar becomes bottom sheet */
+  .ham-btn { display:none; }
+  .sidebar {
+    width:100%; transform:translateY(100%);
+    top:auto; bottom:0; height:82vh;
+    border-radius:20px 20px 0 0;
+    border-right:none; border-top:1px solid var(--border2);
+    transition:transform .3s cubic-bezier(.4,0,.2,1);
+  }
+  .sidebar.open { transform:translateY(0); }
+
+  /* Bottom nav visible */
+  .bottom-nav { display:block; }
+  .main {
+    margin-left:0;
+    padding-bottom:calc(58px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Typography scale */
+  .sec-title  { font-size:20px; margin-bottom:16px; }
+  .subsection-title { font-size:14px; }
+  .sec-label  { font-size:9px; }
+
+  /* Cover */
+  .cover { min-height:340px; padding:0 16px; }
+  .cover h1 { font-size:clamp(22px, 7vw, 30px); }
+  .cover-subtitle { font-size:11px; letter-spacing:2px; }
+  .cover-meta { flex-direction:column; gap:6px; align-items:center; }
+  .cover-meta span { font-size:11px; padding:5px 10px; }
+
+  /* Grids */
+  .g2,.g3 { grid-template-columns:minmax(0,1fr); }
+  .g4 { grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px; }
+
+  /* Stats */
+  .stat-val { font-size:28px; }
+  .stat-card { padding:12px 8px; }
+
+  /* Table: horizontal scroll */
+  .tbl-wrap {
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  border-radius:10px;
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:0;
+  /* hint to Safari that this is a scroll container */
+  -webkit-transform:translateZ(0);
+  transform:translateZ(0);
+}
+.tbl-wrap .tbl th:first-child { padding-top:12px; }
+.tbl-wrap .tbl tr:last-child td { padding-bottom:12px; }
+  .tbl { min-width:380px; }
+  .tbl th, .tbl td { padding:6px 7px; font-size:11px; }
+  /* Hide less important columns on mobile */
+  .tbl th:nth-child(4), .tbl td:nth-child(4),
+  .tbl th:nth-child(5), .tbl td:nth-child(5) { display:none; }
+
+  /* Form row */
+  .form-row { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:6px; }
+  .form-match { min-width:0; padding:10px 8px; }
+  .form-score { font-size:16px; }
+  .form-vs    { font-size:10px; }
+  .form-j     { font-size:9px; }
+  .form-badge { width:24px; height:24px; font-size:12px; line-height:24px; }
+
+  /* Pitch */
+  .pitch-wrap { flex-direction:column; align-items:center; }
+  .pitch-card { width:100%; max-width:300px; }
+  .pitch-svg  { max-width:100%; }
+
+  /* Tramos */
+  .tramo-wrap { flex-direction:column; gap:18px; }
+  .tramo-time { width:40px; font-size:9.5px; }
+  .tbar span  { font-size:9px; padding:0 3px; }
+
+  /* Scorer */
+  /* removed duplicate */
+  .scorer-val  { font-size:12px; width:20px; }
+
+  /* Squad */
+  .squad-grid { grid-template-columns:minmax(0,1fr); }
+  .squad-player { padding:10px 12px; }
+  .squad-coach  { flex-direction:column; gap:12px; }
+  .squad-coach-name { font-size:17px; }
+  .squad-pos-label  { font-size:13px; }
+
+  /* Video */
+  .video-grid,
+  .video-grid.v1,
+  .video-grid.v3,
+  .video-grid.v4 { grid-template-columns:minmax(0,1fr) !important; }
+  .vp-play { width:38px; height:38px; }
+  .vp-play svg { width:13px; height:13px; }
+
+  /* Lineup cards: 2 cols then 1 */
+  .lineup-outer-grid { grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .lu-card { font-size:10.5px; }
+  .lu-title { font-size:10px; }
+
+  /* Patterns */
+  .p-stat { font-size:17px; }
+  .p-desc { font-size:9.5px; }
+
+  /* Plan */
+  .g3 { grid-template-columns:minmax(0,1fr); }
+
+  /* Ref */
+  .ref-header  { flex-direction:column; gap:12px; }
+  .ref-main    { font-size:18px; }
+  .ref-assistants { font-size:11px; }
+  .ref-stats-grid { grid-template-columns:minmax(0,1fr); gap:12px; }
+  .ref-stat-col   { padding:12px 14px; }
+  .ref-charts     { grid-template-columns:repeat(2, minmax(0,1fr)); gap:8px; }
+  .ref-chart-card { padding:10px 12px; }
+  .ref-chart-title{ font-size:9px; }
+  .ref-bar-label  { font-size:10px; }
+  .ref-stat-label { font-size:11px; }
+  .ref-notes      { padding:12px 14px; }
+  .ref-note       { font-size:11.5px; }
+
+  /* Sticky section label */
+  .sec-label {
+    position:sticky; top:0; z-index:10;
+    background:var(--bg);
+    padding:8px 0 4px;
+    font-size:11px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   SMALL MOBILE  ≤ 380px
+   ═══════════════════════════════════════════════════════ */
+@media (max-width:380px) {
+  .section { padding:16px 12px; }
+  .sec-title { font-size:18px; }
+  .cover h1  { font-size:20px; }
+  .g4 { grid-template-columns:minmax(0,1fr); }
+  .form-row  { grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .lineup-outer-grid { grid-template-columns:minmax(0,1fr); }
+  .bnav-item { padding:9px 9px 7px; font-size:8px; }
+  .bnav-item svg { width:16px; height:16px; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   LARGE DESKTOP  ≥ 1400px
+   ═══════════════════════════════════════════════════════ */
+@media (min-width:1400px) {
+  :root { --sidebar:250px; }
+  .section { padding:36px 52px; }
+  .squad-grid { grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); }
+  .lineup-outer-grid { grid-template-columns:repeat(5, minmax(0,1fr)); }
+}
+
+/* ── Touch: remove hover transforms ── */
+@media (hover:none) {
+  .squad-player:hover { transform:none; border-color:var(--border); }
+  .form-match:hover   { transform:none; }
+  .sb-nav a:hover     { background:transparent; }
+}
+
+/* ── iOS Safari notch ── */
+@supports (-webkit-touch-callout:none) {
+  .sidebar { padding-top:env(safe-area-inset-top, 0px); }
+  .cover   { padding-top:env(safe-area-inset-top, 0px); }
+  .bottom-nav { padding-bottom:max(env(safe-area-inset-bottom, 0px), 8px); }
+}
+
+/* ─── BAR ANIMATION KEYFRAMES ─────────────────────────── */
+@-webkit-keyframes growBar {
+  from { width: 0%; }
+  to   { width: var(--bar-w, 0%); }
+}
+@keyframes growBar {
+  from { width: 0%; }
+  to   { width: var(--bar-w, 0%); }
+}
+@-webkit-keyframes countFade {
+  from { opacity:0; transform:translateY(5px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes countFade {
+  from { opacity:0; transform:translateY(5px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.stat-val.run {
+  -webkit-animation: countFade 0.45s ease forwards;
+  animation: countFade 0.45s ease forwards;
+}
+
+/* ═══════════════════════════════════════════════════════
+   VIDEO PLACEHOLDERS
+   ═══════════════════════════════════════════════════════ */
+.video-section {
+  margin-top:14px;
+  /* contain inside parent card */
+  width:100%;
+  min-width:0;
+}
+.video-label {
+  font-size:10px; font-weight:700; text-transform:uppercase;
+  letter-spacing:1px; color:var(--muted); margin-bottom:8px;
+  display:flex; align-items:center; gap:6px;
+}
+.video-label::before {
+  content:''; display:block; width:10px; height:2px; background:var(--red); flex-shrink:0;
+}
+.video-grid {
+  display:grid; gap:8px;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  width:100%;
+}
+.video-grid.v1 { grid-template-columns:minmax(0,1fr); }
+.video-grid.v3 { grid-template-columns:repeat(3, minmax(0,1fr)); }
+.video-grid.v4 { grid-template-columns:repeat(2, minmax(0,1fr)); }
+.video-placeholder {
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  border-radius:8px; overflow:hidden;
+  cursor:pointer;
+  border:1px solid var(--border2);
+  background:#0a0d13 center/cover no-repeat;
+  transition:opacity .2s;
+  display:block;
+  /* hard constraint */
+  max-width:100%;
+  min-width:0;
+}
+.vp-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.1) 0%, rgba(0,0,0,.55) 100%);
+  opacity:.7; transition:.2s;
+}
+.video-placeholder:hover .vp-overlay { opacity:.45; }
+.video-placeholder:hover .vp-play    { transform:translate(-50%,-50%) scale(1.08); }
+.vp-play {
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:44px; height:44px; border-radius:50%;
+  background:rgba(232,25,44,.9);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 0 24px rgba(232,25,44,.5);
+  transition:.2s; z-index:2; flex-shrink:0;
+}
+.vp-play svg { width:16px; height:16px; fill:#fff; margin-left:3px; }
+.vp-label {
+  position:absolute; bottom:8px; left:10px; right:10px;
+  font-size:10px; font-weight:600; color:#fff;
+  text-shadow:0 1px 4px rgba(0,0,0,.8); z-index:2;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.vp-tag {
+  position:absolute; top:8px; left:8px;
+  font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:.5px;
+  padding:2px 7px; border-radius:3px;
+  background:rgba(232,25,44,.8); color:#fff; z-index:2;
+}
+/* ── Tactical card: text + video stacked ─── */
+.tactic-card {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:18px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:0;
+  min-width:0;
+}
+.tactic-card .tactic-text { flex:1; min-width:0; }
+
+
+/* ── Tactical analysis: text+video stacked per block ── */
+#analisis .g2 {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+#analisis .g2 .card {
+  width: 100%;
+  min-width: 0;
+}
+/* On desktop: show 2 per row side by side */
+@media (min-width:901px) {
+  #analisis .g2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 14px;
+  }
+}
+/* Each card inside analisis: text then video stacked */
+#analisis .card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+/* Make video-section fill its container properly */
+#analisis .video-section {
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+#analisis .video-grid {
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   REFEREE SECTION
+   ═══════════════════════════════════════════════════════ */
+.ref-header {
+  display:flex; align-items:flex-start; gap:20px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+.ref-team { flex:1; min-width:0; }
+.ref-role {
+  font-size:9.5px; font-weight:700; text-transform:uppercase;
+  letter-spacing:1.2px; color:var(--red); margin-bottom:4px;
+}
+.ref-main {
+  font-family:var(--font-head); font-size:24px; font-weight:800;
+  color:var(--text); line-height:1.1; margin-bottom:6px;
+}
+.ref-assistants { font-size:12px; color:var(--muted2); line-height:1.8; }
+.ref-assistants span { display:block; }
+
+.ref-stats-grid {
+  display:grid;
+  grid-template-columns: minmax(0,220px) 1fr;
+  gap:16px;
+  margin-bottom:16px;
+}
+.ref-stat-col {
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:16px;
+  min-width:0;
+  box-shadow:var(--shadow-sm);
+}
+.ref-stat-title {
+  font-size:9.5px; font-weight:700; text-transform:uppercase;
+  letter-spacing:.8px; color:var(--muted); margin-bottom:12px;
+}
+.ref-stat-row {
+  display:flex; align-items:center; gap:8px; margin-bottom:8px;
+  min-width:0;
+}
+.ref-stat-icon { font-size:14px; width:22px; text-align:center; flex-shrink:0; }
+.ref-stat-label { font-size:12px; color:var(--muted2); flex:1; min-width:0; }
+.ref-stat-val { font-family:var(--font-head); font-size:15px; font-weight:700; flex-shrink:0; }
+.ref-stat-val.am { color:var(--amber); }
+.ref-stat-val.ro { color:var(--red); }
+.ref-stat-val.gr { color:var(--green); }
+
+.ref-charts {
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0,1fr));
+  gap:12px;
+  min-width:0;
+}
+.ref-chart-card {
+  background:var(--card2);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:14px 16px;
+  min-width:0; overflow:hidden;
+}
+.ref-chart-title {
+  font-size:9.5px; font-weight:700; text-transform:uppercase;
+  letter-spacing:.8px; color:var(--muted); margin-bottom:12px;
+}
+.ref-bar-row { margin-bottom:10px; }
+.ref-bar-row:last-child { margin-bottom:0; }
+.ref-bar-label {
+  font-size:11px; color:var(--muted2); margin-bottom:5px;
+  display:flex; justify-content:space-between; gap:4px;
+}
+.ref-bar-label span:last-child { font-weight:700; color:var(--text); flex-shrink:0; }
+.ref-bar-track {
+  height:8px; background:var(--bg);
+  border-radius:4px; overflow:hidden;
+  border:1px solid var(--border);
+}
+.ref-bar-fill { height:100%; border-radius:4px; width:0%; }
+.ref-bar-fill.run {
+  -webkit-animation: growBar var(--dur,1.1s) cubic-bezier(.23,1,.32,1) forwards;
+  animation: growBar var(--dur,1.1s) cubic-bezier(.23,1,.32,1) forwards;
+}
+.ref-bar-fill.local     { background:#2a2a35; }
+.ref-bar-fill.visitante { background:var(--red); }
+.ref-bar-fill.goles-l   { background:#2a2a35; }
+.ref-bar-fill.goles-v   { background:var(--red); }
+
+.ref-notes {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:10px; padding:16px;
+  margin-top:16px;
+  box-shadow:var(--shadow-sm);
+}
+.ref-notes-title {
+  font-size:9.5px; font-weight:700; text-transform:uppercase;
+  letter-spacing:.8px; color:var(--muted); margin-bottom:12px;
+}
+.ref-note {
+  font-size:12px; color:var(--muted2); line-height:1.6;
+  padding:6px 0; border-bottom:1px solid var(--border);
+  display:flex; gap:8px; align-items:flex-start;
+}
+.ref-note:last-child { border-bottom:none; padding-bottom:0; }
+.ref-note::before { content:'·'; color:var(--red); font-weight:700; flex-shrink:0; margin-top:1px; }
+
+/* ═══════════════════════════════════════════════════════
+   SCORER — overflow fix
+   ═══════════════════════════════════════════════════════ */
+.scorer-row {
+  display:flex; align-items:center; gap:6px;
+  margin-bottom:7px; min-width:0; overflow:hidden;
+}
+.scorer-name {
+  width: clamp(80px, 24vw, 140px);
+  font-size: clamp(10px, 2.6vw, 11.5px); font-weight:500;
+  text-align:right; color:var(--muted2);
+  word-break:keep-all; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  flex-shrink:0;
+}
+.scorer-track {
+  flex:1; height:6px; background:var(--border);
+  border-radius:3px; overflow:hidden;
+  min-width:0;
+  -webkit-transform:translateZ(0);
+}
+.scorer-fill {
+  height:100%; border-radius:3px;
+  background:linear-gradient(90deg, var(--red), #ff4d5e);
+  width:0%;
+}
+.scorer-fill.run {
+  -webkit-animation: growBar var(--dur,1.1s) cubic-bezier(0.23,1,0.32,1) forwards;
+  animation: growBar var(--dur,1.1s) cubic-bezier(0.23,1,0.32,1) forwards;
+}
+.scorer-val {
+  font-family:var(--font-head); font-size:14px; font-weight:700;
+  width:18px; text-align:right; flex-shrink:0;
+}
+
+/* ── Cards table: responsive ── */
+.cards-tbl th:nth-child(4),
+.cards-tbl td:nth-child(4) { display:none; }
+@media (min-width:480px) {
+  .cards-tbl th:nth-child(4),
+  .cards-tbl td:nth-child(4) { display:table-cell; }
+}
+
+
+/* ── Hide on very small screens ── */
+.hide-xs { display:none; }
+@media (min-width:400px) { .hide-xs { display:table-cell; } }
+
+
+
+/* ─── SUBSTITUTION INDICATORS ──────────────────────────────── */
+.lu-player { padding:3px 0; color:var(--muted2); display:flex; align-items:center; gap:4px; min-width:0; }
+.lu-player.titl { color:var(--text); font-weight:500; }
+.sub-out { color:#d01020; font-size:9px; font-weight:700; margin-left:auto;
+  display:flex; align-items:center; gap:1px; white-space:nowrap; flex-shrink:0; }
+.sub-in  { color:#0a8a55; font-size:9px; font-weight:700; margin-left:auto;
+  display:flex; align-items:center; gap:1px; white-space:nowrap; flex-shrink:0; }
+.sub-out svg, .sub-in svg { width:9px; height:9px; flex-shrink:0; }
+.lu-player-name { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis;
+  white-space:nowrap; font-size:10.5px; }
+
+</style>
+</head>
+<body>
+  <script>
+(function() {
+  var key = 'rcp_auth';
+  var pass = '1928';
+  if (sessionStorage.getItem(key) !== 'ok') {
+    var input = prompt('Introduce la contraseña para acceder:');
+    if (input !== pass) {
+      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;color:#888;font-size:14px;">Acceso denegado</div>';
+      return;
+    }
+    sessionStorage.setItem(key, 'ok');
+  }
+})();
+</script>
+<div id="app-wrapper" style="max-width:100%;width:100%;overflow-x:hidden;position:relative;">
+
+<!-- ─── SIDEBAR ─────────────────────────────── -->
+
+<!-- ─── HAMBURGER + OVERLAY ─────────────────────────── -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<button class="ham-btn" id="hamBtn" aria-label="Menú">
+  <span></span><span></span><span></span>
+</button>
+<aside class="sidebar" id="sidebar">
+  <div class="sb-header">
+    <div class="sb-badge"><div class="sb-badge-dot"></div><span>Jornada 28</span></div>
+    <div class="sb-title">C.D. Cabecense</div>
+    <div class="sb-sub">Análisis previo · 12/04/2026</div>
+  </div>
+  <nav class="sb-nav">
+    <a href="#portada" class="active"><span class="sb-num">00</span>Portada</a>
+    <a href="#previa"><span class="sb-num">01</span>Previa</a>
+    <a href="#formacion"><span class="sb-num">02</span>Formación</a>
+    <a href="#plantilla"><span class="sb-num">03</span>Plantilla</a>
+    <a href="#analisis"><span class="sb-num">04</span>Análisis táctico</a>
+    <a href="#datos"><span class="sb-num">05</span>Datos</a>
+    <a href="#arbitro"><span class="sb-num">06</span>Árbitro</a>
+    <a href="#plan"><span class="sb-num">07</span>Plan de partido</a>
+  <div style="margin-top:auto; padding:12px 0; border-top:1px solid rgba(255,255,255,0.08);">
+  <a href="../" style="display:flex;align-items:center;gap:10px;padding:10px 16px;text-decoration:none;color:rgba(255,255,255,0.45);font-size:12px;font-weight:500;transition:all .18s;border-left:2px solid transparent;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Volver al inicio
+  </a>
+  <a href="https://www.dropbox.com/scl/fo/zovlwetsqbxbd9i2szeho/ALFm9tyXbEyXNkY9pltNI7g?rlkey=zx8u3wy6tvmjr5f5td1g9xi8z&st=km9k0dmr" target="_blank" style="display:flex;align-items:center;gap:10px;padding:10px 16px;text-decoration:none;color:rgba(255,255,255,0.45);font-size:12px;font-weight:500;transition:all .18s;border-left:2px solid transparent;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L6 6.5l6 4.5 6-4.5L12 2zM6 13.5L12 18l6-4.5-6-4.5-6 4.5zM18 6.5L12 11 6 6.5 12 2l6 4.5zM6 15.5L12 20l6-4.5-6-4.5-6 4.5z"/></svg>
+    Carpeta Dropbox
+  </a>
+</div>
+  </nav>
+  <div class="sb-footer">
+    <span class="sb-footer-text"><strong>Racing Club Portuense</strong>Temporada 2025/2026</span>
+  </div>
+</aside>
+
+<!-- ─── MAIN ─────────────────────────────── -->
+<main class="main">
+
+<!-- PORTADA -->
+<section class="cover" id="portada">
+  <div class="cover-grid"></div>
+  <a href="../" style="position:absolute;top:16px;right:16px;z-index:2;display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);color:#ffffff;text-decoration:none;font-size:12px;font-weight:700;letter-spacing:.5px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:.18s;text-transform:uppercase;">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Inicio
+</a>
+  <img src="https://www.dropbox.com/scl/fi/t5bm8a9i168lqweob7via/ESC_C.D.-EGABRENSE_6473-215x300.png?rlkey=typw1comyjfxpc8ztomlcgz54&st=eu2ekiqm&raw=1" alt="Egabrense" style="width:88px;height:88px;border-radius:14px;box-shadow:0 0 40px rgba(232,25,44,.3),0 10px 40px rgba(0,0,0,.7)">
+  <h1>C.D. Egabrense</h1>
+  <div class="cover-subtitle">Análisis Rival · Jornada 29</div>
+  <div class="cover-meta">
+    <span>📅 19 Abril 2026</span>
+    <span>🏟️ Estadio José del Cuvillo</span>
+    <span>⚽ División de Honor · Grupo 1</span>
+    <span>🎙️ TBC</span>
+  </div>
+</section>
+
+<!-- 01 PREVIA -->
+<section class="section" id="previa">
+  <div class="sec-label">01 · Previa</div>
+  <div class="sec-title">Clasificación y contexto</div>
+
+  <div class="tbl-wrap" style="margin-bottom:20px;">
+    <table class="tbl standings">
+      <thead>
+        <tr>
+          <th>#</th><th>Equipo</th>
+          <th>PJ</th><th>V</th><th>E</th><th>D</th>
+          <th>GF</th><th>GC</th><th>DG</th><th>Pts</th>
+        </tr>
+      </thead>
+      <tbody>
+  <tr><td><span class="pos-badge top">1</span></td><td>Real Betis C</td><td>27</td><td>24</td><td>1</td><td>2</td><td>83</td><td>25</td><td>+58</td><td class="pts">73</td><td>—</td></tr>
+  <tr><td><span class="pos-badge">2</span></td><td>Montilla CF</td><td>27</td><td>17</td><td>5</td><td>5</td><td>50</td><td>25</td><td>+25</td><td class="pts">56</td><td>—</td></tr>
+  <tr class="hl-rac"><td><span class="pos-badge" style="background:var(--blue-dim);color:var(--blue)">3</span></td><td><strong>Racing C. Portuense ←</strong></td><td>27</td><td>16</td><td>7</td><td>4</td><td>47</td><td>19</td><td>+28</td><td class="pts" style="color:var(--blue)">55</td><td>—</td></tr>
+  <tr><td><span class="pos-badge">4</span></td><td>Egabrense CD</td><td>27</td><td>16</td><td>5</td><td>6</td><td>59</td><td>34</td><td>+25</td><td class="pts">53</td><td>—</td></tr>
+  <tr><td><span class="pos-badge">5</span></td><td>Atco. Palma del Río</td><td>27</td><td>15</td><td>5</td><td>7</td><td>44</td><td>30</td><td>+14</td><td class="pts">50</td><td>—</td></tr>
+  <tr><td><span class="pos-badge">6</span></td><td>UB Lebrijana</td><td>27</td><td>12</td><td>6</td><td>9</td><td>49</td><td>30</td><td>+19</td><td class="pts">42</td><td>—</td></tr>
+  <tr><td><span class="pos-badge">7</span></td><td>La Palma CF</td><td>27</td><td>12</td><td>7</td><td>8</td><td>54</td><td>38</td><td>+16</td><td class="pts">42</td><td class="ro">-1</td></tr>
+  <tr class="hl-cab"><td><span class="pos-badge" style="background:var(--red-dim);color:var(--red)">8</span></td><td><strong>CD Cabecense ⬅</strong></td><td>27</td><td>11</td><td>6</td><td>10</td><td>35</td><td>42</td><td>-7</td><td class="pts" style="color:var(--red)">38</td><td class="ro">-1</td></tr>
+  <tr><td><span class="pos-badge">9</span></td><td>Atlético Espeleño</td><td>27</td><td>8</td><td>10</td><td>9</td><td>35</td><td>38</td><td>-3</td><td class="pts">34</td><td>—</td></tr>
+  <tr><td><span class="pos-badge">10</span></td><td>UP Viso</td><td>27</td><td>9</td><td>7</td><td>11</td><td>38</td><td>37</td><td>+1</td><td class="pts">34</td><td>—</td></tr>
+  <tr><td><span class="pos-badge">11</span></td><td>CD Inter Sevilla</td><td>27</td><td>7</td><td>10</td><td>10</td><td>47</td><td>51</td><td>-4</td><td class="pts">31</td><td>—</td></tr>
+  <tr><td><span class="pos-badge">12</span></td><td>CD Moguer</td><td>27</td><td>9</td><td>2</td><td>16</td><td>36</td><td>59</td><td>-23</td><td class="pts">28</td><td class="ro">-1</td></tr>
+  <tr><td><span class="pos-badge">13</span></td><td>AD Cartaya</td><td>27</td><td>6</td><td>6</td><td>15</td><td>38</td><td>54</td><td>-16</td><td class="pts">24</td><td>—</td></tr>
+  <tr><td><span class="pos-badge">14</span></td><td>Cádiz CF C</td><td>27</td><td>7</td><td>2</td><td>18</td><td>31</td><td>51</td><td>-20</td><td class="pts">23</td><td>—</td></tr>
+  <tr><td><span class="pos-badge">15</span></td><td>UD Los Barrios</td><td>27</td><td>4</td><td>1</td><td>22</td><td>20</td><td>69</td><td>-49</td><td class="pts">12</td><td class="ro">-1</td></tr>
+  <tr><td><span class="pos-badge">16</span></td><td>CD Rociana</td><td>27</td><td>1</td><td>4</td><td>22</td><td>17</td><td>81</td><td>-64</td><td class="pts">7</td><td>—</td></tr>
+</tbody>
+    </table>
+  </div>
+
+  <div class="subsection-title">Racha últimos 5 partidos</div>
+  <div class="form-row" style="margin-bottom:24px;">
+    <div class="form-match"><div class="form-badge form-W">V</div><div class="form-score">3–2</div><div class="form-vs"><span class="form-loc loc-H">C</span>Inter Sevilla</div><div class="form-j">J24</div></div>
+    <div class="form-match"><div class="form-badge form-L">D</div><div class="form-score">0–2</div><div class="form-vs"><span class="form-loc loc-A">F</span>Palma Río</div><div class="form-j">J25</div></div>
+    <div class="form-match"><div class="form-badge form-W">V</div><div class="form-score">3–2</div><div class="form-vs"><span class="form-loc loc-H">C</span>La Palma</div><div class="form-j">J26</div></div>
+    <div class="form-match"><div class="form-badge form-L">D</div><div class="form-score">0–3</div><div class="form-vs"><span class="form-loc loc-A">F</span>Montilla</div><div class="form-j">J27</div></div>
+    <div class="form-match"><div class="form-badge form-W">V</div><div class="form-score">1–0</div><div class="form-vs"><span class="form-loc loc-H">C</span>Espeleño</div><div class="form-j">J20</div></div>  
+  </div>
+
+  <div class="g4" style="margin-bottom:24px;">
+    <div class="card stat-card"><div class="stat-val" data-target="26">0</div><div class="stat-label">Partidos</div></div>
+    <div class="card stat-card"><div class="stat-val red" data-target="34">0</div><div class="stat-sub">1.31/partido</div><div class="stat-label">Goles a favor</div></div>
+    <div class="card stat-card"><div class="stat-val" style="color:var(--muted2)" data-target="42">0</div><div class="stat-sub">1.62/partido</div><div class="stat-label">Goles en contra</div></div>
+    <div class="card stat-card"><div class="stat-val amber" data-target="97">0</div><div class="stat-sub">+ 8 rojas</div><div class="stat-label">Tarjetas amarillas</div></div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="subsection-title">Goleadores</div>
+      <div class="scorer-row"><span class="scorer-name">Somtochukwu Iwezu</span><div class="scorer-track"><div class="scorer-fill" data-w="100"></div></div><span class="scorer-val">7</span></div>
+      <div class="scorer-row"><span class="scorer-name">Francisco Sánchez</span><div class="scorer-track"><div class="scorer-fill" data-w="71"></div></div><span class="scorer-val">5</span></div>
+      <div class="scorer-row"><span class="scorer-name">Miguel Moreno</span><div class="scorer-track"><div class="scorer-fill" data-w="57"></div></div><span class="scorer-val">4</span></div>
+      <div class="scorer-row"><span class="scorer-name">Manuel Puerto</span><div class="scorer-track"><div class="scorer-fill" data-w="43"></div></div><span class="scorer-val">3</span></div>
+      <div class="scorer-row"><span class="scorer-name">Manuel Resumi</span><div class="scorer-track"><div class="scorer-fill" data-w="28"></div></div><span class="scorer-val">2</span></div>
+      <div class="scorer-row"><span class="scorer-name">Devin López</span><div class="scorer-track"><div class="scorer-fill" data-w="28"></div></div><span class="scorer-val">2</span></div>
+      <div class="scorer-row"><span class="scorer-name">Jesús López</span><div class="scorer-track"><div class="scorer-fill" data-w="28"></div></div><span class="scorer-val">2</span></div>
+      <div class="scorer-row"><span class="scorer-name">Justo Fernández</span><div class="scorer-track"><div class="scorer-fill" data-w="28"></div></div><span class="scorer-val">2</span></div>
+      <div class="scorer-row"><span class="scorer-name">Eladio Reyes</span><div class="scorer-track"><div class="scorer-fill" data-w="28"></div></div><span class="scorer-val">2</span></div>
+      <div class="scorer-row"><span class="scorer-name">Luis Domínguez</span><div class="scorer-track"><div class="scorer-fill" data-w="28"></div></div><span class="scorer-val">2</span></div>
+    </div>
+    <div class="card">
+      <div class="subsection-title">Tarjetas · Jugadores en riesgo</div>
+      <table class="tbl cards-tbl">
+        <thead><tr><th>Jugador</th><th>🟨</th><th>Dob</th><th class="hide-xs">🟥</th></tr></thead>
+        <tbody>
+          <tr><td>Manuel Puerto</td><td class="am">10</td><td class="am">1</td><td class="ro">1</td></tr>
+          <tr><td>Miguel Moreno</td><td class="am">9</td><td>–</td><td>–</td></tr>
+          <tr><td>Juan Galán</td><td class="am">8</td><td>–</td><td>–</td></tr>
+          <tr><td>Francisco Sánchez</td><td class="am">9</td><td>–</td><td>–</td></tr>
+          <tr><td>Antonio Soria</td><td class="am">8</td><td>–</td><td>–</td></tr>
+          <tr><td>Balduino Castro</td><td class="am">7</td><td>–</td><td>–</td></tr>
+          <tr><td>Aymane Ghaout</td><td class="am">5</td><td>–</td><td>–</td></tr>
+          <tr><td>Eladio Reyes</td><td class="am">5</td><td>–</td><td>–</td></tr>
+          <tr><td>Somtochukwu Iwezu</td><td class="am">4</td><td class="am">1</td><td class="ro">1</td></tr>
+          <tr><td>Luis Domínguez</td><td class="am">4</td><td>–</td><td class="ro">1</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 02 FORMACIÓN -->
+<section class="section" id="formacion">
+  <div class="sec-label">02 · Formación</div>
+  <div class="sec-title">Alineaciones y sistema</div>
+
+  <div class="pitch-wrap" style="margin-bottom:24px;">
+    <div class="pitch-card card">
+      <div class="pitch-label">J26 · Casa vs La Palma · 3–2 ✅</div>
+      <svg viewBox="0 0 300 420" class="pitch-svg">
+<rect width="300" height="420" rx="6" fill="#1a6b34"/>
+
+<!-- Outer border -->
+<rect x="10" y="10" width="280" height="400" rx="2" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.4"/>
+
+<!-- Halfway line -->
+<line x1="10" y1="210" x2="290" y2="210" stroke="rgba(255,255,255,0.75)" stroke-width="1.4"/>
+
+<!-- Centre circle -->
+<circle cx="150" cy="210" r="40" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.4"/>
+<circle cx="150" cy="210" r="2" fill="rgba(255,255,255,0.75)"/>
+
+<!-- Centre spot -->
+<circle cx="150" cy="210" r="2.5" fill="rgba(255,255,255,0.75)"/>
+
+<!-- ── TOP: attack area (opponent goal) ── -->
+<!-- Penalty area -->
+<rect x="70" y="10" width="160" height="60" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.4"/>
+<!-- 6-yard box -->
+<rect x="110" y="10" width="80" height="22" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+<!-- Penalty spot -->
+<circle cx="150" cy="52" r="2" fill="rgba(255,255,255,0.5)"/>
+<!-- Penalty arc (media luna) -->
+<path d="M 103 70 A 40 40 0 0 0 197 70" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.4"/>
+
+<!-- ── BOTTOM: defensive area (own goal) ── -->
+<!-- Penalty area -->
+<rect x="70" y="350" width="160" height="60" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.4"/>
+<!-- 6-yard box -->
+<rect x="110" y="388" width="80" height="22" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+<!-- Penalty spot -->
+<circle cx="150" cy="368" r="2" fill="rgba(255,255,255,0.5)"/>
+<!-- Penalty arc (media luna) -->
+<path d="M 103 350 A 40 40 0 0 1 197 350" fill="none" stroke="rgba(255,255,255,0.75)" stroke-width="1.4"/>
+
+<!-- Corner arcs -->
+<path d="M 10 26 A 10 10 0 0 1 26 10"  fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+<path d="M 274 10 A 10 10 0 0 1 290 26" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+<path d="M 10 394 A 10 10 0 0 0 26 410" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+<path d="M 274 410 A 10 10 0 0 0 290 394" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+
+<circle cx="150" cy="72" r="16" fill="#d01020" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/><text x="150" y="72" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="14" font-weight="800" fill="#ffffff">2</text><circle cx="48" cy="158" r="16" fill="#d01020" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/><text x="48" y="158" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="14" font-weight="800" fill="#ffffff">11</text><circle cx="150" cy="152" r="16" fill="#d01020" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/><text x="150" y="152" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="14" font-weight="800" fill="#ffffff">19</text><circle cx="252" cy="158" r="16" fill="#d01020" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/><text x="252" y="158" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="14" font-weight="800" fill="#ffffff">9</text><circle cx="108" cy="240" r="16" fill="#d01020" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/><text x="108" y="240" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="14" font-weight="800" fill="#ffffff">21</text><circle cx="192" cy="240" r="16" fill="#d01020" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/><text x="192" y="240" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="14" font-weight="800" fill="#ffffff">8</text><circle cx="38" cy="320" r="16" fill="#d01020" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/><text x="38" y="320" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="14" font-weight="800" fill="#ffffff">3</text><circle cx="114" cy="328" r="16" fill="#d01020" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/><text x="114" y="328" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="14" font-weight="800" fill="#ffffff">6</text><circle cx="186" cy="328" r="16" fill="#d01020" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/><text x="186" y="328" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="14" font-weight="800" fill="#ffffff">5</text><circle cx="262" cy="320" r="16" fill="#d01020" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/><text x="262" y="320" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="14" font-weight="800" fill="#ffffff">17</text><circle cx="150" cy="390" r="16" fill="#1a8a45" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/><text x="150" y="390" text-anchor="middle" dominant-baseline="central" font-family="Barlow Condensed,sans-serif" font-size="11" font-weight="800" fill="#ffffff">1</text>
+</svg>
+      <div class="pitch-formation">Sistema: 1·4·2·3·1</div>
+    </div>
+    <div class="pitch-card card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:320px;gap:12px;border:2px dashed var(--border2);background:var(--card2);box-shadow:none;">
+      <div style="font-size:32px;opacity:.4">📋</div>
+      <div style="font-family:var(--font-head);font-size:16px;font-weight:700;color:var(--muted2);">J20 · Casa vs Espeleño</div>
+      <div style="font-size:11px;color:var(--muted);text-align:center;padding:0 20px;line-height:1.5;">Alineación pendiente.<br>Se actualizará el jueves.</div>
+      <div style="font-size:10px;color:var(--red);font-weight:600;letter-spacing:.5px;text-transform:uppercase;">Próximamente</div>
+    </div>
+  </div>
+
+  <div class="subsection-title">Últimas 5 convocatorias</div>
+  <div class="lineup-outer-grid">
+    
+    <div class="lu-card"><div class="lu-header"><span class="lu-badge" style="background:#0a8a55">V</span><span class="lu-title">J24 · C · 3–2 · Inter</span></div><div class="lu-body"><div class="lu-player titl"><span class="lu-dorsal">2</span><span class="lu-player-name">Iwezu S.F.</span></div><div class="lu-player titl"><span class="lu-dorsal">5</span><span class="lu-player-name">Debe de la Rosa, M.J.</span></div><div class="lu-player titl"><span class="lu-dorsal">6</span><span class="lu-player-name">Reyes Madrid, Eladio</span></div><div class="lu-player titl"><span class="lu-dorsal">8</span><span class="lu-player-name">Soria Domínguez, A.J.</span></div><div class="lu-player titl"><span class="lu-dorsal">9</span><span class="lu-player-name">Moreno Jiménez, M.</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>68′</span></div><div class="lu-player titl"><span class="lu-dorsal">13</span><span class="lu-player-name">Gutiérrez López, A.J.</span></div><div class="lu-player titl"><span class="lu-dorsal">15</span><span class="lu-player-name">López García, Devin</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>80′</span></div><div class="lu-player titl"><span class="lu-dorsal">17</span><span class="lu-player-name">Castro Torres, Balduino</span></div><div class="lu-player titl"><span class="lu-dorsal">18</span><span class="lu-player-name">Galván Valladares, J.J.</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>75′</span></div><div class="lu-player titl"><span class="lu-dorsal">19</span><span class="lu-player-name">Fernández Alonso, Justo</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>60′</span></div><div class="lu-player titl"><span class="lu-dorsal">24</span><span class="lu-player-name">Resumi León, Manuel</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>55′</span></div><div class="lu-sep">Suplentes</div><div class="lu-player titl"><span class="lu-dorsal">1</span><span class="lu-player-name">Casas López, Iván</span></div><div class="lu-player titl"><span class="lu-dorsal">4</span><span class="lu-player-name">Ramos Guillén, Ó.</span></div><div class="lu-player titl"><span class="lu-dorsal">7</span><span class="lu-player-name">Castro Torres, Tomás</span></div><div class="lu-player"><span class="lu-dorsal">10</span><span class="lu-player-name">Puerto Bereginal, M.</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>55′</span></div><div class="lu-player"><span class="lu-dorsal">20</span><span class="lu-player-name">García Luque, Juan</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>60′</span></div><div class="lu-player"><span class="lu-dorsal">21</span><span class="lu-player-name">Román Cárdenas, F.J.</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>68′</span></div><div class="lu-player"><span class="lu-dorsal">22</span><span class="lu-player-name">López González, Jesús</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>75′</span></div><div class="lu-player"><span class="lu-dorsal">·</span><span class="lu-player-name" style="color:var(--muted);font-style:italic;">+1 no utilizado</span></div></div></div>
+    <div class="lu-card"><div class="lu-header"><span class="lu-badge" style="background:#d01020">D</span><span class="lu-title">J25 · F · 0–2 · Palma Río</span></div><div class="lu-body"><div class="lu-player titl"><span class="lu-dorsal">1</span><span class="lu-player-name">Casas López, Iván</span></div><div class="lu-player titl"><span class="lu-dorsal">2</span><span class="lu-player-name">Iwezu S.F.</span></div><div class="lu-player titl"><span class="lu-dorsal">5</span><span class="lu-player-name">Debe de la Rosa, M.J.</span></div><div class="lu-player titl"><span class="lu-dorsal">6</span><span class="lu-player-name">Reyes Madrid, Eladio</span></div><div class="lu-player titl"><span class="lu-dorsal">8</span><span class="lu-player-name">Soria Domínguez, A.J.</span></div><div class="lu-player titl"><span class="lu-dorsal">9</span><span class="lu-player-name">Moreno Jiménez, M.</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>72′</span></div><div class="lu-player titl"><span class="lu-dorsal">15</span><span class="lu-player-name">López García, Devin</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>60′</span></div><div class="lu-player titl"><span class="lu-dorsal">17</span><span class="lu-player-name">Castro Torres, Balduino</span></div><div class="lu-player titl"><span class="lu-dorsal">19</span><span class="lu-player-name">Fernández Alonso, Justo</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>82′</span></div><div class="lu-player titl"><span class="lu-dorsal">21</span><span class="lu-player-name">Román Cárdenas, F.J.</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>46′</span></div><div class="lu-player titl"><span class="lu-dorsal">24</span><span class="lu-player-name">Resumi León, Manuel</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>56′</span></div><div class="lu-sep">Suplentes</div><div class="lu-player"><span class="lu-dorsal">4</span><span class="lu-player-name">Ramos Guillén, Ó.</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>46′</span></div><div class="lu-player titl"><span class="lu-dorsal">10</span><span class="lu-player-name">Puerto Bereginal, M.</span></div><div class="lu-player"><span class="lu-dorsal">11</span><span class="lu-player-name">Román Orozco, Diego</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>56′</span></div><div class="lu-player titl"><span class="lu-dorsal">13</span><span class="lu-player-name">Gutiérrez López, A.J.</span></div><div class="lu-player"><span class="lu-dorsal">18</span><span class="lu-player-name">Galván Valladares, J.J.</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>60′</span></div><div class="lu-player"><span class="lu-dorsal">20</span><span class="lu-player-name">García Luque, Juan</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>72′</span></div><div class="lu-player"><span class="lu-dorsal">22</span><span class="lu-player-name">López González, Jesús</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>82′</span></div></div></div>
+    <div class="lu-card"><div class="lu-header"><span class="lu-badge" style="background:#0a8a55">V</span><span class="lu-title">J26 · C · 3–2 · La Palma</span></div><div class="lu-body"><div class="lu-player titl"><span class="lu-dorsal">1</span><span class="lu-player-name">Casas López, Iván</span></div><div class="lu-player titl"><span class="lu-dorsal">2</span><span class="lu-player-name">Iwezu S.F.</span></div><div class="lu-player titl"><span class="lu-dorsal">3</span><span class="lu-player-name">Sánchez Valencia, F.</span></div><div class="lu-player titl"><span class="lu-dorsal">5</span><span class="lu-player-name">Debe de la Rosa, M.J.</span></div><div class="lu-player titl"><span class="lu-dorsal">6</span><span class="lu-player-name">Reyes Madrid, Eladio</span></div><div class="lu-player titl"><span class="lu-dorsal">8</span><span class="lu-player-name">Soria Domínguez, A.J.</span></div><div class="lu-player titl"><span class="lu-dorsal">9</span><span class="lu-player-name">Moreno Jiménez, M.</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>75′</span></div><div class="lu-player titl"><span class="lu-dorsal">11</span><span class="lu-player-name">Román Orozco, Diego</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>60′</span></div><div class="lu-player titl"><span class="lu-dorsal">17</span><span class="lu-player-name">Castro Torres, Balduino</span></div><div class="lu-player titl"><span class="lu-dorsal">19</span><span class="lu-player-name">Fernández Alonso, Justo</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>68′</span></div><div class="lu-player titl"><span class="lu-dorsal">21</span><span class="lu-player-name">Román Cárdenas, F.J.</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>85′</span></div><div class="lu-sep">Suplentes</div><div class="lu-player titl"><span class="lu-dorsal">4</span><span class="lu-player-name">Ramos Guillén, Ó.</span></div><div class="lu-player titl"><span class="lu-dorsal">10</span><span class="lu-player-name">Puerto Bereginal, M.</span></div><div class="lu-player titl"><span class="lu-dorsal">13</span><span class="lu-player-name">Gutiérrez López, A.J.</span></div><div class="lu-player"><span class="lu-dorsal">15</span><span class="lu-player-name">López García, Devin</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>60′</span></div><div class="lu-player"><span class="lu-dorsal">18</span><span class="lu-player-name">Galván Valladares, J.J.</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>68′</span></div><div class="lu-player"><span class="lu-dorsal">20</span><span class="lu-player-name">García Luque, Juan</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>75′</span></div><div class="lu-player"><span class="lu-dorsal">24</span><span class="lu-player-name">Resumi León, Manuel</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>85′</span></div></div></div>
+    <div class="lu-card"><div class="lu-header"><span class="lu-badge" style="background:#d01020">D</span><span class="lu-title">J27 · F · 0–3 · Montilla</span></div><div class="lu-body"><div class="lu-player titl"><span class="lu-dorsal">1</span><span class="lu-player-name">Casas López, Iván</span></div><div class="lu-player titl"><span class="lu-dorsal">3</span><span class="lu-player-name">Sánchez Valencia, F.</span></div><div class="lu-player titl"><span class="lu-dorsal">5</span><span class="lu-player-name">Debe de la Rosa, M.J.</span></div><div class="lu-player titl"><span class="lu-dorsal">6</span><span class="lu-player-name">Reyes Madrid, Eladio</span></div><div class="lu-player titl"><span class="lu-dorsal">8</span><span class="lu-player-name">Soria Domínguez, A.J.</span></div><div class="lu-player titl"><span class="lu-dorsal">9</span><span class="lu-player-name">Moreno Jiménez, M.</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>55′</span></div><div class="lu-player titl"><span class="lu-dorsal">10</span><span class="lu-player-name">Puerto Bereginal, M.</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>70′</span></div><div class="lu-player titl"><span class="lu-dorsal">11</span><span class="lu-player-name">Román Orozco, Diego</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>62′</span></div><div class="lu-player titl"><span class="lu-dorsal">17</span><span class="lu-player-name">Castro Torres, Balduino</span></div><div class="lu-player titl"><span class="lu-dorsal">21</span><span class="lu-player-name">Román Cárdenas, F.J.</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>46′</span></div><div class="lu-player titl"><span class="lu-dorsal">24</span><span class="lu-player-name">Resumi León, Manuel</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>79′</span></div><div class="lu-sep">Suplentes</div><div class="lu-player"><span class="lu-dorsal">7</span><span class="lu-player-name">Domínguez Vergara, L.G.</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>46′</span></div><div class="lu-player titl"><span class="lu-dorsal">13</span><span class="lu-player-name">Gutiérrez López, A.J.</span></div><div class="lu-player"><span class="lu-dorsal">15</span><span class="lu-player-name">López García, Devin</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>55′</span></div><div class="lu-player titl"><span class="lu-dorsal">18</span><span class="lu-player-name">Galván Valladares, J.J.</span></div><div class="lu-player"><span class="lu-dorsal">19</span><span class="lu-player-name">Fernández Alonso, Justo</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>62′</span></div><div class="lu-player"><span class="lu-dorsal">20</span><span class="lu-player-name">García Luque, Juan</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>70′</span></div><div class="lu-player"><span class="lu-dorsal">22</span><span class="lu-player-name">López González, Jesús</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>79′</span></div></div></div>
+    <div class="lu-card"><div class="lu-header"><span class="lu-badge" style="background:#0a8a55">V</span><span class="lu-title">J20 · C · 1–0 · Espeleño</span></div><div class="lu-body"><div class="lu-player titl"><span class="lu-dorsal">13</span><span class="lu-player-name">Gutiérrez López, A.J.</span></div><div class="lu-player titl"><span class="lu-dorsal">2</span><span class="lu-player-name">Iwezu, S.F.</span></div><div class="lu-player titl"><span class="lu-dorsal">3</span><span class="lu-player-name">Sánchez Valencia, F.</span></div><div class="lu-player titl"><span class="lu-dorsal">4</span><span class="lu-player-name">Ramos Guillén, O.</span></div><div class="lu-player titl"><span class="lu-dorsal">8</span><span class="lu-player-name">Soria Domínguez, A.J.</span></div><div class="lu-player titl"><span class="lu-dorsal">9</span><span class="lu-player-name">Moreno Jiménez, M.</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>85′</span></div><div class="lu-player titl"><span class="lu-dorsal">10</span><span class="lu-player-name">Puerto Bereginal, M.</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>76′</span></div><div class="lu-player titl"><span class="lu-dorsal">17</span><span class="lu-player-name">Castro Torres, B. ⚽42′</span></div><div class="lu-player titl"><span class="lu-dorsal">18</span><span class="lu-player-name">Galván Valladares, J.J.</span></div><div class="lu-player titl"><span class="lu-dorsal">21</span><span class="lu-player-name">Román Cárdenas, F.J.</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>82′</span></div><div class="lu-player titl"><span class="lu-dorsal">24</span><span class="lu-player-name">Resumi León, M.</span><span class="sub-out"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#d01020" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>73′</span></div><div class="lu-sep">Suplentes</div><div class="lu-player"><span class="lu-dorsal">1</span><span class="lu-player-name">Casas López, I.</span></div><div class="lu-player"><span class="lu-dorsal">7</span><span class="lu-player-name">Domínguez Vergara, L.G.</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>76′</span></div><div class="lu-player"><span class="lu-dorsal">11</span><span class="lu-player-name">Román Orozco, D.</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>85′</span></div><div class="lu-player"><span class="lu-dorsal">15</span><span class="lu-player-name">López García, D.</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>73′</span></div><div class="lu-player"><span class="lu-dorsal">19</span><span class="lu-player-name">Pacheco Cordero, B.</span><span class="sub-in"><svg viewBox="0 0 10 10"><path d="M1 5h8M6 2l3 3-3 3" stroke="#0a8a55" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>82′</span></div><div class="lu-player"><span class="lu-dorsal">20</span><span class="lu-player-name">García Luque, J.</span></div><div class="lu-player"><span class="lu-dorsal">22</span><span class="lu-player-name">Soria Domínguez, J.M.</span></div></div></div> 
+  </div>
+</section>
+
+<!-- 03 PLANTILLA -->
+<section class="section" id="plantilla">
+  <div class="sec-label">03 · Plantilla</div>
+  <div class="sec-title">Plantilla</div>
+
+  <!-- ENTRENADOR -->
+  <div class="squad-coach">
+    <div class="squad-coach-icon">🧠</div>
+    <div class="squad-coach-info">
+      <div class="squad-coach-role">Entrenador</div>
+      <div class="squad-coach-name">Álvaro Infante</div>
+      <div class="squad-coach-detail">Sistema habitual: 1·4·2·3·1 · Ritmo pausado · Vertical en transición</div>
+    </div>
+  </div>
+
+  <!-- PORTEROS -->
+  <div class="squad-pos-group">
+    <div class="squad-pos-header">
+      <div class="squad-pos-label" style="color:#8b5cf6">Porteros</div>
+      <span class="squad-pos-count">2 jugadores</span>
+    </div>
+    <div class="squad-grid">
+      <div class="squad-player POR titular">
+        <div class="squad-titular-badge">Titular</div>
+        <div class="squad-p-top">
+          <div class="squad-dorsal" style="color:#8b5cf6">1</div>
+          <div>
+            <div class="squad-pname">Iván Casas</div>
+            <div class="squad-pfull">Iván Casas López</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Portero</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">35 años</span>
+          <span class="squad-stat min">2070′</span>
+          <span class="squad-stat" style="background:rgba(139,92,246,.15);color:#8b5cf6">(34) GC</span>
+        </div>
+      </div>
+      <div class="squad-player POR">
+        <div class="squad-p-top">
+          <div class="squad-dorsal" style="color:#8b5cf6">13</div>
+          <div>
+            <div class="squad-pname">Andrés</div>
+            <div class="squad-pfull">Andrés Jesús Gutiérrez López</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Portero · Reserva</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">29 años</span>
+          <span class="squad-stat min">360′</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEFENSAS -->
+  <div class="squad-pos-group">
+    <div class="squad-pos-header">
+      <div class="squad-pos-label" style="color:var(--blue)">Defensas</div>
+      <span class="squad-pos-count">8 jugadores</span>
+    </div>
+    <div class="squad-grid">
+      <div class="squad-player DEF titular">
+        <div class="squad-titular-badge">Habitual</div>
+        <div class="squad-p-top">
+          <div class="squad-dorsal">5</div>
+          <div>
+            <div class="squad-pname">Manu</div>
+            <div class="squad-pfull">Manuel Jesús Debe de la Rosa</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Central</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">26 años</span>
+          <span class="squad-stat min">1887′</span>
+        </div>
+      </div>
+      <div class="squad-player DEF titular">
+        <div class="squad-titular-badge">Habitual</div>
+        <div class="squad-p-top">
+          <div class="squad-dorsal">6</div>
+          <div>
+            <div class="squad-pname">Eladio</div>
+            <div class="squad-pfull">Eladio Reyes Madrid</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Central</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">28 años</span>
+          <span class="squad-stat min">1827′</span>
+          <span class="squad-stat goles">2 goles</span>
+          <span class="squad-stat peligro">⚠️ 5 TA</span>
+        </div>
+      </div>
+      <div class="squad-player DEF titular">
+        <div class="squad-titular-badge">Habitual</div>
+        <div class="squad-p-top">
+          <div class="squad-dorsal">3</div>
+          <div>
+            <div class="squad-pname">Francis</div>
+            <div class="squad-pfull">Francisco Sánchez Valencia</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Lateral Izquierdo</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">35 años</span>
+          <span class="squad-stat min">1590′</span>
+          <span class="squad-stat goles">5 goles</span>
+          <span class="squad-stat peligro">⚠️ 9 TA</span>
+        </div>
+      </div>
+      <div class="squad-player DEF">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">4</div>
+          <div>
+            <div class="squad-pname">Bucarat</div>
+            <div class="squad-pfull">José Manuel Bucarat Torres</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Central</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">31 años</span>
+          <span class="squad-stat min">355′</span>
+        </div>
+      </div>
+      <div class="squad-player DEF">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">20</div>
+          <div>
+            <div class="squad-pname">Otero</div>
+            <div class="squad-pfull">Agustín Otero Benítez</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Lateral Derecho</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">23 años</span>
+          <span class="squad-stat min">219′</span>
+        </div>
+      </div>
+      <div class="squad-player DEF">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">–</div>
+          <div>
+            <div class="squad-pname">Gonzaga</div>
+            <div class="squad-pfull">Luis Gonzaga Domínguez Vergara</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Defensa</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">26 años</span>
+          <span class="squad-stat min">466′</span>
+        </div>
+      </div>
+      <div class="squad-player DEF">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">4</div>
+          <div>
+            <div class="squad-pname">Óscar</div>
+            <div class="squad-pfull">Óscar Ramos Guillén</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Lateral Izquierdo</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat min">173′</span>
+        </div>
+      </div>
+      <div class="squad-player DEF">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">–</div>
+          <div>
+            <div class="squad-pname">Juan Galán</div>
+            <div class="squad-pfull">Juan Galán Tejea</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Defensa</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat min">55′</span>
+          <span class="squad-stat peligro">⚠️ 8 TA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTROCAMPISTAS -->
+  <div class="squad-pos-group">
+    <div class="squad-pos-header">
+      <div class="squad-pos-label" style="color:var(--green)">Centrocampistas</div>
+      <span class="squad-pos-count">10 jugadores</span>
+    </div>
+    <div class="squad-grid">
+      <div class="squad-player MED titular">
+        <div class="squad-titular-badge">Habitual</div>
+        <div class="squad-p-top">
+          <div class="squad-dorsal">8</div>
+          <div>
+            <div class="squad-pname">Antonio</div>
+            <div class="squad-pfull">Antonio Jesús Soria Domínguez</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Centrocampista</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">24 años</span>
+          <span class="squad-stat min">2215′</span>
+          <span class="squad-stat peligro">⚠️ 8 TA</span>
+        </div>
+      </div>
+      <div class="squad-player MED titular">
+        <div class="squad-titular-badge">Habitual</div>
+        <div class="squad-p-top">
+          <div class="squad-dorsal">17</div>
+          <div>
+            <div class="squad-pname">Baldu</div>
+            <div class="squad-pfull">Balduino Castro Torres</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Extremo Derecho</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">24 años</span>
+          <span class="squad-stat min">2310′</span>
+          <span class="squad-stat goles">2 goles</span>
+          <span class="squad-stat peligro">⚠️ 7 TA</span>
+        </div>
+      </div>
+      <div class="squad-player MED">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">21</div>
+          <div>
+            <div class="squad-pname">Javi Román</div>
+            <div class="squad-pfull">Francisco Javier Román Cárdenas</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Centrocampista</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">31 años</span>
+          <span class="squad-stat min">1158′</span>
+          <span class="squad-stat ama">4 TA</span>
+        </div>
+      </div>
+      <div class="squad-player MED">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">18</div>
+          <div>
+            <div class="squad-pname">Juanje</div>
+            <div class="squad-pfull">Juan Jesús Galván Valladares</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Medio Centro</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">24 años</span>
+          <span class="squad-stat min">1524′</span>
+        </div>
+      </div>
+      <div class="squad-player MED">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">–</div>
+          <div>
+            <div class="squad-pname">Diego</div>
+            <div class="squad-pfull">Diego Román Orozco</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Centrocampista</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">26 años</span>
+          <span class="squad-stat min">1120′</span>
+          <span class="squad-stat goles">1 gol</span>
+          <span class="squad-stat ama">3 TA</span>
+        </div>
+      </div>
+      <div class="squad-player MED">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">24</div>
+          <div>
+            <div class="squad-pname">Manuel Resumi</div>
+            <div class="squad-pfull">Manuel Resumi León</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Centrocampista</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">23 años</span>
+          <span class="squad-stat min">905′</span>
+          <span class="squad-stat goles">2 goles</span>
+        </div>
+      </div>
+      <div class="squad-player MED">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">20</div>
+          <div>
+            <div class="squad-pname">Juan</div>
+            <div class="squad-pfull">Juan García Luque</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Centrocampista</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">23 años</span>
+          <span class="squad-stat min">788′</span>
+        </div>
+      </div>
+      <div class="squad-player MED">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">–</div>
+          <div>
+            <div class="squad-pname">Javi Jiménez</div>
+            <div class="squad-pfull">Javier Jiménez Rodríguez</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Pivote Defensivo</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat min">4′</span>
+        </div>
+      </div>
+      <div class="squad-player MED">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">–</div>
+          <div>
+            <div class="squad-pname">Awuley</div>
+            <div class="squad-pfull">Awuley Abdul Rahman</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Centrocampista</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">23 años</span>
+        </div>
+      </div>
+      <div class="squad-player MED">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">19</div>
+          <div>
+            <div class="squad-pname">Borja</div>
+            <div class="squad-pfull">Borja Pacheco Cordero</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Centrocampista</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat min">26′</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DELANTEROS -->
+  <div class="squad-pos-group">
+    <div class="squad-pos-header">
+      <div class="squad-pos-label" style="color:var(--red)">Delanteros</div>
+      <span class="squad-pos-count">8 jugadores</span>
+    </div>
+    <div class="squad-grid">
+      <div class="squad-player DEL titular" style="border-color:rgba(232,25,44,.3)">
+        <div class="squad-titular-badge" style="background:rgba(232,25,44,.2);color:var(--red);border-color:rgba(232,25,44,.4)">⭐ Top Goleador</div>
+        <div class="squad-p-top">
+          <div class="squad-dorsal">–</div>
+          <div>
+            <div class="squad-pname">Somto</div>
+            <div class="squad-pfull">Somtochukwu Francis Iwezu</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Delantero Centro</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">23 años</span>
+          <span class="squad-stat min">1676′</span>
+          <span class="squad-stat goles">⚽ 7 goles</span>
+          <span class="squad-stat peligro">⚠️ 4 TA</span>
+          <span class="squad-stat roja">🟥 1 R</span>
+        </div>
+      </div>
+      <div class="squad-player DEL titular">
+        <div class="squad-titular-badge">Habitual</div>
+        <div class="squad-p-top">
+          <div class="squad-dorsal">9</div>
+          <div>
+            <div class="squad-pname">Miguel Moreno</div>
+            <div class="squad-pfull">Miguel Moreno Jiménez</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Delantero Centro</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">20 años</span>
+          <span class="squad-stat min">1689′</span>
+          <span class="squad-stat goles">⚽ 4 goles</span>
+          <span class="squad-stat peligro">⚠️ 9 TA</span>
+        </div>
+      </div>
+      <div class="squad-player DEL">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">10</div>
+          <div>
+            <div class="squad-pname">Manu Puerto</div>
+            <div class="squad-pfull">Manuel Puerto Bereginal</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Delantero</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">21 años</span>
+          <span class="squad-stat min">1026′</span>
+          <span class="squad-stat goles">⚽ 3 goles</span>
+          <span class="squad-stat peligro">⚠️ 10 TA</span>
+          <span class="squad-stat roja">🟥 1 R</span>
+        </div>
+      </div>
+      <div class="squad-player DEL">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">–</div>
+          <div>
+            <div class="squad-pname">Justo</div>
+            <div class="squad-pfull">Justo Daniel Fernández Alonso</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Delantero</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">20 años</span>
+          <span class="squad-stat min">969′</span>
+          <span class="squad-stat goles">⚽ 2 goles</span>
+        </div>
+      </div>
+      <div class="squad-player DEL">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">–</div>
+          <div>
+            <div class="squad-pname">Devin</div>
+            <div class="squad-pfull">Devin López García</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Delantero</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">18 años</span>
+          <span class="squad-stat min">706′</span>
+          <span class="squad-stat goles">⚽ 2 goles</span>
+          <span class="squad-stat ama">1 TA</span>
+        </div>
+      </div>
+      <div class="squad-player DEL">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">–</div>
+          <div>
+            <div class="squad-pname">Jesús López</div>
+            <div class="squad-pfull">Jesús López González</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Delantero</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">18 años</span>
+          <span class="squad-stat min">244′</span>
+          <span class="squad-stat goles">⚽ 2 goles</span>
+        </div>
+      </div>
+      <div class="squad-player DEL">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">–</div>
+          <div>
+            <div class="squad-pname">Kuki</div>
+            <div class="squad-pfull">José Manuel Soria Domínguez</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Delantero</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat age">22 años</span>
+          <span class="squad-stat min">33′</span>
+        </div>
+      </div>
+      <div class="squad-player DEL">
+        <div class="squad-p-top">
+          <div class="squad-dorsal">–</div>
+          <div>
+            <div class="squad-pname">Tomás</div>
+            <div class="squad-pfull">Tomás Castro Torres</div>
+          </div>
+        </div>
+        <div class="squad-ppos">Centrocampista/Delantero</div>
+        <div class="squad-pbottom">
+          <span class="squad-stat min">~0′</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 ANÁLISIS TÁCTICO -->
+<section class="section" id="analisis">
+  <div class="sec-label">04 · Análisis táctico</div>
+  <div class="sec-title">Momentos del juego</div>
+
+  <div class="g2" style="margin-bottom:16px;">
+    <div class="card">
+  <div class="subsection-title">Salida de balón</div>
+  <ul style="font-size:12px;color:var(--muted2);padding-left:16px;line-height:1.65;">
+    <li>Combinan salida corta y larga según presión. Con salida corta se les observan diferentes comportamientos.</li>
+    <li>Desde banda izquierda (11) ocupando el carril central y lateral (3) abierto en amplitud para que el central izquierdo filtre pase por dentro.</li>
+    <li>Hasta mediocentros que aparecen en la frontal (8 y 21) y desde ahí dan salida con tercer hombre. Esto les hace acumular muchos jugadores cerca de su propia área.</li>
+    <li>También vemos mediocentro (21) que ocupa posición de lateral, mientras lateral izquierdo (3) se posiciona muy alto abierto en banda.</li>
+    <li>Somto (2) baja hasta campo propio para recibir pases filtrados y abrir a banda.</li>
+    <li>En ocasiones buscan directamente al lateral izquierdo (3) o directamente jugar en largo con el punta.</li>
+  </ul>
+  <div class="video-section"><div class="video-label">Referencias en vídeo</div><div class="video-grid">
+    <div class="video-placeholder" onclick="openVideo('https://www.dropbox.com/scl/fi/asav98cqqhd78ajki00fw/Salida-de-bal-n_LP.mp4?rlkey=lw72ut7znjtb8ees43iht7ukp&st=v1nm9bpt&raw=1')" style="background-image:url('https://www.dropbox.com/scl/fi/jce1yn266aajjykgadv3p/SdB_001.png?rlkey=i865sxdwnkfg311xy0texvicx&st=11oclrlw&raw=1');cursor:pointer;">
+      <div class="vp-overlay"></div>
+      <div class="vp-play"><svg viewBox="0 0 10 10"><path d="M3 2l5 3-5 3z" fill="#fff"/></svg></div>
+      <div class="vp-tag">Salida de balón</div>
+      <div class="vp-label">Salida en corto</div>
+    </div>
+    <div class="video-placeholder" onclick="openVideo('https://www.dropbox.com/scl/fi/ojytzuc4xsh79jwgorohs/Salida-de-bal-n_M.mp4?rlkey=0ceg1q5magom7m29myswrm6xl&st=bvgfeotu&raw=1')" style="background-image:url('https://www.dropbox.com/scl/fi/u2k1vnzjms1hi9zkjegsf/SdB_002.png?rlkey=99jodnnot0uafbv8l2wq6yhf8&st=cgxhte7d&raw=1');cursor:pointer;">
+      <div class="vp-overlay"></div>
+      <div class="vp-play"><svg viewBox="0 0 10 10"><path d="M3 2l5 3-5 3z" fill="#fff"/></svg></div>
+      <div class="vp-tag">Salida de balón</div>
+      <div class="vp-label">Salida en corto (5v3)</div>
+    </div>
+  </div></div>
+</div>
+    <div class="card">
+  <div class="subsection-title">Presión rival</div>
+  <ul style="font-size:12px;color:var(--muted2);padding-left:16px;line-height:1.65;">
+    <li>Presionan con dos jugadores: punta + mediapunta. Presión intensa, sumando jugadores de banda para igualar las marcas.</li>
+    <li>Intentan ser ordenados pero pierden rigor con los minutos, eso les hace igual de peligrosos que débiles.</li>
+    <li>Se activan en la presión tras pérdida, pero a la vez es donde más desajustes sufren.</li>
+    <li>En momentos de presión intensa, tras los dos puntas suman 3 jugadores más: bandas + mediocentro que sube hasta la mediapunta, intentando generar superioridades.</li>
+    <li>Cuando la presión es tan alta sufren con balones largos hacia el delantero rival, que pueden prolongar y buscar espacios en espaldas de centrales y laterales.</li>
+  </ul>
+  <div class="video-section"><div class="video-label">Referencias en vídeo</div><div class="video-grid">
+    <div class="video-placeholder" onclick="openVideo('https://www.dropbox.com/scl/fi/3rjzdc6djw6djvqj7umrp/Presi-n-al-rival_LP.mp4?rlkey=ez09k0p9kdwyvq48x2viau0aq&st=egmjftdw&raw=1')" style="background-image:url('https://www.dropbox.com/scl/fi/jce1yn266aajjykgadv3p/SdB_001.png?rlkey=i865sxdwnkfg311xy0texvicx&st=11oclrlw&raw=1');cursor:pointer;">
+      <div class="vp-overlay"></div>
+      <div class="vp-play"><svg viewBox="0 0 10 10"><path d="M3 2l5 3-5 3z" fill="#fff"/></svg></div>
+      <div class="vp-tag">Presión rival</div>
+      <div class="vp-label">Activación individual sin pressing real</div>
+    </div>
+    <div class="video-placeholder" onclick="openVideo('https://www.dropbox.com/scl/fi/ta4ou5qnxy2r87p9s3pbj/Presi-n-al-rival_M.mp4?rlkey=omqyy48c4yfw1ysi45s6z18h1&st=8sjwz2gz&raw=1')" style="background-image:url('https://www.dropbox.com/scl/fi/jce1yn266aajjykgadv3p/SdB_001.png?rlkey=i865sxdwnkfg311xy0texvicx&st=11oclrlw&raw=1');cursor:pointer;">
+      <div class="vp-overlay"></div>
+      <div class="vp-play"><svg viewBox="0 0 10 10"><path d="M3 2l5 3-5 3z" fill="#fff"/></svg></div>
+      <div class="vp-tag">Presión rival</div>
+      <div class="vp-label">Espacios entre líneas</div>
+    </div>
+  </div></div>
+  </div>
+    </div>
+  <div class="g2">
+    <div class="card">
+      <div class="subsection-title">Fase ofensiva</div>
+      <ul style="font-size:12px;color:var(--muted2);padding-left:16px;line-height:1.65;">
+        <li>1-4-2-3-1 con ritmo mixto. Circulan y filtran hasta conectar con el medio, desde donde abren a banda o a punta.</li>
+        <li>Extremos no explosivos, punta muy físico y que protege bien el balón para dar de cara y lanzar ataque.</li>
+        <li>Buscan bandas para centros o directamente a Somto (2). Les falta finalización de calidad, pero producen peligro ofensivo.</li>
+      </ul>
+    <div class="video-section"><div class="video-label">Referencias en vídeo</div><div class="video-grid">
+      <div class="video-placeholder" onclick="openVideo('https://www.dropbox.com/scl/fi/8t8cmyrz06vdxigs5p3xw/Ataque_LP.mp4?rlkey=92hih9jlnxrx09aua7ulc9rw9&st=2kz4iobj&raw=1')" style="background-image:url('https://www.dropbox.com/scl/fi/u2k1vnzjms1hi9zkjegsf/SdB_002.png?rlkey=99jodnnot0uafbv8l2wq6yhf8&st=cgxhte7d&raw=1');cursor:pointer;">
+        <div class="vp-overlay"></div>
+        <div class='vp-tag'>Ataque posicional</div>
+        <div class="vp-play">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="vp-label">Circulación horizontal sin progresión</div>
+      </div>
+      <div class="video-placeholder" onclick="openVideo('https://www.dropbox.com/scl/fi/bxg34sd5py140zb6wvsmz/Ataque-001_100426122334.mp4?rlkey=lqvz9tivanrwwgg7fst482ycx&st=1bs9lxbod&raw=1')" style="background-image:url('https://www.dropbox.com/scl/fi/u2k1vnzjms1hi9zkjegsf/SdB_002.png?rlkey=99jodnnot0uafbv8l2wq6yhf8&st=cgxhte7d&raw=1');cursor:pointer;">
+        <div class="vp-overlay"></div>
+        <div class='vp-tag'>Banda derecha</div>
+        <div class="vp-play">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="vp-label">Ataque por bandas y centro</div>
+      </div>
+      </div></div></div>
+    <div class="card">
+      <div class="subsection-title">Fase defensiva</div>
+      <ul style="font-size:12px;color:var(--muted2);padding-left:16px;line-height:1.65;">
+        <li>Centrales de "contacto". Desorden en transiciones: abandonan posiciones y coberturas. Lateral izquierdo (Francis) punto débil.</li>
+        <li>Pareja de centrales: Eladio y Manu Debe. 13 goles recibidos en 5 partidos.</li>
+        <li>Lateral derecho (Baldu, 17) uno de sus mejores jugadores. Buena proyección ofensiva y rápido en repliegue.</li>
+      </ul>
+    <div class="video-section"><div class="video-label">Referencias en vídeo</div><div class="video-grid">
+      <div class="video-placeholder" onclick="openVideo('https://www.dropbox.com/scl/fi/4hf721jk9tducs9hqnz83/Transiciones_LP.mp4?rlkey=z65cz2usl5bxxx55rxs3cf0ao&st=r2yb5nza&raw=1')" style="background-image:url('https://www.dropbox.com/scl/fi/u2k1vnzjms1hi9zkjegsf/SdB_002.png?rlkey=99jodnnot0uafbv8l2wq6yhf8&st=cgxhte7d&raw=1');cursor:pointer;">
+        <div class="vp-overlay"></div>
+        <div class='vp-tag'>Transición</div>
+        <div class="vp-play">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="vp-label">Desorden en transición defensiva</div>
+      </div>
+      <div class="video-placeholder" onclick="openVideo('https://www.dropbox.com/scl/fi/7cs6nva223rpxem9adzpi/Transiciones_M.mp4?rlkey=oo40kj9riu7w64u251qbtd36d&st=dltibn7v&raw=1')" style="background-image:url('https://www.dropbox.com/scl/fi/u2k1vnzjms1hi9zkjegsf/SdB_002.png?rlkey=99jodnnot0uafbv8l2wq6yhf8&st=cgxhte7d&raw=1');cursor:pointer;">        <div class="vp-overlay"></div>
+        <div class='vp-tag'>Defensa</div>
+        <div class="vp-play">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <div class="vp-label">Centrales saliendo de posición</div>
+      </div>
+      </div></div></div>
+  </div>
+  <div class="g2" style="margin-bottom:16px; margin-top:16px;">
+  <div class="card">
+    <div class="subsection-title">ABP Ofensiva</div>
+    <ul style="font-size:12px;color:var(--muted2);padding-left:16px;line-height:1.65;">
+      <li>Lanzadores habituales Justo Fernández (19) - Zurdo. Manu Puerto (10) - Zurdo. Resumi (24) - Diestro.</li>
+      <li>Jugadores al remate: 17 2 9 5 6. A la corta 21 y arrastra. Si hay 2 contra 1 lo hacen con dorsal 3.</li>
+      <li>Jugada ensayada: Brazos arriba. Balón segundo palo.</li>
+      <li>Jugada ensayada: Mano a la cabeza. Remata 17. Entran 21 9 2 11 6 y 5. Jugador a la frontal y vuelve al remate. Balón entre punto de penalti y segundo palo.</li>
+    </ul>
+    <div class="video-section"><div class="video-label">Referencias en vídeo</div><div class="video-grid">
+      <div class="video-placeholder" onclick="openVideo('https://www.dropbox.com/scl/fi/3kypbvaba4yml3djclphz/ABP-Ofensiva_LP.mp4?rlkey=0ckup8b886bcip6ybomt94kr0&st=x4769omw&raw=1')" style="background-image:url('https://www.dropbox.com/scl/fi/u2k1vnzjms1hi9zkjegsf/SdB_002.png?rlkey=99jodnnot0uafbv8l2wq6yhf8&st=cgxhte7d&raw=1');cursor:pointer;">
+        <div class="vp-overlay"></div>
+        <div class="vp-play"><svg viewBox="0 0 10 10"><path d="M3 2l5 3-5 3z" fill="#fff"/></svg></div>
+        <div class="vp-tag">ABP Ofensiva</div>
+        <div class="vp-label">ABP Ofensiva</div>
+      </div>
+      <div class="video-placeholder" onclick="openVideo('https://www.dropbox.com/scl/fi/7u0qk3884xj63b9imp3ay/ABP-Ofensiva_M.mp4?rlkey=z9f6epwtj3nzklj2ilsxsn0uq&st=z1gheoep&raw=1')" style="background-image:url('https://www.dropbox.com/scl/fi/u2k1vnzjms1hi9zkjegsf/SdB_002.png?rlkey=99jodnnot0uafbv8l2wq6yhf8&st=cgxhte7d&raw=1');cursor:pointer;">
+    <div class="vp-overlay"></div>
+    <div class="vp-play"><svg viewBox="0 0 10 10"><path d="M3 2l5 3-5 3z" fill="#fff"/></svg></div>
+    <div class="vp-tag">ABP Ofensiva</div>
+    <div class="vp-label">Descripción del corte</div>
+  </div>
+    </div></div>
+  </div>
+  <div class="card">
+    <div class="subsection-title">ABP Defensiva</div>
+    <ul style="font-size:12px;color:var(--muted2);padding-left:16px;line-height:1.65;">
+      <li>Marcaje mixto. 2 en zona, resto al hombre.</li>
+      <li>Centrales 5 y 6 bien por arriba.</li>
+      <li>Entran fácilmente en arrastres y bloqueos, lo que lleva a posibilidad de finalizar o de segundas jugadas.</li>
+      <li>Si el rival no finaliza jugada, tienden a montar transición ofensiva rápida en contraataque.</li>
+    </ul>
+    <div class="video-section"><div class="video-label">Referencias en vídeo</div><div class="video-grid">
+      <div class="video-placeholder" onclick="openVideo('https://www.dropbox.com/scl/fi/g22emu09ifmqa8gseto85/ABP-Defensiva_LP.mp4?rlkey=gmcwlqcercneh1xn8z77b0ywj&st=81lxbf1y&raw=1')" style="background-image:url('https://www.dropbox.com/scl/fi/u2k1vnzjms1hi9zkjegsf/SdB_002.png?rlkey=99jodnnot0uafbv8l2wq6yhf8&st=cgxhte7d&raw=1');cursor:pointer;">
+        <div class="vp-overlay"></div>
+        <div class="vp-play"><svg viewBox="0 0 10 10"><path d="M3 2l5 3-5 3z" fill="#fff"/></svg></div>
+        <div class="vp-tag">ABP Defensiva</div>
+        <div class="vp-label">ABP Defensiva</div>
+      </div>
+      <div class="video-placeholder" onclick="openVideo('https://www.dropbox.com/scl/fi/ihk8zaed9hbx5juf5q8mt/ABP-Defensiva_M.mp4?rlkey=5tem3ononqwo04qew1woav24u&st=5atosknt&raw=1')" style="background-image:url('https://www.dropbox.com/scl/fi/u2k1vnzjms1hi9zkjegsf/SdB_002.png?rlkey=99jodnnot0uafbv8l2wq6yhf8&st=cgxhte7d&raw=1');cursor:pointer;">
+    <div class="vp-overlay"></div>
+    <div class="vp-play"><svg viewBox="0 0 10 10"><path d="M3 2l5 3-5 3z" fill="#fff"/></svg></div>
+    <div class="vp-tag">ABP Ofensiva</div>
+    <div class="vp-label">Descripción del corte</div>
+  </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- 05 DATOS -->
+<section class="section" id="datos">
+  <div class="sec-label">05 · Datos</div>
+  <div class="sec-title">Goles por tramos y patrones</div>
+
+  <div class="card" style="margin-bottom:20px;">
+    <div class="tramo-wrap">
+      <div class="tramo-col">
+        <div class="tramo-head">Goles totales temporada</div>
+        <div class="tramo-row"><span class="tramo-time">0′-15</span><div class="tramo-bars"><div class="tbar gf" data-w="16.6"><span>2</span></div><div class="tbar gc" data-w="33.3"><span>4</span></div></div></div>
+        <div class="tramo-row"><span class="tramo-time">16′-30</span><div class="tramo-bars"><div class="tbar gf" data-w="66.6"><span>8</span></div><div class="tbar gc" data-w="50"><span>6</span></div></div></div>
+        <div class="tramo-row"><span class="tramo-time">31′-45</span><div class="tramo-bars"><div class="tbar gf" data-w="75"><span>9</span></div><div class="tbar gc" data-w="25"><span>3</span></div></div></div>
+        <div class="tramo-row"><span class="tramo-time">46′-60</span><div class="tramo-bars"><div class="tbar gf" data-w="16.6"><span>2</span></div><div class="tbar gc" data-w="100"><span>12</span></div></div></div>
+        <div class="tramo-row"><span class="tramo-time">61′-75</span><div class="tramo-bars"><div class="tbar gf" data-w="33.3"><span>4</span></div><div class="tbar gc" data-w="50"><span>6</span></div></div></div>
+        <div class="tramo-row"><span class="tramo-time">76′-90′+</span><div class="tramo-bars"><div class="tbar gf" data-w="83.3"><span>10</span></div><div class="tbar gc" data-w="91.6"><span>11</span></div></div></div>
+        <div class="tramo-totals"><span class="gf-l">35 GF</span><span class="gc-l">42 GC</span></div>
+      </div>
+      <div class="tramo-col">
+        <div class="tramo-head">Goles en casa</div>
+        <div class="tramo-row"><span class="tramo-time">0′-15</span><div class="tramo-bars"><div class="tbar gf" data-w="33.3"><span>2</span></div><div class="tbar gc" data-w="33.3"><span>2</span></div></div></div>
+        <div class="tramo-row"><span class="tramo-time">16′-30</span><div class="tramo-bars"><div class="tbar gf" data-w="100"><span>6</span></div><div class="tbar gc" data-w="0"></div></div></div>
+        <div class="tramo-row"><span class="tramo-time">31′-45</span><div class="tramo-bars"><div class="tbar gf" data-w="83.3"><span>5</span></div><div class="tbar gc" data-w="16.6"><span>1</span></div></div></div>
+        <div class="tramo-row"><span class="tramo-time">46′-60</span><div class="tramo-bars"><div class="tbar gf" data-w="33.3"><span>2</span></div><div class="tbar gc" data-w="100"><span>6</span></div></div></div>
+        <div class="tramo-row"><span class="tramo-time">61′-75</span><div class="tramo-bars"><div class="tbar gf" data-w="50"><span>3</span></div><div class="tbar gc" data-w="50"><span>3</span></div></div></div>
+        <div class="tramo-row"><span class="tramo-time">76′-90′+</span><div class="tramo-bars"><div class="tbar gf" data-w="100"><span>6</span></div><div class="tbar gc" data-w="83.3"><span>5</span></div></div></div>
+        <div class="tramo-totals"><span class="gf-l">24 GF</span><span class="gc-l">17 GC</span></div>
+      </div>
+    </div>
+    <div class="tramo-legend">
+      <span><i class="leg-gf"></i>A favor</span>
+      <span><i class="leg-gc"></i>En contra</span>
+    </div>
+  </div>
+<div class="ref-notes">
+  <div class="ref-notes-title">📊 Estadística</div>
+  <div class="ref-note">10º en Liga con más Goles a Favor (35).</div>
+  <div class="ref-note">8º en Liga con más Goles a Favor en casa (24).</div>
+  <div class="ref-note">10º en Liga con menos Goles en Contra (42).</div>
+  <div class="ref-note">9º en Liga con menos Goles en Contra en casa (17).</div>
+  <div class="ref-note">11º en Liga con más sustituciones. 131 total. 4,9 por partido.</div>
+  <div class="ref-note">4º en Liga con más Tarjetas Amarillas a jugadores (93).</div>
+  <div class="ref-note">3º en Liga con más Tarjetas Rojas a jugadores (7).</div>
+  <div class="ref-note">11º en Liga que más Tarjetas Amarillas provoca al rival (74).</div>
+</div>
+  <div class="subsection-title">Patrones situacionales</div>
+  <div class="g4">
+    <div class="pattern gr"><div class="p-title">Cabecense 0-0 al descanso en casa</div><div class="p-stat">0V 1E 2D</div><div class="p-desc">NUNCA han ganado en casa con 0-0 al descanso.</div></div>
+    <div class="pattern gr"><div class="p-title">Racing ganando al descanso fuera</div><div class="p-stat">5V 0E 0D</div><div class="p-desc">SIEMPRE gana fuera con ventaja al descanso. 100%.</div></div>
+    <div class="pattern rd"><div class="p-title">Cabecense con Infante</div><div class="p-stat">8V 0E 0D</div><div class="p-desc">8 de 8 en casa desde que Álvaro Infante llega.</div></div>
+    <div class="pattern rd"><div class="p-title">Racha Cabecense en casa</div><div class="p-stat">8V seguidas</div><div class="p-desc">8 victorias consecutivas como local (J12–J26).</div></div>
+    <div class="pattern am"><div class="p-title">Tramo maldito Racing: 31-45′</div><div class="p-stat">1 GF · 5 GC</div><div class="p-desc">Solo 1 gol y 5 encajados fuera en este tramo.</div></div>
+    <div class="pattern am"><div class="p-title">Tramo débil Cabecense: 46-60′</div><div class="p-stat">2 GF · 6 GC</div><div class="p-desc">Encajan el triple de lo que marcan en casa.</div></div>
+    <div class="pattern bl"><div class="p-title">Racing fuera tras el 75′</div><div class="p-stat">4 GF · 0 GC</div><div class="p-desc">No encaja NUNCA en el tramo final fuera.</div></div>
+    <div class="pattern bl"><div class="p-title">Cabecense en casa tras el 75′</div><div class="p-stat">5V/5 con gol</div><div class="p-desc">Si marcan después del 75′ ganan. Pero Racing no encaja ahí…</div></div>
+  </div>
+</section>
+
+<!-- 06 ÁRBITRO -->
+<section class="section" id="arbitro">
+  <div class="sec-label">06 · Árbitro</div>
+  <div class="sec-title">Árbitro designado</div>
+  <div class="ref-header">
+    <div class="ref-team">
+      <div class="ref-role">Árbitro principal</div>
+      <div class="ref-main">Manuel Jesús Roca Prieto</div>
+      <div class="ref-assistants">
+        <span>🟡 Asistente 1: Cristian José Boix Figueredo</span>
+        <span>🟡 Asistente 2: Manuel Sarrión González</span>
+        <span style="color:var(--muted);font-size:11px;margin-top:4px;display:block">Colegio de árbitros de Huelva</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-stats-grid">
+    <div class="ref-stat-col card">
+      <div class="ref-stat-title">Estadísticas generales</div>
+      <div class="ref-stat-row"><span class="ref-stat-icon">📋</span><span class="ref-stat-label">Partidos arbitrados</span><span class="ref-stat-val">7</span></div>
+      <div class="ref-stat-row"><span class="ref-stat-icon">🟡</span><span class="ref-stat-label">Amarillas (jugadores)</span><span class="ref-stat-val am">51</span></div>
+      <div class="ref-stat-row"><span class="ref-stat-icon">🟥</span><span class="ref-stat-label">Rojas</span><span class="ref-stat-val gr">2</span></div>
+      <div class="ref-stat-row"><span class="ref-stat-icon">🟨🟨</span><span class="ref-stat-label">Dobles amarillas</span><span class="ref-stat-val gr">3</span></div>
+      <div class="ref-stat-row" style="border-top:1px solid var(--border);padding-top:8px;margin-top:4px"><span class="ref-stat-icon">⚠️</span><span class="ref-stat-label">Media sanciones/partido</span><span class="ref-stat-val am">7.3</span></div>
+      <div class="ref-stat-row"><span class="ref-stat-icon">⚽</span><span class="ref-stat-label">Goles totales</span><span class="ref-stat-val">22</span></div>
+      <div class="ref-stat-row"><span class="ref-stat-icon">📊</span><span class="ref-stat-label">Media goles/partido</span><span class="ref-stat-val">3.1</span></div>
+    </div>
+    <div class="ref-charts">
+      <div class="ref-chart-card">
+        <div class="ref-chart-title">Tarjetas jugadores (51)</div>
+        <div class="ref-bar-row">
+          <div class="ref-bar-label"><span>LOCAL</span><span style="color:var(--text);font-weight:700">35 (69%)</span></div>
+          <div class="ref-bar-track"><div class="ref-bar-fill local" data-rw="69"></div></div>
+        </div>
+        <div class="ref-bar-row">
+          <div class="ref-bar-label"><span>VISITANTE</span><span style="color:var(--red);font-weight:700">16 (31%)</span></div>
+          <div class="ref-bar-track"><div class="ref-bar-fill visitante" data-rw="31"></div></div>
+        </div>
+      </div>
+      <div class="ref-chart-card">
+        <div class="ref-chart-title">Victorias</div>
+        <div class="ref-bar-row">
+          <div class="ref-bar-label"><span>LOCAL</span><span style="color:var(--text);font-weight:700">2 (29%)</span></div>
+          <div class="ref-bar-track"><div class="ref-bar-fill local" data-rw="29"></div></div>
+        </div>
+        <div class="ref-bar-row">
+          <div class="ref-bar-label"><span>EMPATE</span><span style="color:var(--text);font-weight:700">2 (29%)</span></div>
+          <div class="ref-bar-track"><div class="ref-bar-fill visitante" data-rw="29"></div></div>
+        </div>
+        <div class="ref-bar-row">
+          <div class="ref-bar-label"><span>VISITANTE</span><span style="color:var(--red);font-weight:700">3 (43%)</span></div>
+          <div class="ref-bar-track"><div class="ref-bar-fill visitante" data-rw="43"></div></div>
+        </div>
+      </div>
+      <div class="ref-chart-card">
+        <div class="ref-chart-title">Tarjetas cuerpo técnico (7)</div>
+        <div class="ref-bar-row">
+          <div class="ref-bar-label"><span>LOCAL</span><span style="color:var(--text);font-weight:700">6 (86%)</span></div>
+          <div class="ref-bar-track"><div class="ref-bar-fill goles-l" data-rw="86"></div></div>
+        </div>
+        <div class="ref-bar-row">
+          <div class="ref-bar-label"><span>VISITANTE</span><span style="color:var(--red);font-weight:700">1 (14%)</span></div>
+          <div class="ref-bar-track"><div class="ref-bar-fill goles-v" data-rw="14"></div></div>
+        </div>
+      </div>
+      <div class="ref-chart-card">
+        <div class="ref-chart-title">Goles</div>
+        <div class="ref-bar-row">
+          <div class="ref-bar-label"><span>LOCAL</span><span style="color:var(--text);font-weight:700">11 (50%)</span></div>
+          <div class="ref-bar-track"><div class="ref-bar-fill goles-l" data-rw="50"></div></div>
+        </div>
+        <div class="ref-bar-row">
+          <div class="ref-bar-label"><span>VISITANTE</span><span style="color:var(--red);font-weight:700">11 (50%)</span></div>
+          <div class="ref-bar-track"><div class="ref-bar-fill goles-v" data-rw="50"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ref-notes">
+    <div class="ref-notes-title">📝 Notas sobre el trío arbitral</div>
+    <div class="ref-note">Roca Prieto y Boix Figueredo pareja habitual en los arbitrajes de esta temporada.</div>
+    <div class="ref-note">Tendencia de tarjetas ligeramente superior a la media por partido de la división.</div>
+    <div class="ref-note">Tendencia muy marcada contra el local: el equipo local ha recibido el 69% de las amarillas a jugadores y el 86% de las sanciones al cuerpo técnico.</div>
+    <div class="ref-note">El visitante ha ganado en 3 de sus 7 partidos (43%) frente a solo 2 victorias locales (29%). Ligero favorecimiento al equipo visitante.</div>
+    <div class="ref-note">El único partido con Racing fue el J16 (Racing 0-0 Betis C), en el que Racing jugó como local y acumuló 5 amarillas, 1 expulsión por doble amarilla y 2 amarillas al cuerpo técnico.</div>
+  </div>
+</section>
+
+<!-- 07 PLAN -->
+<section class="section" id="plan">
+  <div class="sec-label">07 · Plan de partido</div>
+  <div class="sec-title">Fortalezas, debilidades y plan por tramos</div>
+
+  <div class="g2" style="margin-bottom:24px;">
+    <div class="card" style="border-left:3px solid var(--green);">
+      <div class="subsection-title" style="color:var(--green)">Fortalezas</div>
+      <ul style="font-size:12px;color:var(--muted2);padding-left:16px;line-height:1.65;">
+        <li>Equipo que intenta jugar, usa bien sus armas y no abusa del juego directo como primera opción.</li>
+        <li>Necesitan ganar para entrar en Playoff de ascenso → motivación extra.</li>
+        <li>Juegan con el ritmo del partido en base al resultado.</li>
+        <li>No les importa ir por debajo en el marcador, luchan hasta el final.</li>
+        <li>Presionan, chocan y van bien al duelo. Juegan al límite y a veces se calientan.</li>
+        <li>Buenos en ABP, fuertes en balones aéreos.</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:3px solid var(--red);">
+      <div class="subsection-title" style="color:var(--red)">Debilidades</div>
+      <ul style="font-size:12px;color:var(--muted2);padding-left:16px;line-height:1.65;">
+        <li>Salida de balón. Intentan construir desde atrás asumiendo riesgos y acumulando jugadores cerca de su área.</li>
+        <li>Defensa sale de zona con frecuencia, dejando espacios para atacar.</li>
+        <li>Espalda de los defensas y el internvalo lateral-central.</li>
+        <li>Transiciones defensivas, si además están fuera de posición sufren más en repliegues.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="subsection-title">Plan por tramos</div>
+  <div class="g3">
+    <div class="plan-item"><div class="plan-time">0-15′ · Salir enchufados</div><div class="plan-text">No regalamos nada. Penalizar errores. Intesidad en duelos.</div></div>
+    <div class="plan-item danger"><div class="plan-time">16-30′ · Compromiso con el plan</div><div class="plan-text">Su mejor tramo en casa (6 GF, 0 GC). Nuestro mejor tramo fuera (6 GF). El que marque controla el resto del partido.</div></div>
+    <div class="plan-item danger"><div class="plan-time">31-45′ · Proteger resultado</div><div class="plan-text">Nuestro peor tramo fuera (1 GF, 5 GC). No conceder antes del descanso. Si ganamos al descanso: 100% victorias fuera.</div></div>
+    <div class="plan-item chance"><div class="plan-time">46-60′ · Apretar al máximo</div><div class="plan-text">Su tramo más débil (6 GC en casa). Nosotros rendimos bien (3 GF). Cambios tempranos: ellos no mueven hasta tarde.</div></div>
+    <div class="plan-item chance"><div class="plan-time">61-75′ · Mantener presión</div><div class="plan-text">Buen tramo nuestro fuera (4 GF, 2 GC). Aumentar vigilancias y concentración, vamos a hacer daño.</div></div>
+    <div class="plan-item chance"><div class="plan-time">76-90′ · De valientes</div><div class="plan-text">Nosotros: 4 GF, 0 GC fuera. Ellos: 5 GC en casa. En la ida ganamos exactamente así (goles min 78 y 84).</div></div>
+  </div>
+</section>
+
+
+<!-- ─── BOTTOM NAV (mobile) ─────────────────────────── -->
+<nav class="bottom-nav" id="bottomNav">
+  <div class="bottom-nav-inner">
+    <a href="#portada" class="bnav-item active" data-section="portada">
+      <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      Portada
+    </a>
+    <a href="#previa" class="bnav-item" data-section="previa">
+      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+      Previa
+    </a>
+    <a href="#formacion" class="bnav-item" data-section="formacion">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+      Forma.
+    </a>
+    <a href="#plantilla" class="bnav-item" data-section="plantilla">
+      <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      Plantilla
+    </a>
+    <a href="#analisis" class="bnav-item" data-section="analisis">
+      <svg viewBox="0 0 24 24"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm2.5 2.1h-15V5h15v14.1zm0-16.1h-15c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+      Táctica
+    </a>
+    <a href="#datos" class="bnav-item" data-section="datos">
+      <svg viewBox="0 0 24 24"><path d="M7 14l5-5 5 5H7z"/><path d="M3 3h18v2H3zm0 16h18v2H3z" opacity=".3"/><path d="M5 6l7 7 7-7"/></svg>
+      Datos
+    </a>
+    <a href="#arbitro" class="bnav-item" data-section="arbitro">
+      <svg viewBox="0 0 24 24"><path d="M17.5 12c0 .55-.45 1-1 1H13v3.5c0 .55-.45 1-1 1s-1-.45-1-1V13H7.5c-.55 0-1-.45-1-1s.45-1 1-1H11V7.5c0-.55.45-1 1-1s1 .45 1 1V11h3.5c.55 0 1 .45 1 1zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+      Árbitro
+    </a>
+    <a href="#plan" class="bnav-item" data-section="plan">
+      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      Plan
+    </a>
+  </div>
+</nav>
+
+</main>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   ANIMATION ENGINE v3
+   Strategy: scroll listener + getBoundingClientRect
+   No IntersectionObserver (unreliable on iOS Safari)
+   CSS keyframes (not JS transitions) for bars
+   ═══════════════════════════════════════════════════════ */
+
+const $ = (s, c=document) => c.querySelector(s);
+const $$ = (s, c=document) => [...c.querySelectorAll(s)];
+const isMobile = () => window.innerWidth <= 600;
+const isTablet = () => window.innerWidth > 600 && window.innerWidth <= 900;
+
+// ── Is element visible in viewport? ─────────────────────
+function isVisible(el) {
+  const r = el.getBoundingClientRect();
+  return r.top < window.innerHeight - 30 && r.bottom > 0;
+}
+
+// ── Count-up ─────────────────────────────────────────────
+function runCountUp(el) {
+  if (el._done) return;
+  el._done = true;
+  const target = parseInt(el.dataset.target, 10) || 0;
+  el.classList.add('run');
+  if (target === 0) { el.textContent = '0'; return; }
+  const t0 = performance.now();
+  const dur = 900;
+  function frame(now) {
+    const p = Math.min((now - t0) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(ease * target);
+    if (p < 1) requestAnimationFrame(frame);
+    else el.textContent = target;
+  }
+  requestAnimationFrame(frame);
+}
+
+// ── Bar fill via CSS custom property + class ─────────────
+function runBar(el, widthPct) {
+  if (el._done) return;
+  el._done = true;
+  const w = Math.max(0, parseFloat(widthPct) || 0);
+  el.style.setProperty('--bar-w', w + '%');
+  // stagger based on position in DOM
+  const siblings = [...el.parentElement.children];
+  const idx = siblings.indexOf(el);
+  el.style.setProperty('--dur', (0.9 + idx * 0.08) + 's');
+  el.classList.add('run');
+}
+
+// ── Scan all animated elements ───────────────────────────
+function scanAndAnimate() {
+  $$('[data-target]').forEach(el => {
+    if (!el._done && isVisible(el)) runCountUp(el);
+  });
+  $$('.scorer-fill').forEach(el => {
+    if (!el._done && isVisible(el)) runBar(el, el.dataset.w);
+  });
+  $$('.tbar').forEach(el => {
+    if (!el._done && isVisible(el)) runBar(el, el.dataset.w);
+  });
+  $$('.ref-bar-fill').forEach(el => {
+    if (!el._done && isVisible(el)) runBar(el, el.dataset.rw);
+  });
+}
+
+// ── Scroll listener (throttled with rAF) ─────────────────
+let _raf = false;
+function onScroll() {
+  if (_raf) return;
+  _raf = true;
+  requestAnimationFrame(() => {
+    scanAndAnimate();
+    _raf = false;
+  });
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+
+// ── Run on load (multiple times for slow mobile renders) ──
+function initAnims() {
+  scanAndAnimate();
+  setTimeout(scanAndAnimate, 200);
+  setTimeout(scanAndAnimate, 600);
+  setTimeout(scanAndAnimate, 1200);
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAnims);
+} else {
+  initAnims();
+}
+
+/* ═══════════════════════════════════════════════════════
+   ACTIVE NAV HIGHLIGHT
+   ═══════════════════════════════════════════════════════ */
+const allSections = $$('.section, .cover');
+const sbLinks     = $$('.sb-nav a');
+const bnavLinks   = $$('.bnav-item');
+
+function setActive(id) {
+  sbLinks.forEach(l =>
+    l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+  bnavLinks.forEach(l =>
+    l.classList.toggle('active', l.dataset.section === id));
+}
+
+let navRaf = false;
+function onNavScroll() {
+  if (navRaf) return;
+  navRaf = true;
+  requestAnimationFrame(() => {
+    const mid = window.scrollY + window.innerHeight * 0.3;
+    let cur = allSections[0]?.id || '';
+    allSections.forEach(s => { if (s.offsetTop <= mid) cur = s.id; });
+    setActive(cur);
+    navRaf = false;
+  });
+}
+window.addEventListener('scroll', onNavScroll, { passive: true });
+onNavScroll();
+
+/* ═══════════════════════════════════════════════════════
+   BOTTOM NAV SCROLL
+   ═══════════════════════════════════════════════════════ */
+bnavLinks.forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = $(a.getAttribute('href'));
+    if (!target) return;
+    window.scrollTo({ top: target.offsetTop - 8, behavior: 'smooth' });
+    setTimeout(scanAndAnimate, 700);
+  });
+});
+
+/* ═══════════════════════════════════════════════════════
+   HAMBURGER / DRAWER
+   ═══════════════════════════════════════════════════════ */
+const hamBtn  = $('#hamBtn');
+const sidebar = $('#sidebar');
+const overlay = $('#sidebarOverlay');
+
+function openSidebar() {
+  sidebar?.classList.add('open');
+  overlay?.classList.add('show');
+  hamBtn?.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSidebar() {
+  sidebar?.classList.remove('open');
+  overlay?.classList.remove('show');
+  hamBtn?.classList.remove('open');
+  document.body.style.overflow = '';
+}
+hamBtn?.addEventListener('click', () =>
+  sidebar.classList.contains('open') ? closeSidebar() : openSidebar());
+overlay?.addEventListener('click', closeSidebar);
+$$('.sb-nav a').forEach(a =>
+  a.addEventListener('click', () => {
+    if (isMobile() || isTablet()) closeSidebar();
+  }));
+
+/* ── Swipe gesture ─ */
+let tx = 0, ty = 0;
+document.addEventListener('touchstart', e => {
+  tx = e.touches[0].clientX;
+  ty = e.touches[0].clientY;
+}, { passive: true });
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - tx;
+  const dy = Math.abs(e.changedTouches[0].clientY - ty);
+  if (dy > 50 || !isMobile()) return;
+  if (dx >  60 && tx < 30) openSidebar();
+  if (dx < -60 && sidebar?.classList.contains('open')) closeSidebar();
+}, { passive: true });
+
+/* ═══════════════════════════════════════════════════════
+   VIDEO PLACEHOLDERS
+   ═══════════════════════════════════════════════════════ */
+$$('.video-placeholder').forEach(vp => {
+  vp.addEventListener('touchstart', function() {
+    this.style.opacity = '0.8';
+  }, { passive: true });
+  vp.addEventListener('touchend', function() {
+    this.style.opacity = '';
+  }, { passive: true });
+});
+window.addEventListener('resize', () => {
+  if (!isMobile() && !isTablet()) closeSidebar();
+  scanAndAnimate();
+});
+</script>
+
+<!-- MODAL VÍDEO -->
+<div id="videoModal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.88);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);align-items:center;justify-content:center;padding:16px;">
+  <div style="position:relative;width:min(900px,92vw);">
+    <button onclick="closeVideo()" style="position:absolute;top:-44px;right:0;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:22px;cursor:pointer;line-height:1;padding:6px 14px;border-radius:8px;-webkit-tap-highlight-color:transparent;">✕</button>
+    <video id="modalVideo" controls playsinline webkit-playsinline style="width:100%;border-radius:10px;background:#000;display:block;max-height:80vh;object-fit:contain;">
+      <source id="modalVideoSrc" src="" type="video/mp4">
+    </video>
+  </div>
+</div>
+
+<script>
+function openVideo(url) {
+  var modal = document.getElementById('videoModal');
+  var src   = document.getElementById('modalVideoSrc');
+  var video = document.getElementById('modalVideo');
+  src.src = url;
+  video.load();
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  /* En iOS Safari hay que esperar al evento canplay antes de llamar play() */
+  video.addEventListener('canplay', function handler() {
+    video.play().catch(function(){});
+    video.removeEventListener('canplay', handler);
+  });
+}
+function closeVideo() {
+  var modal = document.getElementById('videoModal');
+  var video = document.getElementById('modalVideo');
+  video.pause();
+  video.currentTime = 0;
+  document.getElementById('modalVideoSrc').src = '';
+  modal.style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.getElementById('videoModal').addEventListener('click', function(e) {
+  if (e.target === this) closeVideo();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeVideo();
+});
+</script>
+</div>
+</body>
+</html>
