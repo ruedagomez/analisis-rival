@@ -2255,42 +2255,77 @@ body {
   </div>
 
   <div class="subsection-title">Rankings de liga</div>
-  <div class="card" style="margin-bottom:20px;">
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;font-size:12px;">
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--green-dim);border-radius:8px;border:1px solid rgba(10,138,85,0.2);">
-        <span style="font-family:var(--font-num);font-size:22px;color:var(--green);min-width:32px;">#2</span>
-        <span style="color:var(--muted2);">Más goles a favor · <strong>62 GF</strong> · 2.21/partido</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--green-dim);border-radius:8px;border:1px solid rgba(10,138,85,0.2);">
-        <span style="font-family:var(--font-num);font-size:22px;color:var(--green);min-width:32px;">#6</span>
-        <span style="color:var(--muted2);">Más GF fuera de casa · <strong>26 GF</strong></span>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--green-dim);border-radius:8px;border:1px solid rgba(10,138,85,0.2);">
-        <span style="font-family:var(--font-num);font-size:22px;color:var(--green);min-width:32px;">#6</span>
-        <span style="color:var(--muted2);">Menos goles en contra · <strong>35 GC</strong></span>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--green-dim);border-radius:8px;border:1px solid rgba(10,138,85,0.2);">
-        <span style="font-family:var(--font-num);font-size:22px;color:var(--green);min-width:32px;">#9</span>
-        <span style="color:var(--muted2);">Menos GC fuera de casa · <strong>21 GC</strong></span>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--blue-dim);border-radius:8px;border:1px solid rgba(20,82,204,0.2);">
-        <span style="font-family:var(--font-num);font-size:22px;color:var(--blue);min-width:32px;">#2</span>
-        <span style="color:var(--muted2);">Más sustituciones · <strong>164 total</strong> · 5.86/partido</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--amber-dim);border-radius:8px;border:1px solid rgba(196,123,0,0.2);">
-        <span style="font-family:var(--font-num);font-size:22px;color:var(--amber);min-width:32px;">#13</span>
-        <span style="color:var(--muted2);">Tarjetas amarillas jugadores · <strong>70 🟨</strong> · Equipo disciplinado</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--red-dim);border-radius:8px;border:1px solid rgba(208,16,32,0.2);">
-        <span style="font-family:var(--font-num);font-size:22px;color:var(--red);min-width:32px;">#4</span>
-        <span style="color:var(--muted2);">Tarjetas rojas jugadores · <strong>4 🟥</strong></span>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--blue-dim);border-radius:8px;border:1px solid rgba(20,82,204,0.2);">
-        <span style="font-family:var(--font-num);font-size:22px;color:var(--blue);min-width:32px;">#9</span>
-        <span style="color:var(--muted2);">🟨 provocadas al rival · <strong>90 amarillas</strong></span>
-      </div>
-    </div>
-  </div>
+<div class="card" style="margin-bottom:20px;">
+  <table class="tbl" style="font-size:12px;">
+    <thead>
+      <tr>
+        <th style="width:40%">Métrica</th>
+        <th style="text-align:center;color:#d01020">Egabrense</th>
+        <th style="text-align:center;color:#d01020">#</th>
+        <th style="text-align:center;color:#1452cc">Racing</th>
+        <th style="text-align:center;color:#1452cc">#</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Goles a Favor (total)</td>
+        <td style="text-align:center;font-weight:700;">62</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(208,16,32,0.1);color:var(--red);padding:1px 6px;border-radius:4px;">#2</span></td>
+        <td style="text-align:center;font-weight:700;">50</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(20,82,204,0.1);color:var(--blue);padding:1px 6px;border-radius:4px;">#6</span></td>
+      </tr>
+      <tr>
+        <td>Goles en Contra (total)</td>
+        <td style="text-align:center;font-weight:700;">35</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(208,16,32,0.1);color:var(--red);padding:1px 6px;border-radius:4px;">#6</span></td>
+        <td style="text-align:center;font-weight:700;">17</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(20,82,204,0.1);color:var(--blue);padding:1px 6px;border-radius:4px;">#1</span></td>
+      </tr>
+      <tr>
+        <td>GF fuera / GF en casa</td>
+        <td style="text-align:center;font-weight:700;">26</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(208,16,32,0.1);color:var(--red);padding:1px 6px;border-radius:4px;">#2</span></td>
+        <td style="text-align:center;font-weight:700;">28</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(20,82,204,0.1);color:var(--blue);padding:1px 6px;border-radius:4px;">#5</span></td>
+      </tr>
+      <tr>
+        <td>GC fuera / GC en casa</td>
+        <td style="text-align:center;font-weight:700;">21</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(208,16,32,0.1);color:var(--red);padding:1px 6px;border-radius:4px;">#7</span></td>
+        <td style="text-align:center;font-weight:700;">6</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(20,82,204,0.1);color:var(--blue);padding:1px 6px;border-radius:4px;">#1</span></td>
+      </tr>
+      <tr>
+        <td>Amarillas a jugadores</td>
+        <td style="text-align:center;font-weight:700;">70</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(196,123,0,0.1);color:var(--amber);padding:1px 6px;border-radius:4px;">#13</span></td>
+        <td style="text-align:center;font-weight:700;">75</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(196,123,0,0.1);color:var(--amber);padding:1px 6px;border-radius:4px;">#10</span></td>
+      </tr>
+      <tr>
+        <td>Rojas a jugadores</td>
+        <td style="text-align:center;font-weight:700;">4</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(208,16,32,0.1);color:var(--red);padding:1px 6px;border-radius:4px;">#10</span></td>
+        <td style="text-align:center;font-weight:700;">6</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(208,16,32,0.1);color:var(--red);padding:1px 6px;border-radius:4px;">#7</span></td>
+      </tr>
+      <tr>
+        <td>Amarillas provocadas al rival</td>
+        <td style="text-align:center;font-weight:700;">90</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(196,123,0,0.1);color:var(--amber);padding:1px 6px;border-radius:4px;">#9</span></td>
+        <td style="text-align:center;font-weight:700;">119</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(196,123,0,0.1);color:var(--amber);padding:1px 6px;border-radius:4px;">#1</span></td>
+      </tr>
+      <tr>
+        <td>Sustituciones</td>
+        <td style="text-align:center;font-weight:700;">164</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(20,82,204,0.1);color:var(--blue);padding:1px 6px;border-radius:4px;">#2</span></td>
+        <td style="text-align:center;font-weight:700;">150</td>
+        <td style="text-align:center;"><span style="font-family:var(--font-num);font-size:13px;background:rgba(20,82,204,0.1);color:var(--blue);padding:1px 6px;border-radius:4px;">#7</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
   <div class="subsection-title">Patrones situacionales</div>
   <div class="g4">
