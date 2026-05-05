@@ -1261,20 +1261,6 @@ body {
 </style>
 </head>
 <body>
-  <script>
-(function() {
-  var key = 'rcp_auth';
-  var pass = '1928';
-  if (sessionStorage.getItem(key) !== 'ok') {
-    var input = prompt('Introduce la contraseña para acceder:');
-    if (input !== pass) {
-      document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;color:#888;font-size:14px;">Acceso denegado</div>';
-      return;
-    }
-    sessionStorage.setItem(key, 'ok');
-  }
-})();
-</script>
 <div id="app-wrapper" style="max-width:100%;width:100%;overflow-x:hidden;position:relative;">
 
 <!-- ─── SIDEBAR ─────────────────────────────── -->
